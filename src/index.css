@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: white !important;
+}
+
+/* .ant-table-wrapper {
+    background: #181c1d !important;
+} */
+
+.border-bottom {
+    border: 0.6px solid black;
+}
+
+/* .ant-layout .ant-layout-sider-children {
+    background: linear-gradient(to bottom, #ef4136, #fbb040) !important;
+} */
+
+/* ant design menu option */
+.ant-menu-item:hover {
+    background: #ffbc58 !important;
+    color: black !important;
+    gap: '3px';
+    /* border-left: 6px solid #00369a !important; */
+    border-radius: 0px 2px 2px 0px !important;
+}
+
+.ant-menu-item {
+    font-size: 18px !important;
+}
+.ant-menu-item-selected {
+    background: #ffbc58 !important;
+    color: black !important;
+    gap: '3px';
+    /* border-left: 6px solid #00369a !important; */
+    border-radius: 0px 2px 2px 0px !important;
+}
+
+/* .ant-menu-item-active {
+    background: #00369a !important;
+    color: #00369a !important;
+    border-left: 6px solid #fbb040 !important;
+    border-radius: 0px 2px 2px 0px !important;
+} */
+
+.ant-menu .ant-menu-item .ant-menu-item-icon + span {
+    transition: none !important;
+}
+
+/* .ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
+    background: linear-gradient(to bottom, #ef4136, #fbb040) !important;
+} */
+
+/* .ant-menu .ant-menu-title-content {
+    transition: none !important;
+} */
+
+/* .ant-menu-light {
+    background: #181c1d !important;
+} */
+
+/* .ant-layout-header {
+    background: #181c1d !important;
+    color: #ffbc58 !important;
+} */
+
+.ant-form {
+    color: #ffbc58 !important;
+}
+
+.ant-checkbox-wrapper {
+    color: #ffbc58 !important;
+}
+
+/* .ant-form-item .ant-form-item-label > label {
+    color: #ffbc58 !important;
+} */
+
+.ant-pagination-item-active a {
+    color: white !important;
+    background-color: #c4a862 !important;
+}
+.ant-pagination-item:hover a {
+    border-radius: 5px !important;
+    color: white !important;
+    background-color: #c4a862 !important;
+}
+
+/* .ant-btn-default {
+    background: #181c1d !important;
+    color: #c4a862 !important;
+} */
+
+.ant-layout-header {
+    background: white;
+}
+
+.ant-table-thead {
+    height: 60px !important;
+}
+
+/* title user management */
+.title {
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+}
