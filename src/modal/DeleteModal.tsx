@@ -1,3 +1,4 @@
+import Button from '../components/shared/Button';
 import Modal from './Modal';
 
 interface DeleteModalPros {
@@ -9,24 +10,20 @@ export default function DeleteModal({ isOpen, onClose }: DeleteModalPros) {
     if (!isOpen) return null;
 
     return (
-        <Modal isOpen={isOpen}>
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                <div className="bg-white rounded-xl shadow-lg p-6 w-[350px]  relative">
-                    <h1 className="text-3xl font-semibold text-red-500 text-nowrap">Are you want to Delete</h1>
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <div className="flex justify-center items-center h-[300px] bg-[#E6F2FF]">
+                <div className="bg-[#E6F2FF] rounded-xl p-6  relative ">
+                    <h1 className="text-3xl font-semibold text-center mb-[60px] text-nowrap">Do you want to delete</h1>
 
-                    <div className="flex justify-between gap-5">
-                        <button
-                            onClick={onClose}
-                            className="w-full mt-8 py-2 text-lg font-semibold text-black border border-black rounded-lg transition duration-300"
-                        >
-                            No
-                        </button>
-                        <button
-                            onClick={onClose}
-                            className="w-full mt-8 text-lg font-semibold bg-[#181c1d] rounded-lg transition duration-300"
-                        >
-                            Yes
-                        </button>
+                    <div className="flex justify-between gap-5" onClick={onClose}>
+                        <div className="flex justify-center items-center w-[200px] border border-primaryColor rounded-lg text-primaryColor cursor-pointer">
+                            <button>No</button>
+                        </div>
+                        <div>
+                            <Button onClose={onClose} className="flex justify-center items-center">
+                                Yes
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { Button, ConfigProvider, Form, FormProps, Input } from 'antd';
 import { FieldNamesType } from 'antd/es/cascader';
 import { useNavigate } from 'react-router-dom';
+import otp from '../../../public/auth/otp.svg';
 
 const VerifyOtp = () => {
     const navigate = useNavigate();
@@ -25,57 +26,63 @@ const VerifyOtp = () => {
                 },
             }}
         >
-            <div className="flex  items-center justify-center h-screen">
-                <div className=" w-[660px] rounded-lg p-10 border border-[#FFBC58]">
-                    <div className=" space-y-3 text-center">
-                        <h1 className="text-3xl  font-medium text-center mt-2">Check your email</h1>
-                        <p>
-                            We sent a reset link to contact@dscode...com enter 5 digit code that mentioned in the email
-                        </p>
-                    </div>
-
-                    <Form
-                        name="normal_VerifyOtp"
-                        className="my-5"
-                        layout="vertical"
-                        initialValues={{ remember: true }}
-                        onFinish={onFinish}
-                    >
-                        <Form.Item
-                            className="flex items-center justify-center mx-auto "
-                            name="otp"
-                            rules={[{ required: true, message: 'Please input otp code here!' }]}
-                        >
-                            <Input.OTP
-                                style={{
-                                    width: 340,
-                                }}
-                                className=""
-                                // variant="filled"
-                                length={6}
-                            />
-                        </Form.Item>
-
-                        <Form.Item>
-                            <Button
-                                shape="round"
-                                type="primary"
-                                htmlType="submit"
-                                style={{
-                                    height: 45,
-                                    width: '100%',
-                                    fontWeight: 500,
-                                }}
-                                // onClick={() => navigate('/')}
-                            >
-                                Verify OTP Code
-                            </Button>
-                        </Form.Item>
-                        <div className="text-center text-lg flex items-center justify-center gap-2">
-                            <p className="">Didn't receive the code?</p>
-                            <p className="text-primary">Resend code</p>
+            <div
+                className="
+            flex items-center justify-center h-screen"
+            >
+                <div className=" border-r-2 border-black px-5">
+                    <img src={otp} width={460} height={460} alt="forgot" />
+                </div>
+                <div className="flex  items-center justify-center pl-8">
+                    <div className=" w-[500px] ">
+                        <div className=" space-y-3 ">
+                            <h1 className="text-3xl  font-semibold  mt-2">Verify OTP</h1>
+                            <p className="text-[#757575]">
+                                Please check your email. We have sent a code to contact @gmail.com
+                            </p>
                         </div>
-                    </Form>
+
+                        <Form
+                            name="normal_VerifyOtp"
+                            className="my-5"
+                            layout="vertical"
+                            initialValues={{ remember: true }}
+                            onFinish={onFinish}
+                        >
+                            <Form.Item
+                                className="flex items-center justify-center mx-auto "
+                                name="otp"
+                                rules={[{ required: true, message: 'Please input otp code here!' }]}
+                            >
+                                <Input.OTP
+                                    style={{
+                                        width: 250,
+                                    }}
+                                    className=""
+                                    // variant="filled"
+                                    length={4}
+                                />
+                            </Form.Item>
+                            <div className="text-lg flex items-center justify-between gap-2 mb-8">
+                                <p className="">Didn't receive the code?</p>
+                                <p className="text-primary font-semibold underline">Resend</p>
+                            </div>
+
+                            <Form.Item>
+                                <Button
+                                    className="!bg-primaryBg !text-white !border-none !hover-none"
+                                    htmlType="submit"
+                                    style={{
+                                        height: 45,
+                                        width: '100%',
+                                        fontWeight: 500,
+                                    }}
+                                >
+                                    Verify
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </div>
                 </div>
             </div>
         </ConfigProvider>

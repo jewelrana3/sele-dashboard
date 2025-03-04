@@ -9,11 +9,13 @@ export default {
                 customGray: '#757575',
                 icon: '#3395FF',
                 // primaryText: '#1F1F1F',
+
                 // stoke: '#00369A',
             },
             backgroundColor: {
                 bgBlue: '#D6EAFF', // Custom background color mapping
                 primaryBg: '#3395FF',
+                primary: ' #007BFF',
             },
             fontFamily: {
                 outfit: ['Outfit', 'sans-serif'],

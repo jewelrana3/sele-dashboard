@@ -1,12 +1,18 @@
 interface Buttonprops {
-    children: string;
+    children: React.ReactNode;
     className: string;
+    onClose?: () => void;
+    htmlType?: 'button' | 'submit' | 'reset';
 }
 
-export default function Button({ children, className }: Buttonprops) {
+export default function Button({ children, className, onClose, htmlType = 'button' }: Buttonprops) {
     return (
-        <div className={`${className} bg-[#00369A] text-white font-semibold  text-center  cursor-pointer`}>
+        <button
+            type={htmlType}
+            onClick={onClose}
+            className={`${className} font-semibold text-center my-auto  cursor-pointer bg-primaryBg text-white w-[200px] h-[50px] rounded-lg`}
+        >
             {children}
-        </div>
+        </button>
     );
 }

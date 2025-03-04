@@ -1,6 +1,7 @@
 import { Button, ConfigProvider, Form, FormProps, Input } from 'antd';
 import { FieldNamesType } from 'antd/es/cascader';
 import { useNavigate } from 'react-router';
+import forgot from '../../../public/auth/forgot.svg';
 
 const ForgetPassword = () => {
     const navigate = useNavigate();
@@ -13,18 +14,17 @@ const ForgetPassword = () => {
         <ConfigProvider
             theme={{
                 token: {
-                    colorPrimary: '#FBB040',
-
-                    colorBgContainer: '#F1F4F9',
+                    // colorPrimary: '#FBB040',
+                    // colorBgContainer: '#F1F4F9',
                 },
                 components: {
                     Input: {
-                        borderRadius: 40,
-                        colorBorder: 'transparent',
+                        borderRadius: 10,
+                        // colorBorder: '',
                         colorPrimaryBorder: 'transparent',
-                        hoverBorderColor: 'transparent',
+                        hoverBorderColor: '',
                         controlOutline: 'none',
-                        activeBorderColor: 'transparent',
+                        activeBorderColor: '',
                     },
                     Button: {
                         colorPrimaryHover: 'rgb(0,0,0)',
@@ -32,46 +32,52 @@ const ForgetPassword = () => {
                 },
             }}
         >
-            <div className="flex  items-center justify-center h-screen">
-                <div className=" w-[660px] rounded-lg  p-10 border border-[#FFBC58]">
-                    <div className=" space-y-3 text-center">
-                        <h1 className="text-3xl  font-medium text-center mt-2">Forget Password</h1>
-                    </div>
+            <div
+                className="
+            flex items-center justify-center h-screen"
+            >
+                <div className=" border-r-2 border-black px-5">
+                    <img src={forgot} width={460} height={460} alt="forgot" />
+                </div>
+                <div className="flex items-center justify-center px-5">
+                    <div className="w-[500px]">
+                        <div className=" space-y-3 ">
+                            <h1 className="text-3xl  font-semibold mt-2">Forget Password</h1>
+                            <p className="text-[#757575]">
+                                Enter your email address to ger a verification code for resetting your password.
+                            </p>
+                        </div>
 
-                    <Form
-                        name="normal_ForgetPassword"
-                        className="ForgetPassword-form"
-                        layout="vertical"
-                        initialValues={{ remember: true }}
-                        onFinish={onFinish}
-                    >
-                        <Form.Item
-                            label={
-                                <label htmlFor="email" className="block  mb-1 text-lg">
-                                    Email
-                                </label>
-                            }
-                            name="email"
-                            rules={[{ required: true, message: 'Please input your email!' }]}
+                        <Form
+                            name="normal_ForgetPassword"
+                            className="ForgetPassword-form"
+                            layout="vertical"
+                            initialValues={{ remember: true }}
+                            onFinish={onFinish}
                         >
-                            <Input placeholder="Enter your email address" type="email" className="h-12" />
-                        </Form.Item>
+                            <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
+                                <Input
+                                    placeholder="Enter your email address"
+                                    type="email"
+                                    className="h-12 mt-5 bg-white"
+                                />
+                            </Form.Item>
 
-                        <Form.Item>
-                            <Button
-                                className="!bg-[#fbb040] !border-none !hover-none"
-                                shape="round"
-                                htmlType="submit"
-                                style={{
-                                    height: 45,
-                                    width: '100%',
-                                    fontWeight: 500,
-                                }}
-                            >
-                                Send Code
-                            </Button>
-                        </Form.Item>
-                    </Form>
+                            <Form.Item>
+                                <Button
+                                    className="!bg-primaryBg !text-white !border-none !hover-none"
+                                    htmlType="submit"
+                                    style={{
+                                        height: 45,
+                                        width: '100%',
+                                        fontWeight: 500,
+                                    }}
+                                >
+                                    Get OTP
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </div>
                 </div>
             </div>
         </ConfigProvider>

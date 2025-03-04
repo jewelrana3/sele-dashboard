@@ -9,7 +9,7 @@ import eye from '../../../../public/share-icon/eye.svg';
 
 import UserDetailsModalProps from '../../../modal/UserDetails';
 
-export default function Users() {
+export default function Agency() {
     const { data, loading } = useData('/data/recentUser.json');
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
     const [userDetails, setUserDetails] = useState<boolean>(false);

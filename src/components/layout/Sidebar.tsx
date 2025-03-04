@@ -4,14 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoIosLogOut } from 'react-icons/io';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { LuLayoutDashboard } from 'react-icons/lu';
-import { BiSolidDonateHeart } from 'react-icons/bi';
-import { RiUserCommunityLine } from 'react-icons/ri';
-import { AiOutlineContainer, AiTwotoneContainer } from 'react-icons/ai';
-import { MdOutlineVerifiedUser } from 'react-icons/md';
 import user from '../../../public/sidebar-icon/user.svg';
 import earings from '../../../public/sidebar-icon/earings.svg';
 import agency from '../../../public/sidebar-icon/agency.svg';
 import category from '../../../public/sidebar-icon/category.svg';
+import about from '../../../public/sidebar-icon/about.svg';
+import privacy from '../../../public/sidebar-icon/privacy.svg';
+import terms from '../../../public/sidebar-icon/terms.svg';
+import { CiLock, CiUser } from 'react-icons/ci';
 
 const Sidebar = () => {
     const [selectedKey, setSelectedKey] = useState<string>('/');
@@ -52,35 +52,56 @@ const Sidebar = () => {
         {
             key: '/category',
             icon: <img src={category} alt="user" width={24} height={24} />,
-            label: <Link to="/ategory">Category</Link>,
+            label: <Link to="/category">Category</Link>,
         },
 
         {
-            key: 'edit-profile',
+            key: '/profile',
             icon: <IoSettingsOutline size={24} />,
             label: (
-                <Link to="/edit-profile" className="text-white hover:text-white">
-                    Settings
+                <Link to="/profile ">
+                    <span className="text-[18px]">Setting</span>
                 </Link>
             ),
-        },
-        {
-            key: '/terms-condition',
-            icon: <AiOutlineContainer size={24} />,
-            label: (
-                <Link to="/terms-condition" className="text-white hover:text-white">
-                    Terms And Condition
-                </Link>
-            ),
-        },
-        {
-            key: '/privacy',
-            icon: <AiTwotoneContainer size={24} />,
-            label: (
-                <Link to="/policy" className="text-white hover:text-white">
-                    Privacy Policy
-                </Link>
-            ),
+            children: [
+                {
+                    key: '/profile',
+                    icon: <CiUser size={24} />,
+                    label: <Link to="/profile">Profile</Link>,
+                },
+                {
+                    key: '/change-password',
+                    icon: <CiLock size={24} />,
+                    label: <Link to="/change-password">Change Password</Link>,
+                },
+                {
+                    key: '/about-us',
+                    icon: <img src={about} width={24} height={24} alt="about" />,
+                    label: (
+                        <Link to="/about-us" className="text-white hover:text-white">
+                            About Us
+                        </Link>
+                    ),
+                },
+                {
+                    key: '/terms-condition',
+                    icon: <img src={privacy} width={24} height={24} alt="terms" />,
+                    label: (
+                        <Link to="/terms-condition" className="text-white hover:text-white">
+                            Terms And Condition
+                        </Link>
+                    ),
+                },
+                {
+                    key: '/privacy',
+                    icon: <img src={terms} width={24} height={24} alt="privacy" />,
+                    label: (
+                        <Link to="/policy" className="text-white hover:text-white">
+                            Privacy Policy
+                        </Link>
+                    ),
+                },
+            ],
         },
 
         {
@@ -95,14 +116,13 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="mt-5 bg-[#EBF4FF]">
-            <Link to={'/'} className="flex justify-center items-center mb-5 my-[22px] mx-">
+        <div className="">
+            <Link to={'/'} className="flex justify-center items-center mb-5 my-[22px]">
                 <div>
                     {/* <img src={logo} alt="" className="h-[73px] mx-6 " /> */}
                     <h1 className="text-[74px] font-bold text-[#757575]">SELE</h1>
                 </div>
             </Link>
-            <hr className=" !border-bottom border-[#ffbc58] mb-5" />
 
             <ConfigProvider
                 theme={{
@@ -118,7 +138,7 @@ const Sidebar = () => {
                 }}
             >
                 <Menu
-                    className="bg-[#EBF4FF]"
+                    className="bg-[#EBF4FF] "
                     mode="inline"
                     selectedKeys={[selectedKey]}
                     openKeys={openKeys}

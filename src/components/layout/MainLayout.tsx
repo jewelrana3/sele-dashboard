@@ -7,20 +7,20 @@ import HeaderDashboard from './HeaderDashboard';
 
 const MainLayout: React.FC = () => {
     return (
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 ">
             {/* side bar */}
-            <div className="col-span-2 h-screen border-r-2 border-[#ffbc58]">
+            <div className="col-span-2 bg-[#EBF4FF]   overflow-y-auto overflow-x-hidden">
                 <Sidebar />
             </div>
 
             {/* main container with header */}
-            <div className="col-span-10">
-                <div className="flex items-center justify-end pr-5 ">
+            <div className="col-span-10 ">
+                <div className="flex items-center justify-end  ">
                     <HeaderDashboard />
                 </div>
 
-                <div className=" h-[calc(100vh-80px)] px-8 ">
-                    <div className="h-full overflow-y-auto rounded-md ">
+                <div className=" h-[calc(100vh-80px)] overflow-y-auto  px-4">
+                    <div className="h-full  rounded-md ">
                         <Outlet />
                     </div>
                 </div>

@@ -19,24 +19,18 @@ body {
     background: linear-gradient(to bottom, #ef4136, #fbb040) !important;
 } */
 
-/* ant design menu option */
-.ant-menu-item:hover {
-    background: #ffbc58 !important;
-    color: black !important;
-    gap: '3px';
-    /* border-left: 6px solid #00369a !important; */
-    border-radius: 0px 2px 2px 0px !important;
-}
-
 .ant-menu-item {
     font-size: 18px !important;
 }
 .ant-menu-item-selected {
-    background: #ffbc58 !important;
+    background: #ffffff !important;
     color: black !important;
-    gap: '3px';
+    width: 100% !important;
     /* border-left: 6px solid #00369a !important; */
-    border-radius: 0px 2px 2px 0px !important;
+    border-radius: 50px 2px 10px 50px !important;
+}
+.ant-menu-submenu-title {
+    color: black !important;
 }
 
 /* .ant-menu-item-active {
@@ -67,26 +61,22 @@ body {
     color: #ffbc58 !important;
 } */
 
-.ant-form {
-    color: #ffbc58 !important;
-}
-
-.ant-checkbox-wrapper {
-    color: #ffbc58 !important;
-}
-
 /* .ant-form-item .ant-form-item-label > label {
     color: #ffbc58 !important;
 } */
 
 .ant-pagination-item-active a {
     color: white !important;
-    background-color: #c4a862 !important;
+    background-color: 'black' !important;
 }
 .ant-pagination-item:hover a {
     border-radius: 5px !important;
     color: white !important;
-    background-color: #c4a862 !important;
+    background-color: 'black' !important;
+}
+
+.ant-checkbox-input {
+    background: red !important;
 }
 
 /* .ant-btn-default {
@@ -96,12 +86,16 @@ body {
 
 .ant-layout-header {
     background: white;
+    padding: 0 30px;
 }
 
 .ant-table-thead {
     height: 60px !important;
 }
 
+.input.ant-input {
+    background-color: #ffbc58 !important;
+}
 /* title user management */
 .title {
     font-weight: 500;

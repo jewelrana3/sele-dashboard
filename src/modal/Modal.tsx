@@ -30,7 +30,7 @@ const styles: {
         right: '10px',
         border: 'none',
         background: 'transparent',
-        fontSize: '30px',
+        fontSize: '26px',
         cursor: 'pointer',
     },
 };
@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         <div style={styles.overlay}>
             <div style={styles.modal}>
                 {onClose && (
-                    <button onClick={onClose} style={styles.closeButton} className="text-[#BBB69A] h-5 w-5">
+                    <button onClick={onClose} style={styles.closeButton} className=" pr-5">
                         X
                     </button>
                 )}

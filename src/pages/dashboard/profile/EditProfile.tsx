@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Form, Input, Button, Avatar, Upload, UploadFile, ConfigProvider } from 'antd';
-import { MdModeEditOutline, MdOutlineArrowBackIosNew, MdOutlineModeEdit } from 'react-icons/md';
+import { Form, Input, Avatar, Upload, UploadFile, ConfigProvider } from 'antd';
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { UploadChangeParam } from 'antd/es/upload/interface';
+import { BiUpload } from 'react-icons/bi';
+import Button from '../../../components/shared/Button';
 
 export default function EditProfile() {
     const navigate = useNavigate();
@@ -10,10 +12,6 @@ export default function EditProfile() {
     // const [, setIsEditing] = useState<boolean>(false);
 
     const [form] = Form.useForm();
-
-    const handleEdit = () => {
-        navigate('/change-password');
-    };
 
     // const handleSave = () => {
     //     form.validateFields().then(() => {
@@ -36,7 +34,7 @@ export default function EditProfile() {
     };
 
     return (
-        <div className="">
+        <div className="overflow-hidden">
             {/* profile */}
 
             <div className="w-[1035px] mx-auto">
@@ -47,64 +45,56 @@ export default function EditProfile() {
                     <button>Profile</button>
                 </div>
                 <div className="flex justify-between space-x-6 mt-12">
-                    <div className="flex items-center gap-4">
-                        <div className="relative">
-                            <Avatar size={100} src={imageUrl} className="border border-[#C68C4E]" />
-                        </div>
-                        <Upload showUploadList={false} onChange={handleImageChange} accept="image/*">
-                            <div className="absolute left-[685px] mt-4 bg-[#FF991C] w-[22px] h-[22px] flex justify-center items-center rounded-full cursor-pointer">
-                                <MdModeEditOutline className="text-white" />
-                            </div>
-                        </Upload>
+                    <div className="flex gap-4">
                         <div>
-                            <h3 className="font-medium font-montserrat text-2xl">Ethan Michael</h3>
+                            <div className="">
+                                <Avatar size={100} src={imageUrl} />
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="flex justify-end mt-auto ">
-                        <span
-                            className="w-[209px] h-[58px] rounded-2xl text-[20px]  border border-[#C68C4E] flex items-center justify-center space-x-2 cursor-pointer"
-                            onClick={handleEdit}
-                        >
-                            <MdOutlineModeEdit className="text-xl mr-2" /> {/* This adds the icon */}
-                            Change Password
-                        </span>
+                        <div className="flex items-center gap-10">
+                            <h3 className="font-semibold text-2xl">Samuel Jacob Reed</h3>
+                            <Upload showUploadList={false} onChange={handleImageChange} accept="image/*">
+                                <div className="w-[22px] h-[22px] flex justify-center items-center rounded-full cursor-pointer">
+                                    <BiUpload className="mt-3" size={24} />
+                                </div>
+                            </Upload>
+                        </div>
                     </div>
                 </div>
 
                 <div className="mt-5">
                     <Form form={form} layout="vertical">
                         <div>
-                            <span className=" text-[20px] font-semibold ">Full Name</span>
-                            <div className="mt-3 ">
-                                <Form.Item name="fullname" rules={[{ required: true }]}>
-                                    <Input
-                                        className="h-14 border border-[#C68C4E] rounded-xl"
-                                        placeholder="enter your email"
-                                    />
-                                </Form.Item>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span className=" text-[20px] font-semibold ">Email</span>
-                            <div className="mt-3">
-                                <Form.Item name="email" rules={[{ required: true }]}>
-                                    <Input
-                                        className="h-14 border border-[#C68C4E] rounded-xl"
-                                        placeholder="enter your gmail"
-                                    />
-                                </Form.Item>
-                            </div>
-                        </div>
-
-                        <div>
                             <span className=" text-[20px] font-semibold ">Contact Number</span>
-                            <div className="mt-3">
+                            <div className="mt-3 ">
                                 <Form.Item name="contactNumber" rules={[{ required: true }]}>
                                     <Input
-                                        className="h-14 border border-[#C68C4E] rounded-xl"
-                                        placeholder="contact number"
+                                        className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
+                                        placeholder="enter your contact number"
+                                    />
+                                </Form.Item>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span className=" text-[20px] font-semibold ">Password</span>
+                            <div className="mt-3">
+                                <Form.Item name="password" rules={[{ required: true }]}>
+                                    <Input.Password
+                                        className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
+                                        placeholder="enter your password"
+                                    />
+                                </Form.Item>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span className=" text-[20px] font-semibold ">Confirm Password</span>
+                            <div className="mt-3">
+                                <Form.Item name="password" rules={[{ required: true }]}>
+                                    <Input
+                                        className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
+                                        placeholder="your confirm password"
                                     />
                                 </Form.Item>
                             </div>
@@ -125,12 +115,8 @@ export default function EditProfile() {
                                     },
                                 }}
                             >
-                                <Button
-                                    className="w-full py-6 rounded-sm border !bg-[#C68C4E] text-xl text-white font-semibold mt-5 !border-none"
-                                    htmlType="submit"
-                                    style={{ background: '#004AAD' }}
-                                >
-                                    Update Profile
+                                <Button htmlType="submit" className="w-[30%] flex justify-center items-center text-2xl">
+                                    Save & Change
                                 </Button>
                             </ConfigProvider>
                         </div>

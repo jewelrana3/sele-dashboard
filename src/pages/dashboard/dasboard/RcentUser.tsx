@@ -5,6 +5,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useState } from 'react';
 import DeleteModal from '../../../modal/DeleteModal';
 import useData from '../../../hooks/useData';
+import eye from '../../../../public/share-icon/eye.svg';
 
 export default function RecentUser() {
     const { data, loading } = useData('/data/recentUser.json');
@@ -77,7 +78,13 @@ export default function RecentUser() {
                                 align="center"
                                 render={() => (
                                     <div className="w-full lg:w-[80%]">
-                                        <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md   px-2 lg:px-0">
+                                        <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md px-2 lg:px-0">
+                                            <span
+                                                className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
+                                                // onClick={() => setIsDeleteModalOpen(true)}
+                                            >
+                                                <img src={eye} width={20} height={20} alt="eye" />
+                                            </span>
                                             <span
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
                                                 onClick={() => setIsDeleteModalOpen(true)}

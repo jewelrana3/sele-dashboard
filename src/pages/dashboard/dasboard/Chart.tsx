@@ -24,7 +24,7 @@ export default function Chart() {
                 flexDirection: 'column',
                 gap: 10,
             }}
-            className="p-4 bg-bgBlue mt-5"
+            className="p-4 bg-bgBlue"
         >
             <div className=" flex items-center justify-between">
                 <h1 className="text-2xl font-medium">Total Earing</h1>

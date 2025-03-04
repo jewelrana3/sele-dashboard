@@ -32,7 +32,7 @@ const data = [
 const EventStates = () => {
     return (
         <div>
-            <div className="grid lg:grid-cols-3 xl:grid-cols-3 gap-9">
+            <div className="grid lg:grid-cols-3 xl:grid-cols-3 gap-9 my-5">
                 {data.map((item, index) => (
                     <div key={index} className="bg-[#D6EAFF] rounded-md p-4  w-full shadow-sm ">
                         <div className="flex  items-center gap-3 px-4">

@@ -5,15 +5,12 @@ import JoditEditor from 'jodit-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
 
-export default function PrivacyPolicy() {
+export default function AboutUs() {
     const editor = useRef(null);
     const navigate = useNavigate();
 
     const [content, setContent] = useState('');
 
-    const handleOnSave = (value: string) => {
-        console.log(value);
-    };
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>
