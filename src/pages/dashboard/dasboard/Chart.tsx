@@ -38,7 +38,7 @@ export default function Chart() {
                     <Option value="2030">2030</Option>
                 </Select>
             </div>
-            <ResponsiveContainer width="100%" height={290}>
+            <ResponsiveContainer width="100%" height={260}>
                 <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />

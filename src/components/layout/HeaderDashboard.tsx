@@ -1,48 +1,12 @@
 import { Layout } from 'antd';
-import { IoIosMenu, IoMdNotificationsOutline } from 'react-icons/io';
-import { Link, useLocation } from 'react-router-dom';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
-
-const pathName = [
-    { label: 'Dashboard', path: 'dashboard' },
-    { label: 'User', path: 'user' },
-    { label: 'Earing', path: 'earing' },
-    { label: 'Category', path: 'category' },
-    { label: 'Agency', path: 'agency' },
-    { label: 'Profile', path: 'profile' },
-    { label: 'Change Password', path: 'change-password' },
-    { label: 'About Us', path: 'about-us' },
-    { label: 'Terms and Conditions', path: 'terms-conditions' },
-    { label: 'Policy', path: 'policy' },
-];
-
 const HeaderDashboard = () => {
-    let location = useLocation();
-    const activeItem = pathName.find((item) => location.pathname.includes(item.path));
     return (
-        <Header
-            className="w-full"
-            style={{
-                height: 80,
-            }}
-        >
-            <div className="flex items-center justify-between w-full">
-                {activeItem ? (
-                    <div className="flex items-center cursor-pointer" key={activeItem.label}>
-                        <p>
-                            <IoIosMenu className="w-10 h-[24px]" />
-                        </p>
-                        <p className="ml-2 ">{activeItem.label}</p> {/* Add bold to active */}
-                    </div>
-                ) : (
-                    <div className="flex items-center">
-                        <p>
-                            <IoIosMenu className="w-10 h-[24px]" />
-                        </p>
-                        <p className="ml-2">Dashboard</p> {/* Or any fallback text */}
-                    </div>
-                )}
+        <Header className="w-full">
+            <div className="flex items-center justify-end w-full -ml-5">
                 <div className="flex items-center">
                     <div>
                         {/*notification icons */}

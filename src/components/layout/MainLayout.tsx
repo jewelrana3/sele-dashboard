@@ -9,7 +9,7 @@ const MainLayout: React.FC = () => {
     return (
         <div className="grid grid-cols-12 ">
             {/* side bar */}
-            <div className="col-span-2 bg-[#EBF4FF]   overflow-y-auto overflow-x-hidden">
+            <div className="col-span-2 bg-[#EBF4FF]">
                 <Sidebar />
             </div>
 
@@ -19,7 +19,7 @@ const MainLayout: React.FC = () => {
                     <HeaderDashboard />
                 </div>
 
-                <div className=" h-[calc(100vh-80px)] overflow-y-auto  px-4">
+                <div className=" h-[calc(100vh-80px)] overflow-y-auto  px-10">
                     <div className="h-full  rounded-md ">
                         <Outlet />
                     </div>

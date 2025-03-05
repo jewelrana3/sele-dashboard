@@ -1,7 +1,6 @@
 import { ConfigProvider, Menu } from 'antd';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { IoIosLogOut } from 'react-icons/io';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { LuLayoutDashboard } from 'react-icons/lu';
 import user from '../../../public/sidebar-icon/user.svg';
@@ -11,7 +10,9 @@ import category from '../../../public/sidebar-icon/category.svg';
 import about from '../../../public/sidebar-icon/about.svg';
 import privacy from '../../../public/sidebar-icon/privacy.svg';
 import terms from '../../../public/sidebar-icon/terms.svg';
+import logout from '../../../public/sidebar-icon/logout.svg';
 import { CiLock, CiUser } from 'react-icons/ci';
+// import styles from './Sidebar.module.css';
 
 const Sidebar = () => {
     const [selectedKey, setSelectedKey] = useState<string>('/');
@@ -22,6 +23,36 @@ const Sidebar = () => {
         localStorage.removeItem('token');
         navigate('/login');
     };
+
+    // const getItemStyle = (key: string) => {
+    //     if (selectedKey === '/users' && key === '/') {
+    //         // Apply styles to 'Dashboard' when 'User' is selected
+    //         return {
+    //             background: 'linear-gradient(to right, #56ab2f, #a8e063)',
+    //             color: 'white', // White text
+    //             borderRadius: '0px 0px 30px 0px', // Rounded corners on one side
+    //             width: '304px',
+    //             height: '60px',
+    //         };
+    //     }
+    //     return {
+    //         width: '304px',
+    //         height: '60px',
+    //     };
+    // };
+
+    // const getItemStyle = (key: string) => {
+    //     if (selectedKey === key) {
+    //         // Apply styles to 'Dashboard' when 'User' is selected
+    //         return {
+    //             borderRadius: '30px', // Rounded corners on one side
+    //             padding:
+    //         };
+    //     }
+    //     return {
+    //         width: '304px',
+    //     };
+    // };
 
     const menuItems = [
         {
@@ -56,10 +87,10 @@ const Sidebar = () => {
         },
 
         {
-            key: '/profile',
+            key: '/setting',
             icon: <IoSettingsOutline size={24} />,
             label: (
-                <Link to="/profile ">
+                <Link to="/profile">
                     <span className="text-[18px]">Setting</span>
                 </Link>
             ),
@@ -106,8 +137,12 @@ const Sidebar = () => {
 
         {
             key: '/logout',
-            icon: <IoIosLogOut size={24} />,
-            label: <p onClick={handleLogout}>Logout</p>,
+            icon: <img src={logout} alt="user" width={24} height={24} />,
+            label: (
+                <p onClick={handleLogout} className="text-[#FC6057]">
+                    Logout
+                </p>
+            ),
         },
     ];
 
@@ -138,13 +173,15 @@ const Sidebar = () => {
                 }}
             >
                 <Menu
-                    className="bg-[#EBF4FF] "
+                    className="bg-[#EBF4FF] pl-4"
                     mode="inline"
                     selectedKeys={[selectedKey]}
                     openKeys={openKeys}
                     onOpenChange={handleOpenChange}
                     onSelect={({ key }) => setSelectedKey(key)}
-                    items={menuItems}
+                    items={menuItems.map((item) => ({
+                        ...item,
+                    }))}
                 />
             </ConfigProvider>
         </div>

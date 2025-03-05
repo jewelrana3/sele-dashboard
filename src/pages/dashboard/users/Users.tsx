@@ -7,7 +7,7 @@ import DeleteModal from '../../../modal/DeleteModal';
 import useData from '../../../hooks/useData';
 import eye from '../../../../public/share-icon/eye.svg';
 
-import UserDetailsModalProps from '../../../modal/UserDetails';
+import UserDetailsModal from '../../../modal/UserDetails';
 
 export default function Users() {
     const { data, loading } = useData('/data/recentUser.json');
@@ -27,7 +27,7 @@ export default function Users() {
     return (
         <>
             {/* Table */}
-            <div className="rounded-lg mx-auto overflow-x-auto">
+            <div className="rounded-lg mx-auto overflow-x-auto mt-10">
                 {/* Loader */}
                 {loading ? (
                     <div className="flex justify-center items-center py-8">
@@ -39,7 +39,7 @@ export default function Users() {
                         <Table
                             bordered={false}
                             dataSource={data}
-                            pagination={{ pageSize: 6 }}
+                            pagination={{ pageSize: 10 }}
                             className="cursor-pointer"
                         >
                             {/* Define columns here */}
@@ -108,7 +108,7 @@ export default function Users() {
                 <DeleteModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} />
             )}
             {/* user modal */}
-            {userDetails && <UserDetailsModalProps isOpen={userDetails} onClose={() => setUserDetails(false)} />}
+            {userDetails && <UserDetailsModal isOpen={userDetails} onClose={() => setUserDetails(false)} />}
         </>
     );
 }

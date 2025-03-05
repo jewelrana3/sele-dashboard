@@ -30,9 +30,10 @@ const VerifyOtp = () => {
                 className="
             flex items-center justify-center h-screen"
             >
-                <div className=" border-r-2 border-black px-5">
+                <div className="px-5">
                     <img src={otp} width={460} height={460} alt="forgot" />
                 </div>
+                <span className="border-r-2 border-black h-[600px]"></span>
                 <div className="flex  items-center justify-center pl-8">
                     <div className=" w-[500px] ">
                         <div className=" space-y-3 ">

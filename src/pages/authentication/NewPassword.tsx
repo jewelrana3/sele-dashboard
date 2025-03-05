@@ -38,10 +38,10 @@ const NewPassword = () => {
                 className="
             flex items-center justify-center h-screen"
             >
-                <div className="  px-5">
+                <div className="px-5">
                     <img src={newPass} width={460} height={460} alt="forgot" />
                 </div>
-                <span className="border-r-2 border-black h-[500px]"></span>
+                <span className="border-r-2 border-black h-[600px]"></span>
                 <div className="flex  items-center justify-center pl-7">
                     <div className=" w-[550px] ">
                         <div className=" space-y-3 ">

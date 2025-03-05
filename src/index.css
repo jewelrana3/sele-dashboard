@@ -26,8 +26,7 @@ body {
     background: #ffffff !important;
     color: black !important;
     width: 100% !important;
-    /* border-left: 6px solid #00369a !important; */
-    border-radius: 50px 2px 10px 50px !important;
+    border-radius: -20px !important;
 }
 .ant-menu-submenu-title {
     color: black !important;
@@ -40,49 +39,42 @@ body {
     border-radius: 0px 2px 2px 0px !important;
 } */
 
-.ant-menu .ant-menu-item .ant-menu-item-icon + span {
-    transition: none !important;
-}
-
-/* .ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
-    background: linear-gradient(to bottom, #ef4136, #fbb040) !important;
-} */
-
-/* .ant-menu .ant-menu-title-content {
+/* .ant-menu .ant-menu-item .ant-menu-item-icon + span {
     transition: none !important;
 } */
 
-/* .ant-menu-light {
-    background: #181c1d !important;
-} */
-
-/* .ant-layout-header {
-    background: #181c1d !important;
-    color: #ffbc58 !important;
-} */
-
-/* .ant-form-item .ant-form-item-label > label {
-    color: #ffbc58 !important;
-} */
-
-.ant-pagination-item-active a {
-    color: white !important;
-    background-color: 'black' !important;
-}
-.ant-pagination-item:hover a {
-    border-radius: 5px !important;
-    color: white !important;
-    background-color: 'black' !important;
+.ant-checkbox-wrapper .ant-checkbox-inner,
+.ant-checkbox-wrapper:hover .ant-checkbox-inner {
+    background-color: white !important; /* Force white background */
+    border-color: #757575 !important; /* Force gray border */
 }
 
-.ant-checkbox-input {
-    background: red !important;
+/* Specific styles for the checked state */
+.ant-checkbox-wrapper-checked .ant-checkbox-inner {
+    background-color: white !important; /* Force white background */
+    border-color: #757575 !important; /* Force gray border */
 }
 
-/* .ant-btn-default {
-    background: #181c1d !important;
-    color: #c4a862 !important;
-} */
+/* Style the checkmark itself */
+.ant-checkbox-checked .ant-checkbox-inner::after {
+    content: '' !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 8px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border: solid gray;
+    border-width: 0 2px 2px 0;
+    background-color: transparent !important;
+}
+
+/* Optional: improve alignment of text and checkbox */
+.ant-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .ant-layout-header {
     background: white;
@@ -102,3 +94,28 @@ body {
     font-size: 16px;
     font-family: 'Outfit', sans-serif;
 }
+
+.ant-menu-light.ant-menu-root.ant-menu-inline {
+    border: none;
+}
+/* .dashboard-item {
+    position: relative;
+    background-color: red;
+    color: white;
+    border-radius: '30px 0px 30px 30px';
+    width: '304px';
+    height: '60px';
+    z-index: 2;
+}
+
+.dashboard-item::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 0;
+    bottom: 5px;
+    left: 0;
+    background-color: #000;
+    z-index: 1;
+    border-radius: 25px 0px 25px 25px;
+} */

@@ -4,12 +4,50 @@ import { ConfigProvider, Spin, Table } from 'antd';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useState } from 'react';
 import DeleteModal from '../../../modal/DeleteModal';
-import useData from '../../../hooks/useData';
+
 import eye from '../../../../public/share-icon/eye.svg';
 
+const data = [
+    {
+        id: '#01',
+        userName: 'Jeep Compass',
+        email: 'omar@gmail.com',
+        contactNumber: '+083897453',
+        date: '02-10-25',
+    },
+    {
+        id: '#02',
+        userName: 'Jeep Compass',
+        email: 'omar@gmail.com',
+        contactNumber: '+083897453',
+        date: '02-10-25',
+    },
+    {
+        id: '#03',
+        userName: 'Jeep Compass',
+        email: 'omar@gmail.com',
+        contactNumber: '+083897453',
+        date: '02-10-25',
+    },
+    {
+        id: '#04',
+        userName: 'Jeep Compass',
+        email: 'omar@gmail.com',
+        contactNumber: '+083897453',
+        date: '02-10-25',
+    },
+    {
+        id: '#05',
+        userName: 'Jeep Compass',
+        email: 'omar@gmail.com',
+        contactNumber: '+083897453',
+        date: '02-10-25',
+    },
+];
+
 export default function RecentUser() {
-    const { data, loading } = useData('/data/recentUser.json');
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+    const [loading] = useState<boolean>(false);
 
     const tableTheme = {
         components: {
@@ -33,12 +71,7 @@ export default function RecentUser() {
                     </div>
                 ) : (
                     <ConfigProvider theme={tableTheme}>
-                        <Table
-                            bordered={false}
-                            dataSource={data}
-                            pagination={{ pageSize: 3 }}
-                            className="cursor-pointer"
-                        >
+                        <Table bordered={false} dataSource={data} pagination={false} className="cursor-pointer">
                             {/* Define columns here */}
 
                             <Table.Column

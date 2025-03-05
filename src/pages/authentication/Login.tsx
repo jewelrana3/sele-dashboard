@@ -20,12 +20,12 @@ const Login = () => {
                 },
                 components: {
                     Input: {
-                        borderRadius: 40,
-                        colorBorder: 'transparent',
+                        borderRadius: 10,
+                        colorBorder: '#757575',
                         colorPrimaryBorder: 'transparent',
                         hoverBorderColor: 'transparent',
-                        controlOutline: 'none',
-                        activeBorderColor: 'transparent',
+                        // controlOutline: 'none',
+                        activeBorderColor: '#757575',
                     },
                     Button: {
                         colorPrimaryHover: 'rgb(0,0,0)',
@@ -56,7 +56,11 @@ const Login = () => {
                             name="email"
                             rules={[{ required: true, message: 'Please input your email!' }]}
                         >
-                            <Input placeholder="Enter your email address" type="email" className=" h-12  px-6 " />
+                            <Input
+                                placeholder="Enter your email address"
+                                type="email"
+                                className=" h-12  px-6 bg-white"
+                            />
                         </Form.Item>
 
                         <Form.Item
@@ -68,7 +72,7 @@ const Login = () => {
                             name="password"
                             rules={[{ required: true, message: 'Please input your Password!' }]}
                         >
-                            <Input.Password placeholder="Enter your password" className=" h-12  px-6" />
+                            <Input.Password placeholder="Enter your password" className=" h-12  px-6 bg-white" />
                         </Form.Item>
 
                         <div className="flex items-center justify-between mb-4">

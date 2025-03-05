@@ -36,10 +36,11 @@ const ForgetPassword = () => {
                 className="
             flex items-center justify-center h-screen"
             >
-                <div className=" border-r-2 border-black px-5">
+                <div className=" px-5">
                     <img src={forgot} width={460} height={460} alt="forgot" />
                 </div>
-                <div className="flex items-center justify-center px-5">
+                <span className="border-r-2 border-black h-[600px]"></span>
+                <div className="flex items-center justify-center px-6">
                     <div className="w-[500px]">
                         <div className=" space-y-3 ">
                             <h1 className="text-3xl  font-semibold mt-2">Forget Password</h1>

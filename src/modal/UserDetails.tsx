@@ -20,7 +20,7 @@ const agencyDetails = [
     { label: 'Joining Date', value: '5 June 2025' },
 ];
 
-const UserDetailsModalProps: React.FC<UserDetailsModalProps> = ({
+const UserDetailsModal: React.FC<UserDetailsModalProps> = ({
     isOpen,
     onClose,
 }: // userName,
@@ -35,7 +35,7 @@ UserDetailsModalProps) => {
                 <h2 className="text-lg font-semibold mb-4">Agency Details</h2>
                 <div className="space-y-2">
                     {agencyDetails.map((detail, index) => (
-                        <div key={index} className="grid grid-cols-2">
+                        <div key={index} className="grid grid-cols-2 gap-5">
                             <strong>{detail.label} :</strong>
                             <p className="text-start">{detail.value}</p>
                         </div>
@@ -51,4 +51,4 @@ UserDetailsModalProps) => {
     );
 };
 
-export default UserDetailsModalProps;
+export default UserDetailsModal;

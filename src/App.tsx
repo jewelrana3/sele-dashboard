@@ -6,12 +6,9 @@ function App() {
             <ConfigProvider
                 theme={{
                     token: {
-                        colorPrimary: '#FBB040',
+                        // colorPrimary: '#FBB040',
                     },
                     components: {
-                        Input: {
-                            borderRadius: 40,
-                        },
                         Table: {
                             headerColor: '#ffff',
                             headerBg: '#3395FF',
@@ -23,6 +20,10 @@ function App() {
                         },
                         Select: {
                             colorBgContainer: '',
+                        },
+                        Checkbox: {
+                            colorBgContainer: 'rgb(255,66,66)',
+                            colorPrimary: 'rgb(241,247,247)',
                         },
                     },
                 }}

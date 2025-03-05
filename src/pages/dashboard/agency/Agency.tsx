@@ -27,7 +27,7 @@ export default function Agency() {
     return (
         <>
             {/* Table */}
-            <div className="rounded-lg mx-auto overflow-x-auto">
+            <div className="rounded-lg mx-auto overflow-x-auto mt-10">
                 {/* Loader */}
                 {loading ? (
                     <div className="flex justify-center items-center py-8">
@@ -39,7 +39,7 @@ export default function Agency() {
                         <Table
                             bordered={false}
                             dataSource={data}
-                            pagination={{ pageSize: 6 }}
+                            pagination={{ pageSize: 9 }}
                             className="cursor-pointer"
                         >
                             {/* Define columns here */}

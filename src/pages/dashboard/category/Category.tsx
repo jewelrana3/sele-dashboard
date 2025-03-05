@@ -39,7 +39,7 @@ const Category = () => {
                         </div>
 
                         <p
-                            className="bg-[#E6F2FF] text-blue-500 font-bold mt-2 ml-20 p-1 rounded-md"
+                            className="bg-[#E6F2FF] text-blue-500 font-bold mt-2 ml-20 p-1 rounded-md cursor-pointer"
                             onClick={() => setCategoryDetails(true)}
                         >
                             Details

@@ -11,9 +11,9 @@ export default function PrivacyPolicy() {
 
     const [content, setContent] = useState('');
 
-    const handleOnSave = (value: string) => {
-        console.log(value);
-    };
+    // const handleOnSave = (value: string) => {
+    //     console.log(value);
+    // };
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>

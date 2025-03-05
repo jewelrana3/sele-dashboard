@@ -7,7 +7,7 @@ import CustomButton from '../../../components/shared/Button';
 
 export default function Profile() {
     const navigate = useNavigate();
-    const [imageUrl, setImageUrl] = useState<string>('https://i.ibb.co/HpL1HMKZ/image-2.png');
+    const [imageUrl] = useState<string>('https://i.ibb.co/HpL1HMKZ/image-2.png');
 
     const [form] = Form.useForm();
 
