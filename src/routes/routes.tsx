@@ -24,6 +24,7 @@ import Agency from '../pages/dashboard/agency/Agency';
 import Profile from '../pages/dashboard/profile/Profle';
 import SignUp from '../pages/authentication/SignUp';
 import Category from '../pages/dashboard/category/Category';
+import Setting from '../pages/dashboard/setting/Setting';
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
             { path: '/earing', element: <Earing /> },
             { path: '/agency', element: <Agency /> },
             { path: '/category', element: <Category /> },
+            { path: '/setting', element: <Setting /> },
             { path: '/top-communities', element: <TopCommunities /> },
             { path: '/about-us', element: <TermsCondition /> },
             { path: '/terms-condition', element: <TermsCondition /> },

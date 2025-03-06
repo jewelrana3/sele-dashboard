@@ -4,15 +4,19 @@
     .sidebar {
         width: 320px;
         height: 100vh;
-        padding-top: 20px;
+        /* padding-top: 20px; */
         position: fixed;
         transition: width 0.3s ease-in-out; /* Smooth transition when resizing */
     }
 
-    /* .menu-item.active, */
-    .submenu-item.active {
+    .menu-item.active {
         background-color: #ffffff;
         color: white;
+        height: 50px;
+    }
+
+    .submenu-item .active {
+        background: #000;
     }
 
     .navigation ul li {
@@ -35,9 +39,9 @@
         top: 0;
         left: 0;
         height: 100%;
-        width: 100%;
+        width: 99%;
         background: #ebf4ff;
-        border-bottom-right-radius: 200px;
+        border-bottom-right-radius: 300px;
     }
     .navigation ul li b:nth-child(2) {
         position: absolute;
@@ -53,7 +57,7 @@
         top: 0;
         left: 0;
         height: 100%;
-        width: 100%;
+        width: 99%;
         background: #ebf4ff;
         border-top-right-radius: 200px;
     }
@@ -90,7 +94,7 @@
 }
 
 .sidebar .logo h1 {
-    font-size: 30px;
+    font-size: 70px;
     font-weight: bold;
     color: #757575;
 }
@@ -103,7 +107,7 @@
 
 .menu-item {
     position: relative;
-    padding: 10px 20px;
+    padding: 0 20px;
     display: block;
     align-items: center;
     justify-content: center;
@@ -114,9 +118,9 @@
     margin-right: 10px;
 }
 
-.menu-item .title {
+/* .menu-item .title {
     flex: 1;
-}
+} */
 
 .menu-item a {
     color: #000;
@@ -129,23 +133,9 @@
     cursor: pointer;
 }
 
-/* .submenu {
-    display: none;
-    list-style-type: none;
-    padding-left: 20px;
-} */
-
 .submenu-item {
-    padding: 8px 0;
-}
-
-.menu-item.has-children .submenu {
-    display: block;
-}
-
-/* Submenu Item */
-.submenu-item .icon {
-    margin-right: 10px;
+    padding: 8px 5px;
+    background-color: #ebf4ff;
 }
 
 .submenu-item a {
@@ -153,18 +143,18 @@
     text-decoration: none;
 }
 
-.submenu-item:hover {
-    background-color: #ebf4ff;
-}
-
 /* Logout button */
-.menu-item.logout {
-    color: #fc6057;
-}
 
 /* border radius add */
 
 .navigation ul li.active b:nth-child(1),
 .navigation ul li.active b:nth-child(2) {
     display: block;
+}
+
+/* Active Submenu Item */
+.submenu-item.active {
+    background-color: #56ab2f;
+    color: white;
+    border-radius: 5px;
 }

@@ -24,7 +24,7 @@ const menuItems = [
     {
         label: 'Setting',
         icon: <IoSettingsOutline size={24} />,
-        path: '/profile',
+        path: '/setting',
         children: [
             { label: 'Profile', path: '/profile', icon: <CiUser size={24} /> },
             { label: 'Change Password', path: '/change-password', icon: <CiLock size={24} /> },
@@ -36,27 +36,32 @@ const menuItems = [
             },
             {
                 label: 'Privacy Policy',
-                path: '/privacy',
-                icon: <img src={privacy} width={24} height={24} alt="terms" />,
+                path: '/policy',
+                icon: <img src={privacy} width={24} height={24} alt="policy" />,
             },
         ],
     },
-    { label: 'Logout', path: '/login', icon: <img src={logout} alt="logout" width={24} height={24} /> },
+    {
+        label: 'Logout',
+        path: '/login',
+        icon: <img src={logout} alt="logout" width={24} height={24} />,
+        labelStyle: { color: 'red' },
+    },
 ];
 
 export default function Sidebar() {
     const [openSetting, setOpenSetting] = useState<boolean>(false);
-    console.log(openSetting);
     const location = useLocation();
-
     const getMenuItemClass = (path: string) => {
-        return location.pathname === path ? 'active' : '';
+        return location.pathname === path && path !== '/setting' ? 'active' : '';
     };
 
-    const toggleSetting = (path: string) => {
-        if (path === '/profile') {
+    const toggleSetting = (path: string, event: React.MouseEvent) => {
+        if (path === '/setting') {
             setOpenSetting(!openSetting);
         }
+
+        event.stopPropagation();
     };
 
     return (
@@ -67,28 +72,29 @@ export default function Sidebar() {
             <div className="navigation">
                 <ul className="menu ml-6">
                     {menuItems.map((item) => {
-                        console.log(item.path);
                         return (
                             <li
-                                onClick={() => toggleSetting(item.path)}
+                                onClick={(e) => toggleSetting(item.path, e)}
                                 key={item.path}
-                                className={`menu-item  ${`menu-item ${
-                                    item.children ? 'has-children' : ''
-                                }`} ${getMenuItemClass(item.path)}`}
+                                className={`menu-item ${getMenuItemClass(item.path)}`}
                             >
                                 <b></b>
                                 <b></b>
-                                <Link to={item.path}>
+                                <Link to={item.path} className="pt-3">
                                     <span className="icon">{item.icon}</span>
-                                    <span className="title">{item.label}</span>
-                                    {/* {item.label !== 'Setting' && <span className="title">{item.label}</span>} */}
+                                    <span className="title" style={item.labelStyle}>
+                                        {item.label}
+                                    </span>
                                 </Link>
                                 <br />
                                 {item.children && openSetting && (
-                                    <ul className="submenu ">
+                                    <ul className="submenu ml-5">
                                         {item.children.map((child) => (
-                                            <li key={child.path} className="submenu-item ">
-                                                <Link to={child.path}>
+                                            <li
+                                                key={child.path}
+                                                className={`submenu-item mb-2 px-4 ${getMenuItemClass(child.path)}`}
+                                            >
+                                                <Link to={child.path} onClick={(e) => e.stopPropagation()}>
                                                     <span className="icon">{child.icon}</span>
                                                     <span className="title">{child.label}</span>
                                                 </Link>
