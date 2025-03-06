@@ -24,35 +24,22 @@ const Sidebar = () => {
         navigate('/login');
     };
 
-    // const getItemStyle = (key: string) => {
-    //     if (selectedKey === '/users' && key === '/') {
-    //         // Apply styles to 'Dashboard' when 'User' is selected
-    //         return {
-    //             background: 'linear-gradient(to right, #56ab2f, #a8e063)',
-    //             color: 'white', // White text
-    //             borderRadius: '0px 0px 30px 0px', // Rounded corners on one side
-    //             width: '304px',
-    //             height: '60px',
-    //         };
-    //     }
-    //     return {
-    //         width: '304px',
-    //         height: '60px',
-    //     };
-    // };
-
-    // const getItemStyle = (key: string) => {
-    //     if (selectedKey === key) {
-    //         // Apply styles to 'Dashboard' when 'User' is selected
-    //         return {
-    //             borderRadius: '30px', // Rounded corners on one side
-    //             padding:
-    //         };
-    //     }
-    //     return {
-    //         width: '304px',
-    //     };
-    // };
+    const getItemStyle = (key: string) => {
+        if (selectedKey === '/users' && key === '/') {
+            // Apply styles to 'Dashboard' when 'User' is selected
+            return {
+                background: 'linear-gradient(to right, #56ab2f, #a8e063)',
+                color: 'white', // White text
+                borderRadius: '0px 0px 30px 0px', // Rounded corners on one side
+                width: '304px',
+                height: '60px',
+            };
+        }
+        return {
+            width: '304px',
+            height: '60px',
+        };
+    };
 
     const menuItems = [
         {
@@ -67,22 +54,26 @@ const Sidebar = () => {
         {
             key: '/users',
             icon: <img src={user} alt="user" width={24} height={24} />,
-            label: <Link to="/users">User</Link>,
+            label: (
+                <Link to="/users" style={getItemStyle('users')}>
+                    User
+                </Link>
+            ),
         },
         {
             key: '/earing',
-            icon: <img src={earings} alt="earing" width={24} height={24} />,
+            icon: <img src={earings} alt="user" width={24} height={24} />,
             label: <Link to="/earing">Earing</Link>,
         },
         {
             key: '/agency',
-            icon: <img src={agency} alt="agency" width={24} height={24} />,
+            icon: <img src={agency} alt="user" width={24} height={24} />,
             label: <Link to="/agency">Agency</Link>,
         },
 
         {
             key: '/category',
-            icon: <img src={category} alt="category" width={24} height={24} />,
+            icon: <img src={category} alt="user" width={24} height={24} />,
             label: <Link to="/category">Category</Link>,
         },
 
@@ -137,7 +128,7 @@ const Sidebar = () => {
 
         {
             key: '/logout',
-            icon: <img src={logout} alt="logout" width={24} height={24} />,
+            icon: <img src={logout} alt="user" width={24} height={24} />,
             label: (
                 <p onClick={handleLogout} className="text-[#FC6057]">
                     Logout
@@ -181,6 +172,7 @@ const Sidebar = () => {
                     onSelect={({ key }) => setSelectedKey(key)}
                     items={menuItems.map((item) => ({
                         ...item,
+                        style: getItemStyle(item.key),
                     }))}
                 />
             </ConfigProvider>

@@ -2,15 +2,16 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 // import HeaderDashboard from './HeaderDashboard';
-import Sidebar from './Sidebar';
+
 import HeaderDashboard from './HeaderDashboard';
+import SiderbarDublicate from './SiderbarDublicate';
 
 const MainLayout: React.FC = () => {
     return (
         <div className="grid grid-cols-12 ">
             {/* side bar */}
             <div className="col-span-2 bg-[#EBF4FF]">
-                <Sidebar />
+                <SiderbarDublicate />
             </div>
 
             {/* main container with header */}
