@@ -71,18 +71,18 @@ const Sidebar = () => {
         },
         {
             key: '/earing',
-            icon: <img src={earings} alt="user" width={24} height={24} />,
+            icon: <img src={earings} alt="earing" width={24} height={24} />,
             label: <Link to="/earing">Earing</Link>,
         },
         {
             key: '/agency',
-            icon: <img src={agency} alt="user" width={24} height={24} />,
+            icon: <img src={agency} alt="agency" width={24} height={24} />,
             label: <Link to="/agency">Agency</Link>,
         },
 
         {
             key: '/category',
-            icon: <img src={category} alt="user" width={24} height={24} />,
+            icon: <img src={category} alt="category" width={24} height={24} />,
             label: <Link to="/category">Category</Link>,
         },
 
@@ -137,7 +137,7 @@ const Sidebar = () => {
 
         {
             key: '/logout',
-            icon: <img src={logout} alt="user" width={24} height={24} />,
+            icon: <img src={logout} alt="logout" width={24} height={24} />,
             label: (
                 <p onClick={handleLogout} className="text-[#FC6057]">
                     Logout
