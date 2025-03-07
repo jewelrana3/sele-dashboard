@@ -10,17 +10,14 @@
     }
 
     .menu-item.active {
-        background-color: #ffffff;
+        background-color: white;
         color: white;
         height: 40px;
         margin-bottom: 26px;
         display: flex;
         justify-content: left;
         height: 50px;
-    }
-
-    .submenu-item .active {
-        background: #000;
+        width: 16vw;
     }
 
     .navigation ul li {
@@ -33,7 +30,7 @@
         position: absolute;
         top: -20px;
         height: 20px;
-        width: 94%;
+        width: 14.4vw;
         background: #fffefe;
         display: none;
     }
@@ -51,7 +48,7 @@
         position: absolute;
         bottom: -20px;
         height: 20px;
-        width: 94%;
+        width: 14.4vw;
         background: #fff;
         display: none;
     }
@@ -92,16 +89,6 @@
 } */
 
 /* Logo */
-.sidebar .logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.sidebar .logo h1 {
-    font-size: 70px;
-    font-weight: bold;
-    color: #757575;
-}
 
 /* Menu Styles */
 .menu {
@@ -160,7 +147,13 @@
 
 /* Active Submenu Item */
 .submenu-item.active {
-    background-color: #56ab2f;
-    color: white;
+    /* background-color: #56ab2f;
+    color: white; */
+    border: 1px solid #99b7db;
+    border-radius: 5px;
+}
+
+.profile-active {
+    border: 1px solid;
     border-radius: 5px;
 }

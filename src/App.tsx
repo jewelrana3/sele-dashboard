@@ -17,6 +17,7 @@ function App() {
                             headerSplitColor: '',
                             padding: 5,
                             fontSize: 19,
+                            fontFamily: 'Outfit',
                         },
                         Select: {
                             colorBgContainer: '',

@@ -40,7 +40,7 @@ export default function Users() {
                             bordered={false}
                             dataSource={data}
                             pagination={{ pageSize: 10 }}
-                            className="cursor-pointer"
+                            className="cursor-pointer font-outfit"
                         >
                             {/* Define columns here */}
 

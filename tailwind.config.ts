@@ -18,6 +18,7 @@ export default {
                 primary: ' #007BFF',
             },
             fontFamily: {
+                montserrat: ['Montserrat', 'sans-serif'],
                 outfit: ['Outfit', 'sans-serif'],
             },
         },

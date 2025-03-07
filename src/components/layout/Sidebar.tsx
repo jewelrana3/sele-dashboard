@@ -164,7 +164,7 @@ const Sidebar = () => {
                 }}
             >
                 <Menu
-                    className="bg-[#EBF4FF] pl-4"
+                    className="bg-[#EBF4FF] pl-4 font-outfit"
                     mode="inline"
                     selectedKeys={[selectedKey]}
                     openKeys={openKeys}
