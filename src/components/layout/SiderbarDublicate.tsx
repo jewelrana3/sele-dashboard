@@ -80,7 +80,7 @@ export default function Sidebar() {
                             >
                                 <b></b>
                                 <b></b>
-                                <Link to={item.path} className="pt-3">
+                                <Link to={item.path} className="">
                                     <span className="icon">{item.icon}</span>
                                     <span className="title" style={item.labelStyle}>
                                         {item.label}
@@ -92,7 +92,7 @@ export default function Sidebar() {
                                         {item.children.map((child) => (
                                             <li
                                                 key={child.path}
-                                                className={`submenu-item mb-2 px-4 ${getMenuItemClass(child.path)}`}
+                                                className={`submenu-item px-4 ${getMenuItemClass(child.path)}`}
                                             >
                                                 <Link to={child.path} onClick={(e) => e.stopPropagation()}>
                                                     <span className="icon">{child.icon}</span>
