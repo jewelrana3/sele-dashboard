@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: white !important;
 }
 
@@ -52,9 +52,6 @@ body {
     height: 60px !important;
 }
 
-.input.ant-input {
-    background-color: #ffbc58 !important;
-}
 /* title user management */
 .title {
     font-weight: 500;
@@ -65,6 +62,6 @@ body {
     border: none;
 }
 
-.ant-table .font-outfit {
-    font-family: 'Outfit', sans-serif;
+.ant-select .ant-select-outlined {
+    border: none !important;
 }

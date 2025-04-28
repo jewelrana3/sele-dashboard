@@ -7,7 +7,7 @@ import CustomButton from '../../../components/shared/Button';
 
 export default function Profile() {
     const navigate = useNavigate();
-    const [imageUrl] = useState<string>('https://i.ibb.co/HpL1HMKZ/image-2.png');
+    const [imageUrl] = useState<string>('https://i.ibb.co.com/ZzZ1DXff/Frame-2147226688.png');
 
     const [form] = Form.useForm();
 
@@ -22,7 +22,8 @@ export default function Profile() {
                     </button>
                     <button>Profile</button>
                 </div>
-                <div className="flex justify-between space-x-6 mt-12">
+
+                <div className="flex items-center justify-between gap-4  mt-12">
                     <div className="flex items-center gap-4">
                         <div className="relative">
                             <Avatar size={100} src={imageUrl} className="" />
@@ -32,8 +33,7 @@ export default function Profile() {
                             <h3 className="font-semibold text-2xl">Samuel Jacob Reed</h3>
                         </div>
                     </div>
-
-                    <div className="flex justify-end mt-auto ">
+                    <div className="">
                         <Link to="/edit-profile">
                             <CustomButton className=" flex items-center justify-center space-x-2 cursor-pointer">
                                 <MdOutlineModeEdit className="text-xl mr-2" /> {/* This adds the icon */}

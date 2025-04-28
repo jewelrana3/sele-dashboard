@@ -1,13 +1,24 @@
-import { Button, ConfigProvider, Form, FormProps, Input } from 'antd';
-import { FieldNamesType } from 'antd/es/cascader';
+import { Button, ConfigProvider, Form, Input } from 'antd';
 import { useNavigate } from 'react-router';
 import newPass from '../../../public/auth/new-pass.svg';
+import { useResetPasswordMutation } from '../../redux/apiSlice/auth/auth';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const NewPassword = () => {
+    const [resetPassword, { isError, isSuccess, data, isLoading }] = useResetPasswordMutation();
     const navigate = useNavigate();
-    const onFinish: FormProps<FieldNamesType>['onFinish'] = (values) => {
-        console.log('Received values of form: ', values);
-        navigate('/');
+
+    useEffect(() => {
+        if (isSuccess && data) {
+            navigate('/login');
+        } else {
+            toast.error('Password reset failed');
+        }
+    }, [{ isError, isSuccess, data, isLoading }]);
+
+    const onFinish = async (values: { newPassword: string; confirmPassword: string }) => {
+        await resetPassword(values);
     };
 
     return (
@@ -61,7 +72,7 @@ const NewPassword = () => {
                                         New Password
                                     </label>
                                 }
-                                name="new_password"
+                                name="newPassword"
                                 rules={[{ required: true, message: 'Please input new password!' }]}
                             >
                                 <Input.Password placeholder="KK!@#$15856" className=" h-12 px-6" />
@@ -72,7 +83,7 @@ const NewPassword = () => {
                                         Confirm Password
                                     </label>
                                 }
-                                name="confirm_password"
+                                name="confirmPassword"
                                 rules={[{ required: true, message: 'Please input confirm password!' }]}
                             >
                                 <Input.Password placeholder="KK!@#$15856" className="h-12 px-6" />

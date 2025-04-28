@@ -1,17 +1,15 @@
-'use client';
-
 import { ConfigProvider, Spin, Table } from 'antd';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useState } from 'react';
-import DeleteModal from '../../../modal/DeleteModal';
-import useData from '../../../hooks/useData';
 import eye from '../../../../public/share-icon/eye.svg';
-
 import UserDetailsModal from '../../../modal/UserDetails';
+import { useDeleteUserMutation, useGetUserQuery } from '../../../redux/apiSlice/user';
+import Swal from 'sweetalert2';
 
 export default function Users() {
-    const { data, loading } = useData('/data/recentUser.json');
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+    const { data, isLoading, refetch } = useGetUserQuery(undefined);
+    const [deleteUser] = useDeleteUserMutation();
+    const userData = data?.data;
     const [userDetails, setUserDetails] = useState<boolean>(false);
 
     const tableTheme = {
@@ -24,12 +22,35 @@ export default function Users() {
         },
     };
 
+    const handleDelete = (id: string) => {
+        console.log(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to user this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteUser(id);
+                refetch();
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: `User item delete`,
+                    icon: 'success',
+                });
+            }
+        });
+    };
+
     return (
         <>
             {/* Table */}
             <div className="rounded-lg mx-auto overflow-x-auto mt-10">
                 {/* Loader */}
-                {loading ? (
+                {isLoading ? (
                     <div className="flex justify-center items-center py-8">
                         <Spin size="large" />
                         <p className="ml-3 text-lg">Loading Orders...</p>
@@ -38,7 +59,7 @@ export default function Users() {
                     <ConfigProvider theme={tableTheme}>
                         <Table
                             bordered={false}
-                            dataSource={data}
+                            dataSource={userData}
                             pagination={{ pageSize: 10 }}
                             className="cursor-pointer font-outfit"
                         >
@@ -46,11 +67,9 @@ export default function Users() {
 
                             <Table.Column
                                 title={<div className="ml-6">Serial ID</div>}
-                                dataIndex="id"
-                                key="id"
-                                render={(id) => <p className="ml-7">{id}</p>}
+                                render={(_: any, __: any, index: number) => <p className="ml-7">{index + 1}</p>}
                             />
-                            <Table.Column title="User Name" dataIndex="userName" key="userName" />
+                            <Table.Column title="User Name" dataIndex="name" key="name" />
                             <Table.Column
                                 title="Email"
                                 dataIndex="email"
@@ -79,7 +98,7 @@ export default function Users() {
                                 dataIndex="action"
                                 key="action"
                                 align="center"
-                                render={() => (
+                                render={(_, record) => (
                                     <div className="w-full lg:w-[80%]">
                                         <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md   px-2 lg:px-0">
                                             <span
@@ -90,7 +109,7 @@ export default function Users() {
                                             </span>
                                             <span
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
-                                                onClick={() => setIsDeleteModalOpen(true)}
+                                                onClick={() => handleDelete(record?._id || '')}
                                             >
                                                 <RiDeleteBin5Line size={24} className="text-[#FE3838]" />
                                             </span>
@@ -103,10 +122,6 @@ export default function Users() {
                 )}
             </div>
 
-            {/* delete modal */}
-            {isDeleteModalOpen && (
-                <DeleteModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} />
-            )}
             {/* user modal */}
             {userDetails && <UserDetailsModal isOpen={userDetails} onClose={() => setUserDetails(false)} />}
         </>

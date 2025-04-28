@@ -1,13 +1,39 @@
-import { Checkbox, ConfigProvider, Form, FormProps, Input } from 'antd';
-import { FieldNamesType } from 'antd/es/cascader';
+import { Checkbox, ConfigProvider, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
+import { useLoginMutation } from '../../redux/apiSlice/auth/auth';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+    const [Login, { data, isLoading, isSuccess, isError }] = useLoginMutation();
+
     const navigate = useNavigate();
-    const onFinish: FormProps<FieldNamesType>['onFinish'] = (values) => {
+
+    useEffect(() => {
+        if (isLoading) {
+            toast.loading('Loading ...', { id: 'login-toast' });
+        } else {
+            toast.dismiss('login-toast');
+
+            if (isSuccess && data) {
+                toast.success('Login Successfull', { id: 'login-toast' });
+                localStorage.setItem('accessToken', data?.data?.accessToken);
+                navigate('/');
+            } else if (isError) {
+                toast.error(data?.message || 'Login failed', { id: 'login-toast' });
+            }
+        }
+    }, [data, navigate, isLoading]);
+
+    const onFinish = async (values: { email: string; password: string }) => {
         console.log('Received values of form: ', values);
-        navigate('/');
+        const data = {
+            email: values?.email,
+            password: values?.password,
+        };
+
+        await Login(data).unwrap();
     };
 
     return (
@@ -95,12 +121,12 @@ const Login = () => {
                             </Button>
                         </Form.Item>
                     </Form>
-                    <div className="flex justify-end ">
+                    {/* <div className="flex justify-end ">
                         <Link to="/sign-up">
                             {' '}
                             <p className="text-[#8DB501] font-bold underline cursor-pointer">Sign Up</p>
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </ConfigProvider>

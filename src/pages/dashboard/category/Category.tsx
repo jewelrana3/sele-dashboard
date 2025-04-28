@@ -28,7 +28,7 @@ const Category = () => {
     return (
         <>
             <div className="flex justify-end my-6 pr-5" onClick={() => setCreateModal(true)}>
-                <Button className="">+ Add Category</Button>
+                <Button className="">+ Add Band</Button>
             </div>
             <div className="grid grid-cols-5 gap-4">
                 {carBrands.map((car) => (

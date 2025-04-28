@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import MainLayout from './components/layout/MainLayout';
 import { ConfigProvider } from 'antd';
 function App() {
@@ -16,8 +17,8 @@ function App() {
                             colorText: '',
                             headerSplitColor: '',
                             padding: 5,
-                            fontSize: 19,
-                            fontFamily: 'Outfit',
+
+                            fontFamily: 'Poppins',
                         },
                         Select: {
                             colorBgContainer: '',
@@ -30,6 +31,7 @@ function App() {
                 }}
             >
                 <MainLayout />
+                <Toaster />
             </ConfigProvider>
         </>
     );

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { RiCloseLargeFill } from 'react-icons/ri';
 
 const styles: {
     overlay: React.CSSProperties;
@@ -42,14 +43,33 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+    const modalRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+                onClose?.();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        } else {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [isOpen, onClose]);
+
     if (!isOpen) return null;
 
     return (
         <div style={styles.overlay}>
-            <div style={styles.modal}>
+            <div style={styles.modal} ref={modalRef}>
                 {onClose && (
-                    <button onClick={onClose} style={styles.closeButton} className=" pr-5">
-                        X
+                    <button onClick={onClose} style={styles.closeButton} className=" pr-5 mt-3">
+                        <RiCloseLargeFill />
                     </button>
                 )}
                 <div>{children}</div>

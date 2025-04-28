@@ -6,6 +6,7 @@ import { useState } from 'react';
 import DeleteModal from '../../../modal/DeleteModal';
 
 import eye from '../../../../public/share-icon/eye.svg';
+import UserDetailsModal from '../../../modal/UserDetails';
 
 const data = [
     {
@@ -47,6 +48,8 @@ const data = [
 
 export default function RecentUser() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+    const [userDetails, setUserDetails] = useState<boolean>(false);
+    console.log(userDetails);
     const [loading] = useState<boolean>(false);
 
     const tableTheme = {
@@ -113,8 +116,8 @@ export default function RecentUser() {
                                     <div className="w-full lg:w-[80%]">
                                         <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md px-2 lg:px-0">
                                             <span
+                                                onClick={() => setUserDetails(true)}
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
-                                                // onClick={() => setIsDeleteModalOpen(true)}
                                             >
                                                 <img src={eye} width={20} height={20} alt="eye" />
                                             </span>
@@ -137,6 +140,9 @@ export default function RecentUser() {
             {isDeleteModalOpen && (
                 <DeleteModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} />
             )}
+
+            {/* user modal */}
+            {userDetails && <UserDetailsModal isOpen={userDetails} onClose={() => setUserDetails(false)} />}
         </>
     );
 }

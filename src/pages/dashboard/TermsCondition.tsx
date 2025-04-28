@@ -1,8 +1,9 @@
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
-import { Button } from 'antd';
+
 import { useRef, useState } from 'react';
 import JoditEditor from 'jodit-react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/shared/Button';
 
 export default function TermsCondition() {
     const editor = useRef(null);
@@ -10,16 +11,16 @@ export default function TermsCondition() {
 
     const [content, setContent] = useState('');
 
-    const handleOnSave = (value: string) => {
-        console.log(value);
-    };
+    // const handleOnSave = (value: string) => {
+    //     console.log(value);
+    // };
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>
                 <button className="text-xl">
                     <MdOutlineArrowBackIosNew />
                 </button>
-                <button>Privacy Policy</button>
+                <button>Terms & Condition</button>
             </div>
 
             <div className="">
@@ -34,23 +35,13 @@ export default function TermsCondition() {
                         onBlur={(newContent) => setContent(newContent)}
                     />
                 </div>
-                <Button
+                {/* <Button
                     block
                     onClick={() => handleOnSave(content)}
                     // className="font-barlow"
-                    style={{
-                        marginTop: '16px',
-                        padding: '1px',
-                        fontSize: '24px',
-                        color: 'white',
-                        background: '#181c1d',
-                        height: '54px',
-                        border: '1px solid #ffbc58',
-                        borderRadius: 4,
-                    }}
-                >
-                    Save
-                </Button>
+                > */}
+
+                <Button className="mt-5">Save</Button>
             </div>
         </div>
     );

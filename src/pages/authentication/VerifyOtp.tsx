@@ -1,13 +1,34 @@
-import { Button, ConfigProvider, Form, FormProps, Input } from 'antd';
-import { FieldNamesType } from 'antd/es/cascader';
+import { Button, ConfigProvider, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import otp from '../../../public/auth/otp.svg';
+import { useVerifyEmailMutation } from '../../redux/apiSlice/auth/auth';
+import toast from 'react-hot-toast';
 
 const VerifyOtp = () => {
+    const [verifyEmail] = useVerifyEmailMutation();
     const navigate = useNavigate();
-    const onFinish: FormProps<FieldNamesType>['onFinish'] = (values) => {
-        console.log('Received values of form: ', values);
-        navigate('/new-password');
+    const adminEmail = localStorage.getItem('email');
+    const email = adminEmail ? JSON.parse(adminEmail) : '';
+    console.log(email);
+
+    const onFinish = async (values: { otp: number | null }) => {
+        const data = {
+            email: email,
+            oneTimeCode: Number(values?.otp),
+        };
+
+        try {
+            const res = await verifyEmail(data);
+            if (res?.data?.success) {
+                toast.success('code verify successfull');
+
+                localStorage.setItem('resetToken', res?.data?.data);
+
+                navigate('/new-password');
+            }
+        } catch (isError) {
+            toast.error('An unknown error occurred');
+        }
     };
 
     return (
@@ -61,7 +82,7 @@ const VerifyOtp = () => {
                                     }}
                                     className=""
                                     // variant="filled"
-                                    length={4}
+                                    length={6}
                                 />
                             </Form.Item>
                             <div className="text-lg flex items-center justify-between gap-2 mb-8">

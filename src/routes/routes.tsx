@@ -3,7 +3,6 @@ import App from '../App';
 
 import Login from '../pages/authentication/Login';
 import ErrorPage from '../pages/error/ErrorPage';
-import TermsCondition from '../pages/dashboard/PrivacyPolicy';
 
 import Notification from '../pages/dashboard/Notification';
 import ForgetPassword from '../pages/authentication/ForgetPassword';
@@ -24,6 +23,8 @@ import Agency from '../pages/dashboard/agency/Agency';
 import Profile from '../pages/dashboard/profile/Profle';
 import SignUp from '../pages/authentication/SignUp';
 import Category from '../pages/dashboard/category/Category';
+import AboutUs from '../pages/dashboard/AboutUs';
+import TermsCondition from '../pages/dashboard/TermsCondition';
 // import Setting from '../pages/dashboard/setting/Setting';
 
 const router = createBrowserRouter([
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
             { path: '/category', element: <Category /> },
             // { path: '/profile', element: <Setting /> },
             { path: '/top-communities', element: <TopCommunities /> },
-            { path: '/about-us', element: <TermsCondition /> },
+            { path: '/about-us', element: <AboutUs /> },
             { path: '/terms-condition', element: <TermsCondition /> },
             { path: '/policy', element: <PrivacyPolicy /> },
 

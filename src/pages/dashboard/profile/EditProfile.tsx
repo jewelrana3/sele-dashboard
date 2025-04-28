@@ -8,7 +8,7 @@ import Button from '../../../components/shared/Button';
 
 export default function EditProfile() {
     const navigate = useNavigate();
-    const [imageUrl, setImageUrl] = useState<string>('https://i.ibb.co/HpL1HMKZ/image-2.png');
+    const [imageUrl, setImageUrl] = useState<string>('https://i.ibb.co.com/ZzZ1DXff/Frame-2147226688.png');
     // const [, setIsEditing] = useState<boolean>(false);
 
     const [form] = Form.useForm();
@@ -42,7 +42,7 @@ export default function EditProfile() {
                     <button className="text-xl">
                         <MdOutlineArrowBackIosNew />
                     </button>
-                    <button>Profile</button>
+                    <button>Edit Profile</button>
                 </div>
                 <div className="flex justify-between space-x-6 mt-12">
                     <div className="flex gap-4">
@@ -92,7 +92,7 @@ export default function EditProfile() {
                             <span className=" text-[20px] font-semibold ">Confirm Password</span>
                             <div className="mt-3">
                                 <Form.Item name="password" rules={[{ required: true }]}>
-                                    <Input
+                                    <Input.Password
                                         className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
                                         placeholder="your confirm password"
                                     />
@@ -115,7 +115,10 @@ export default function EditProfile() {
                                     },
                                 }}
                             >
-                                <Button htmlType="submit" className="w-[30%] flex justify-center items-center text-2xl">
+                                <Button
+                                    htmlType="submit"
+                                    className="w-[30%] flex justify-center items-center text-2xl mt-14"
+                                >
                                     Save & Change
                                 </Button>
                             </ConfigProvider>

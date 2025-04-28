@@ -25,11 +25,11 @@ const EaringModalDetails: React.FC<EaringModalDetailsProps> = ({
 }) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mt-6">
+            <div className="bg-white p-6 rounded-lg shadow-lg  w-full mt-6">
                 <h2 className="text-2xl font-semibold text-blue-500 my-6 text-center">Transaction Details</h2>
                 <div className="space-y-6">
                     {transactionDetails.map((detail, index) => (
-                        <div key={index} className="flex justify-between">
+                        <div key={index} className="grid grid-cols-2 gap-6">
                             <span className="text-[#757575]">{detail.label} :</span>
                             <p className="font-semibold">{detail.value}</p>
                         </div>

@@ -51,9 +51,9 @@ export default function Earing() {
                             <Table.Column title="Order Id" dataIndex="orderId" key="orderId" />
                             <Table.Column
                                 title="Trax Id"
-                                dataIndex="traxID"
-                                key="traxID"
-                                render={(traxID) => traxID || 'N/A'}
+                                dataIndex="traxId"
+                                key="traxId"
+                                render={(traxId) => traxId || 'N/A'}
                             />
 
                             <Table.Column
