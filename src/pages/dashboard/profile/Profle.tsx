@@ -1,15 +1,33 @@
-import { useState } from 'react';
 import { Form, Input, Avatar, ConfigProvider } from 'antd';
 import { MdOutlineArrowBackIosNew, MdOutlineModeEdit } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 
 import CustomButton from '../../../components/shared/Button';
+import { useGetProfileQuery } from '../../../redux/apiSlice/profile/profile';
+import { imgUrl } from '../../../redux/api/baseApi';
+import { useEffect } from 'react';
 
 export default function Profile() {
     const navigate = useNavigate();
-    const [imageUrl] = useState<string>('https://i.ibb.co.com/ZzZ1DXff/Frame-2147226688.png');
-
+    const { data, isError, isLoading } = useGetProfileQuery(undefined);
+    const profile = data?.data;
     const [form] = Form.useForm();
+
+    useEffect(() => {
+        console.log(profile);
+        form.setFieldsValue({
+            name: profile?.name,
+            email: profile?.email,
+        });
+    }, [form, data]);
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return <span>Error loading content.</span>;
+    }
 
     return (
         <div className="flex justify-center items-center">
@@ -26,11 +44,15 @@ export default function Profile() {
                 <div className="flex items-center justify-between gap-4  mt-12">
                     <div className="flex items-center gap-4">
                         <div className="relative">
-                            <Avatar size={100} src={imageUrl} className="" />
+                            <Avatar
+                                size={100}
+                                src={profile?.image?.startsWith('https') ? profile.image : `${imgUrl}${profile.image}`}
+                                className=""
+                            />
                         </div>
 
                         <div>
-                            <h3 className="font-semibold text-2xl">Samuel Jacob Reed</h3>
+                            <h3 className="font-semibold text-2xl">{profile?.name}</h3>
                         </div>
                     </div>
                     <div className="">
@@ -58,10 +80,11 @@ export default function Profile() {
                             <div>
                                 <span className=" text-[20px] font-semibold ">Full Name</span>
                                 <div className="mt-3 ">
-                                    <Form.Item name="fullname" rules={[{ required: true }]}>
+                                    <Form.Item name="name" rules={[{ required: true }]}>
                                         <Input
                                             className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
                                             placeholder="enter your email"
+                                            readOnly
                                         />
                                     </Form.Item>
                                 </div>
@@ -74,18 +97,6 @@ export default function Profile() {
                                         <Input
                                             className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
                                             placeholder="enter your gmail"
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </div>
-
-                            <div>
-                                <span className=" text-[20px] font-semibold ">Password</span>
-                                <div className="mt-3">
-                                    <Form.Item name="password" rules={[{ required: true }]}>
-                                        <Input.Password
-                                            className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
-                                            placeholder="Password"
                                         />
                                     </Form.Item>
                                 </div>

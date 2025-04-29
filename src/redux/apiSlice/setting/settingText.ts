@@ -16,7 +16,45 @@ const settingText = api.injectEndpoints({
                 body: data,
             }),
         }),
+
+        // privacy center
+        getPrivacy: builder.query({
+            query: () => ({
+                url: '/privacy-and-policy',
+                method: 'GET',
+            }),
+        }),
+
+        createPrivacy: builder.mutation({
+            query: (data) => ({
+                url: '/privacy-and-policy',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+        // terms and condition
+        getCondition: builder.query({
+            query: () => ({
+                url: '/terms-and-conditions',
+                method: 'GET',
+            }),
+        }),
+
+        createCondition: builder.mutation({
+            query: (data) => ({
+                url: '/terms-and-conditions',
+                method: 'POST',
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetAboutQuery, useCreateAboutMutation } = settingText;
+export const {
+    useGetAboutQuery,
+    useCreateAboutMutation,
+    useGetPrivacyQuery,
+    useCreatePrivacyMutation,
+    useGetConditionQuery,
+    useCreateConditionMutation,
+} = settingText;

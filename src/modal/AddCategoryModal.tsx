@@ -1,71 +1,124 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from './Modal';
+import { useCreateBrandMutation, useUpdateCategoryMutation } from '../redux/apiSlice/category/category';
+import { Form, Input } from 'antd';
+import { BiUpload } from 'react-icons/bi';
+import toast from 'react-hot-toast';
+import { imgUrl } from '../redux/api/baseApi';
 
 interface AddCategoryModalProps {
     isOpen: boolean;
     onClose: () => void;
+    refetch: () => void;
+    data: any;
 }
 
-const AddCategoryModal = ({ isOpen, onClose }: AddCategoryModalProps) => {
-    const [formData, setFormData] = useState({
-        fuel: '',
-        carType: '',
-        interiorColor: '',
-        seat: '',
-        transmission: '',
-        price: '',
-        logo: '',
-    });
+interface category {
+    name: string;
+    image: string;
+}
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalProps) => {
+    console.log(data);
+    const [updateCategory] = useUpdateCategoryMutation();
+    const [createBrand] = useCreateBrandMutation();
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    console.log(previewUrl);
+    const [profileImage, setProfileImage] = useState<File | null>(null);
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        if (data && data._id) {
+            form.setFieldsValue({
+                name: data.brandName,
+            });
+            setPreviewUrl(data?.logo?.startsWith('http') ? data?.logo : `${imgUrl}${data?.logo}`);
+        } else {
+            form.setFieldsValue({
+                name: '',
+                image: '',
+            });
+        }
+    }, [form, data]);
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setProfileImage(file);
+            setPreviewUrl(URL.createObjectURL(file));
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log(formData);
+    const onFinish = async (values: category) => {
+        const formData = new FormData();
+        formData.append('brandName', values.name);
+
+        if (profileImage) {
+            formData.append('logo', profileImage);
+        }
+
+        try {
+            if (data?._id) {
+                await updateCategory({ id: data._id, data: formData });
+                toast.success('update successfully');
+            } else {
+                await createBrand(formData);
+                toast.success('create successfully');
+            }
+            refetch();
+            onClose();
+        } catch (error) {
+            toast.error('Post faild');
+        }
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className="bg-[#E6F2FF] p-6 rounded-lg shadow-lg w-[500px]">
-                <h2 className="text-2xl  mb-4">Add New Brand</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <h2 className="text-2xl  mb-4">{data?._id ? 'Edit' : 'Add New Brand'}</h2>
+                <Form form={form} layout="vertical" onFinish={onFinish}>
                     {/* Fuel */}
                     <div className="grid grid-cols-1 gap-4">
                         <div>
-                            <label htmlFor="fuel" className="block text-xl font-medium mb-2">
-                                Brand Name
-                            </label>
-                            <input
-                                type="text"
-                                id="fuel"
-                                name="fuel"
-                                value={formData.fuel}
-                                onChange={handleChange}
-                                placeholder="Enter your fuel category"
-                                className="w-full h-12   bg-[#fcfdfd] rounded-lg px-4 focus:outline-none"
-                            />
+                            <span className="text-[20px] font-semibold mb-2 ">Full Name</span>
+                            <Form.Item name="name" rules={[{ required: true }]}>
+                                <Input
+                                    type="text"
+                                    placeholder="Enter your fuel category"
+                                    className="w-full h-12 bg-[#fcfdfd] rounded-lg px-4 focus:outline-none border-black"
+                                />
+                            </Form.Item>
                         </div>
 
-                        {/* Car Type */}
                         <div>
                             <label htmlFor="carType" className="block text-xl font-medium mb-2">
                                 Brand Logo
                             </label>
-                            <input
-                                type="text"
-                                id="carType"
-                                name="carType"
-                                value={formData.carType}
-                                onChange={handleChange}
-                                placeholder="Enter your Car Type"
-                                className="w-full h-12 bg-[#fafbfc] rounded-lg px-4 focus:outline-none"
-                            />
+                            <div className="flex gap-4">
+                                <input
+                                    type="file"
+                                    name="file"
+                                    id="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    style={{ display: 'none' }}
+                                />
+                                <div
+                                    className="flex justify-center items-center  cursor-pointer bg-white w-full h-48"
+                                    onClick={() => document.getElementById('file')?.click()}
+                                >
+                                    {previewUrl ? (
+                                        <img src={previewUrl} alt="pic" className="w-full h-48" />
+                                    ) : (
+                                        <div className="">
+                                            <span className="">
+                                                <BiUpload size={24} className="ml-10" />
+                                            </span>
+                                            <span className="text-[#636363]">Upload Image</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -73,7 +126,7 @@ const AddCategoryModal = ({ isOpen, onClose }: AddCategoryModalProps) => {
                     <button type="submit" className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg mt-4">
                         Submit
                     </button>
-                </form>
+                </Form>
             </div>
         </Modal>
     );

@@ -15,3 +15,5 @@ export const api = createApi({
 
     endpoints: () => ({}),
 });
+
+export const imgUrl = 'http://10.0.70.188:5003';

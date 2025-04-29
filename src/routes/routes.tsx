@@ -22,7 +22,7 @@ import Users from '../pages/dashboard/users/Users';
 import Agency from '../pages/dashboard/agency/Agency';
 import Profile from '../pages/dashboard/profile/Profle';
 import SignUp from '../pages/authentication/SignUp';
-import Category from '../pages/dashboard/category/Category';
+import Category from '../pages/dashboard/brand/Category';
 import AboutUs from '../pages/dashboard/AboutUs';
 import TermsCondition from '../pages/dashboard/TermsCondition';
 // import Setting from '../pages/dashboard/setting/Setting';
@@ -40,7 +40,8 @@ const router = createBrowserRouter([
             { path: '/earing', element: <Earing /> },
             { path: '/agency', element: <Agency /> },
             { path: '/category', element: <Category /> },
-            // { path: '/profile', element: <Setting /> },
+            { path: '/brand', element: <Category /> },
+
             { path: '/top-communities', element: <TopCommunities /> },
             { path: '/about-us', element: <AboutUs /> },
             { path: '/terms-condition', element: <TermsCondition /> },

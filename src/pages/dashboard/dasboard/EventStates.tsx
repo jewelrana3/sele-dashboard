@@ -1,38 +1,46 @@
 import earing from '../../../../public/dashboard/totalEaring.svg';
 import user from '../../../../public/dashboard/user.svg';
 import agency from '../../../../public/dashboard/totalAgency.svg';
-const data = [
-    {
-        name: 'Total Country',
-        count: '$120.4k',
-
-        textColor: '#FBB040',
-        image: earing,
-        alt: 'earing',
-    },
-    {
-        name: 'Total Event',
-        count: '88k',
-
-        bgColor: '#FDF6EC',
-        image: user,
-        alt: 'user',
-    },
-    {
-        name: 'Total User',
-        count: '820',
-
-        textColor: '#FBB040',
-        image: agency,
-        alt: 'agency',
-    },
-];
+import { useGetStaticsQuery } from '../../../redux/apiSlice/dashboard/dashboard';
 
 const EventStates = () => {
+    const { data, isLoading } = useGetStaticsQuery(undefined);
+    const staticsData = data?.data;
+
+    const statics = [
+        {
+            name: 'Total Earning',
+            count: '$120.4k',
+
+            textColor: '#FBB040',
+            image: earing,
+            alt: 'earing',
+        },
+        {
+            name: 'Total User',
+            count: staticsData?.totalUser,
+
+            bgColor: '#FDF6EC',
+            image: user,
+            alt: 'user',
+        },
+        {
+            name: 'Total Agency',
+            count: staticsData?.totalAgency,
+
+            textColor: '#FBB040',
+            image: agency,
+            alt: 'agency',
+        },
+    ];
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
     return (
         <div>
             <div className="grid lg:grid-cols-3 xl:grid-cols-3 gap-9 my-4">
-                {data.map((item, index) => (
+                {statics.map((item, index) => (
                     <div key={index} className="bg-[#D6EAFF] rounded-md p-4  w-full shadow-sm ">
                         <div className="flex  items-center gap-3 px-4">
                             <div className={` w-[54px] h-[54px] rounded-full flex items-center justify-center `}>

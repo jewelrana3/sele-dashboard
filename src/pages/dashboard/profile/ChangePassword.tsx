@@ -1,14 +1,24 @@
 import { ConfigProvider, Form, Input } from 'antd';
 import Button from '../../../components/shared/Button';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useChangePasswordMutation } from '../../../redux/apiSlice/profile/profile';
 
 export default function ChangePassword() {
-    //   const navigate = useNavigate();
-    //   const [changePassword] = useChangePasswordMutation();
+    const navigate = useNavigate();
+    const [changePassword] = useChangePasswordMutation();
 
     const [form] = Form.useForm();
 
-    const onFinish = (values: string) => {
-        console.log(values);
+    const onFinish = async (values: string) => {
+        try {
+            await changePassword(values);
+            toast.success('Password changed successfully!');
+            navigate('/profile');
+        } catch (error) {
+            toast.error('Failed to change password!');
+        }
+
         form.resetFields();
     };
 

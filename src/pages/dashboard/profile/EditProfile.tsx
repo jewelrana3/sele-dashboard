@@ -1,42 +1,78 @@
-import { useState } from 'react';
-import { Form, Input, Avatar, Upload, UploadFile, ConfigProvider } from 'antd';
+import { useEffect, useState } from 'react';
+import { Form, Input, ConfigProvider } from 'antd';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { UploadChangeParam } from 'antd/es/upload/interface';
 import { BiUpload } from 'react-icons/bi';
 import Button from '../../../components/shared/Button';
+import { useGetProfileQuery, useUpdateProfileMutation } from '../../../redux/apiSlice/profile/profile';
+import { imgUrl } from '../../../redux/api/baseApi';
+import toast from 'react-hot-toast';
+
+interface ProfileData {
+    name: string;
+    email: string;
+    image: string | null;
+}
 
 export default function EditProfile() {
+    const { data, isError, isLoading, refetch } = useGetProfileQuery(undefined);
+    const [updateProfile] = useUpdateProfileMutation();
     const navigate = useNavigate();
-    const [imageUrl, setImageUrl] = useState<string>('https://i.ibb.co.com/ZzZ1DXff/Frame-2147226688.png');
-    // const [, setIsEditing] = useState<boolean>(false);
-
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    console.log(previewUrl);
+    const [profileImage, setProfileImage] = useState<File | null>(null);
     const [form] = Form.useForm();
 
-    // const handleSave = () => {
-    //     form.validateFields().then(() => {
-    //         const formValues = form.getFieldsValue();
-    //         console.log(formValues);
-    //         setIsEditing(false);
-    //     });
-    // };
+    useEffect(() => {
+        if (data?.data) {
+            form.setFieldsValue({
+                name: data?.data?.name,
+                email: data?.data?.email,
+            });
+            setPreviewUrl(data?.data?.image?.startsWith('http') ? data?.data?.image : `${imgUrl}${data?.data?.image}`);
+        }
+    }, [data, form]);
 
-    const handleImageChange = (info: UploadChangeParam<UploadFile<any>>) => {
-        if (info.file.status === 'done') {
-            setImageUrl(info.file.response?.url || '');
-        } else if (info.file.status === 'uploading') {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImageUrl(reader.result as string); // Make sure to cast the result to string
-            };
-            reader.readAsDataURL(info.file.originFileObj!); // Using "!" to assert the object is not null
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setProfileImage(file);
+            setPreviewUrl(URL.createObjectURL(file));
         }
     };
 
+    const onFinish = async (values: ProfileData) => {
+        const formData = new FormData();
+        formData.append('name', values.name);
+        formData.append('email', values.email);
+
+        if (profileImage) {
+            formData.append('image', profileImage);
+        }
+
+        try {
+            const res = await updateProfile(formData);
+            if (res?.data?.success) {
+                toast.success('Profile updated successfully!');
+                form.resetFields();
+                navigate('/profile');
+                refetch();
+            }
+        } catch {
+            toast.error('Profile updated Failed!');
+        }
+    };
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return <span>Error loading content.</span>;
+    }
+
     return (
         <div className="overflow-hidden">
-            {/* profile */}
-
             <div className="w-[1035px] mx-auto">
                 <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>
                     <button className="text-xl">
@@ -46,28 +82,49 @@ export default function EditProfile() {
                 </div>
                 <div className="flex justify-between space-x-6 mt-12">
                     <div className="flex gap-4">
-                        <div>
-                            <div className="">
-                                <Avatar size={100} src={imageUrl} />
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-10">
-                            <h3 className="font-semibold text-2xl">Samuel Jacob Reed</h3>
-                            <Upload showUploadList={false} onChange={handleImageChange} accept="image/*">
-                                <div className="w-[22px] h-[22px] flex justify-center items-center rounded-full cursor-pointer">
-                                    <BiUpload className="mt-3" size={24} />
+                        <input
+                            type="file"
+                            name="file"
+                            id="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden"
+                        />
+                        <div
+                            className="flex justify-center items-center rounded-full cursor-pointer"
+                            onClick={() => document.getElementById('file')?.click()}
+                        >
+                            {previewUrl ? (
+                                <img src={previewUrl} alt="pic" className="w-32 h-32 rounded-full" />
+                            ) : (
+                                <div className="">
+                                    <span className="">
+                                        <BiUpload size={24} className="ml-10" />
+                                    </span>
+                                    <span className="text-[#636363]">Upload Image</span>
                                 </div>
-                            </Upload>
+                            )}
                         </div>
                     </div>
                 </div>
 
                 <div className="mt-5">
-                    <Form form={form} layout="vertical">
+                    <Form form={form} layout="vertical" onFinish={onFinish}>
                         <div>
-                            <span className=" text-[20px] font-semibold ">Contact Number</span>
+                            <span className=" text-[20px] font-semibold ">Full Name</span>
                             <div className="mt-3 ">
-                                <Form.Item name="contactNumber" rules={[{ required: true }]}>
+                                <Form.Item name="name" rules={[{ required: true }]}>
+                                    <Input
+                                        className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
+                                        placeholder="enter your contact number"
+                                    />
+                                </Form.Item>
+                            </div>
+                        </div>
+                        <div>
+                            <span className=" text-[20px] font-semibold ">Email</span>
+                            <div className="mt-3 ">
+                                <Form.Item name="email" rules={[{ required: true }]}>
                                     <Input
                                         className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
                                         placeholder="enter your contact number"
@@ -76,7 +133,7 @@ export default function EditProfile() {
                             </div>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <span className=" text-[20px] font-semibold ">Password</span>
                             <div className="mt-3">
                                 <Form.Item name="password" rules={[{ required: true }]}>
@@ -98,7 +155,7 @@ export default function EditProfile() {
                                     />
                                 </Form.Item>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="mt-6">
                             <ConfigProvider
@@ -117,7 +174,7 @@ export default function EditProfile() {
                             >
                                 <Button
                                     htmlType="submit"
-                                    className="w-[30%] flex justify-center items-center text-2xl mt-14"
+                                    className="w-[30%] flex justify-center items-center text-xl mt-14"
                                 >
                                     Save & Change
                                 </Button>

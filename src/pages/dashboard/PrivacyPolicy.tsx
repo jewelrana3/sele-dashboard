@@ -1,19 +1,36 @@
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import JoditEditor from 'jodit-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
+import { useCreatePrivacyMutation, useGetPrivacyQuery } from '../../redux/apiSlice/setting/settingText';
 
 export default function PrivacyPolicy() {
+    const { data, isLoading, isError } = useGetPrivacyQuery(undefined);
+    const [createPrivacy] = useCreatePrivacyMutation();
     const editor = useRef(null);
     const navigate = useNavigate();
 
     const [content, setContent] = useState('');
 
-    // const handleOnSave = (value: string) => {
-    //     console.log(value);
-    // };
+    useEffect(() => {
+        if (data?.data?.description) {
+            setContent(data?.data?.description);
+        }
+    }, [data]);
+
+    const handleOnSave = async (value: string) => {
+        await createPrivacy({ description: value });
+    };
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return <span>Error loading content.</span>;
+    }
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>
@@ -24,9 +41,6 @@ export default function PrivacyPolicy() {
             </div>
 
             <div className="">
-                {/* <div className="flex items-center justify-center mt-28">
-          <img src={terms} />
-        </div> */}
                 <div className="mt-5">
                     <JoditEditor
                         ref={editor}
@@ -35,7 +49,9 @@ export default function PrivacyPolicy() {
                         onBlur={(newContent) => setContent(newContent)}
                     />
                 </div>
-                <Button className="mt-5">Save</Button>
+                <Button className="mt-5" onClick={() => handleOnSave(content)}>
+                    Save
+                </Button>
             </div>
         </div>
     );
