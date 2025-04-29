@@ -1,4 +1,5 @@
 import { IoMdNotificationsOutline } from 'react-icons/io';
+import { useGetNotificationsQuery } from '../../redux/apiSlice/notifications';
 
 const notifications = [
     {
@@ -28,8 +29,14 @@ const notifications = [
 ];
 
 const Notification = () => {
+    const { data, isLoading } = useGetNotificationsQuery(undefined);
+    console.log(data);
+
+    if (isLoading) {
+        return <span>Loading....</span>;
+    }
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 mt-10">
             {notifications.map((notification, index) => (
                 <div key={index} className="flex items-center p-4 ">
                     <div className="bg-blue-200 p-2 rounded-full">
