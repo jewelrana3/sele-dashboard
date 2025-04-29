@@ -22,7 +22,7 @@ import Users from '../pages/dashboard/users/Users';
 import Agency from '../pages/dashboard/agency/Agency';
 import Profile from '../pages/dashboard/profile/Profle';
 import SignUp from '../pages/authentication/SignUp';
-import Category from '../pages/dashboard/brand/Category';
+import Category from '../pages/dashboard/brand/Brand';
 import AboutUs from '../pages/dashboard/AboutUs';
 import TermsCondition from '../pages/dashboard/TermsCondition';
 // import Setting from '../pages/dashboard/setting/Setting';

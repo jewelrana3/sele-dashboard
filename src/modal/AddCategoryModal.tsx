@@ -112,7 +112,7 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
                                     ) : (
                                         <div className="">
                                             <span className="">
-                                                <BiUpload size={24} className="ml-10" />
+                                                <BiUpload size={24} className="ml-8" />
                                             </span>
                                             <span className="text-[#636363]">Upload Image</span>
                                         </div>

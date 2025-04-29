@@ -1,22 +1,37 @@
 import { ConfigProvider, Select } from 'antd';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { useGetChartQuery } from '../../../redux/apiSlice/dashboard/dashboard';
 const { Option } = Select;
-const data = [
-    { name: 'Jan', earnings: 200 },
-    { name: 'Feb', earnings: 200 },
-    { name: 'Mar', earnings: 100 },
-    { name: 'Apr', earnings: 100 },
-    { name: 'May', earnings: 200 },
-    { name: 'Jun', earnings: 300 },
-    { name: 'Jul', earnings: 500 },
-    { name: 'Aug', earnings: 600 },
-    { name: 'Sep', earnings: 700 },
-    { name: 'Oct', earnings: 800 },
-    { name: 'Nov', earnings: 600 },
-    { name: 'Dec', earnings: 500 },
-];
+// const data = [
+//     { name: 'Jan', earnings: 200 },
+//     { name: 'Feb', earnings: 200 },
+//     { name: 'Mar', earnings: 100 },
+//     { name: 'Apr', earnings: 100 },
+//     { name: 'May', earnings: 200 },
+//     { name: 'Jun', earnings: 300 },
+//     { name: 'Jul', earnings: 500 },
+//     { name: 'Aug', earnings: 600 },
+//     { name: 'Sep', earnings: 700 },
+//     { name: 'Oct', earnings: 800 },
+//     { name: 'Nov', earnings: 600 },
+//     { name: 'Dec', earnings: 500 },
+// ];
 
 export default function Chart() {
+    const { data, isLoading } = useGetChartQuery(undefined);
+    const chart = data?.data;
+    console.log(chart);
+
+    const chatData = chart?.map((item: any) => ({
+        name: item.monthName,
+        earnings: item.totalOrders,
+    }));
+
+    const maxEarnings = chart ? Math.max(...chart.map((item: any) => item.totalAppCharge)) : 0;
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
     return (
         <div
             style={{
@@ -49,10 +64,10 @@ export default function Chart() {
                 </ConfigProvider>
             </div>
             <ResponsiveContainer width="100%" height={250}>
-                <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+                <LineChart data={chatData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis domain={[0, 800]} />
+                    <YAxis domain={[0, maxEarnings]} />
                     <Tooltip />
                     <Line
                         type="monotone"

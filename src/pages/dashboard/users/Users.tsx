@@ -12,16 +12,6 @@ export default function Users() {
     const userData = data?.data;
     const [userDetails, setUserDetails] = useState<boolean>(false);
 
-    const tableTheme = {
-        components: {
-            Table: {
-                borderColor: '#E7E7E7',
-                fontWeightStrong: 700,
-                scrollX,
-            },
-        },
-    };
-
     const handleDelete = (id: string) => {
         console.log(id);
         Swal.fire({
@@ -56,7 +46,7 @@ export default function Users() {
                         <p className="ml-3 text-lg">Loading Orders...</p>
                     </div>
                 ) : (
-                    <ConfigProvider theme={tableTheme}>
+                    <ConfigProvider>
                         <Table
                             bordered={false}
                             dataSource={userData}

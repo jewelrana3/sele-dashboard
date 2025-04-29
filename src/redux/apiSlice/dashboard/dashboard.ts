@@ -8,7 +8,14 @@ const dashboard = api.injectEndpoints({
                 method: 'GET',
             }),
         }),
+
+        getChart: builder.query({
+            query: () => ({
+                url: '/total-earning-by-month',
+                method: 'GET',
+            }),
+        }),
     }),
 });
 
-export const { useGetStaticsQuery } = dashboard;
+export const { useGetStaticsQuery, useGetChartQuery } = dashboard;
