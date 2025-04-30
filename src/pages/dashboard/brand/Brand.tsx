@@ -59,10 +59,6 @@ const Category = () => {
         setCreateModal(true);
     };
 
-    if (isLoading) {
-        return <span>Loading...</span>;
-    }
-
     return (
         <>
             <div className="flex justify-end " onClick={handleAddCategoryClick}>

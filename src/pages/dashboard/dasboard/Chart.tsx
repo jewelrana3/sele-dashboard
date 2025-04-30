@@ -4,7 +4,7 @@ import { useGetChartQuery } from '../../../redux/apiSlice/dashboard/dashboard';
 const { Option } = Select;
 
 export default function Chart() {
-    const { data, isLoading } = useGetChartQuery(undefined);
+    const { data } = useGetChartQuery(undefined);
     const chart = data?.data;
     console.log(chart);
 
@@ -15,9 +15,6 @@ export default function Chart() {
 
     const maxEarnings = chart ? Math.max(...chart.map((item: any) => item.totalAppCharge)) : 0;
 
-    if (isLoading) {
-        return <span>Loading...</span>;
-    }
     return (
         <div
             style={{

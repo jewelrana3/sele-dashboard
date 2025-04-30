@@ -4,7 +4,7 @@ import agency from '../../../../public/dashboard/totalAgency.svg';
 import { useGetStaticsQuery } from '../../../redux/apiSlice/dashboard/dashboard';
 
 const EventStates = () => {
-    const { data, isLoading } = useGetStaticsQuery(undefined);
+    const { data } = useGetStaticsQuery(undefined);
     const staticsData = data?.data;
 
     const statics = [
@@ -34,9 +34,6 @@ const EventStates = () => {
         },
     ];
 
-    if (isLoading) {
-        return <span>Loading...</span>;
-    }
     return (
         <div>
             <div className="grid lg:grid-cols-3 xl:grid-cols-3 gap-9 mb-5">
