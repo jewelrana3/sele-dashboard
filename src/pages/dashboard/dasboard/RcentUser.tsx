@@ -113,7 +113,7 @@ export default function RecentUser() {
             </div>
 
             {/* user modal */}
-            {userDetails && <UserDetailsModal isOpen={userDetails} onClose={() => setUserDetails(false)} />}
+            {userDetails && <UserDetailsModal data={data} isOpen={userDetails} onClose={() => setUserDetails(false)} />}
         </>
     );
 }

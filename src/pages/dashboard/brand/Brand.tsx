@@ -65,7 +65,7 @@ const Category = () => {
 
     return (
         <>
-            <div className="flex justify-end pr-" onClick={handleAddCategoryClick}>
+            <div className="flex justify-end " onClick={handleAddCategoryClick}>
                 <Button className="">+ Add Brand</Button>
             </div>
 

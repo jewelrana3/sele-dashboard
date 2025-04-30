@@ -10,7 +10,7 @@ export default function Users() {
     const { data, isLoading, refetch } = useGetUserQuery(undefined);
     const [deleteUser] = useDeleteUserMutation();
     const userData = data?.data;
-    const [userDetails, setUserDetails] = useState<boolean>(false);
+    const [userDetails, setUserDetails] = useState<Record<string, any> | null>(null);
 
     const handleDelete = (id: string) => {
         console.log(id);
@@ -38,7 +38,7 @@ export default function Users() {
     return (
         <>
             {/* Table */}
-            <div className="rounded-lg mx-auto overflow-x-auto mt-10">
+            <div className="rounded-lg mx-auto overflow-x-auto ">
                 {/* Loader */}
                 {isLoading ? (
                     <div className="flex justify-center items-center py-8">
@@ -68,19 +68,10 @@ export default function Users() {
                             />
 
                             <Table.Column
-                                title="Contact Number"
-                                dataIndex="contactNumber"
-                                key="contactNumber"
-                                render={(contactNumber) =>
-                                    contactNumber ? <span className="">{contactNumber}</span> : 'No'
-                                }
-                            />
-
-                            <Table.Column
                                 title="Joining Date"
                                 dataIndex="date"
                                 key="date"
-                                render={(date) => (date ? <span className="">{date}</span> : 'No')}
+                                render={(_, record) => <span className="">{record?.createdAt.slice(0, 10)}</span>}
                             />
 
                             <Table.Column
@@ -93,7 +84,7 @@ export default function Users() {
                                         <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md   px-2 lg:px-0">
                                             <span
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
-                                                onClick={() => setUserDetails(true)}
+                                                onClick={() => setUserDetails(record)}
                                             >
                                                 <img src={eye} width={20} height={20} alt="eye" />
                                             </span>
@@ -113,7 +104,10 @@ export default function Users() {
             </div>
 
             {/* user modal */}
-            {userDetails && <UserDetailsModal isOpen={userDetails} onClose={() => setUserDetails(false)} />}
+            {userDetails && (
+                //@ts-ignore
+                <UserDetailsModal data={userDetails} isOpen={!!userDetails} onClose={() => setUserDetails(null)} />
+            )}
         </>
     );
 }

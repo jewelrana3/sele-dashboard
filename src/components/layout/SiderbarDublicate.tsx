@@ -75,7 +75,7 @@ export default function SiderbarDublicate() {
                     <h1>SELE</h1>
                 </div>
             </Link>
-            <div className="navigation">
+            <div className="navigation mt-5">
                 <ul className="menu ml-6">
                     {menuItems.map((item) => (
                         <li key={item.path} className={`menu-item ${getMenuItemClass(item.path)}`}>

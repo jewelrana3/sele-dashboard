@@ -10,12 +10,19 @@ const NewPassword = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isSuccess && data) {
-            navigate('/login');
+        if (isLoading) {
+            toast.loading('Processing...', { id: 'reset-password-toast' });
         } else {
-            toast.error('Password reset failed');
+            toast.dismiss('reset-password-toast');
+
+            if (isSuccess && data) {
+                navigate('/login');
+                toast.success('Password reset successful');
+            } else if (isError) {
+                toast.error('Password reset failed');
+            }
         }
-    }, [{ isError, isSuccess, data, isLoading }]);
+    }, [isError, isSuccess, data, isLoading, navigate]);
 
     const onFinish = async (values: { newPassword: string; confirmPassword: string }) => {
         await resetPassword(values);

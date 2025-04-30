@@ -49,7 +49,7 @@ export default function Agency() {
     return (
         <>
             {/* Table */}
-            <div className="rounded-lg mx-auto overflow-x-auto mt-10">
+            <div className="rounded-lg mx-auto overflow-x-auto">
                 {/* Loader */}
                 {isLoading ? (
                     <div className="flex justify-center items-center py-8">
@@ -124,7 +124,9 @@ export default function Agency() {
             </div>
 
             {/* user modal */}
-            {userDetails && <UserDetailsModalProps isOpen={userDetails} onClose={() => setUserDetails(false)} />}
+            {userDetails && (
+                <UserDetailsModalProps data={data} isOpen={userDetails} onClose={() => setUserDetails(false)} />
+            )}
         </>
     );
 }

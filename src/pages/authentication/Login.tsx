@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-    const [Login, { data, isLoading, isSuccess, isError }] = useLoginMutation();
+    const [Login, { data, isLoading, isSuccess, error }] = useLoginMutation();
 
     const navigate = useNavigate();
 
@@ -17,23 +17,24 @@ const Login = () => {
             toast.dismiss('login-toast');
 
             if (isSuccess && data) {
-                toast.success('Login Successfull', { id: 'login-toast' });
+                toast.success('Login Successful', { id: 'login-toast' });
                 localStorage.setItem('accessToken', data?.data?.accessToken);
                 navigate('/');
-            } else if (isError) {
-                toast.error(data?.message || 'Login failed', { id: 'login-toast' });
             }
         }
-    }, [data, navigate, isLoading]);
+    }, [data, navigate, isLoading, isSuccess]);
 
     const onFinish = async (values: { email: string; password: string }) => {
-        console.log('Received values of form: ', values);
         const data = {
             email: values?.email,
             password: values?.password,
         };
 
-        await Login(data).unwrap();
+        try {
+            await Login(data).unwrap();
+        } catch (error) {
+            toast.error(error);
+        }
     };
 
     return (

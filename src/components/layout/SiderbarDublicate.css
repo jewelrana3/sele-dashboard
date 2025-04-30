@@ -64,32 +64,6 @@
     }
 }
 
-/* @media (max-width: 509px) {
-    .sidebar {
-        width: 60px;
-    }
-
-    .sidebar .title {
-        display: none;
-    }
-
-    .sidebar .icon {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 600px) {
-    .sidebar {
-        width: 200px;
-    }
-
-    .sidebar .title {
-        font-size: 14px;
-    }
-} */
-
-/* Logo */
-
 /* Menu Styles */
 .menu {
     list-style-type: none;

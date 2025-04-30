@@ -1,4 +1,3 @@
-import { Toaster } from 'react-hot-toast';
 import MainLayout from './components/layout/MainLayout';
 import { ConfigProvider } from 'antd';
 function App() {
@@ -31,7 +30,6 @@ function App() {
                 }}
             >
                 <MainLayout />
-                <Toaster />
             </ConfigProvider>
         </>
     );

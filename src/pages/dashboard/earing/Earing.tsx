@@ -1,17 +1,14 @@
-'use client';
-
 import { ConfigProvider, Spin, Table } from 'antd';
 import { useState } from 'react';
-import useData from '../../../hooks/useData';
-
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import EaringModalDetails from '../../../modal/EaringModalDetails';
 import EventStates from '../dasboard/EventStates';
+import { useGetEarningQuery } from '../../../redux/apiSlice/earning';
 
 export default function Earing() {
-    const { data, loading } = useData('/data/earing.json');
-    const [isEaringModalDetails, setIsEaringModalDetails] = useState<boolean>(false);
-
+    const { data, isLoading } = useGetEarningQuery(undefined);
+    const [isEaringModalDetails, setIsEaringModalDetails] = useState<Record<string, any> | null>(null);
+    console.log(isEaringModalDetails);
     const tableTheme = {
         components: {
             Table: {
@@ -27,47 +24,47 @@ export default function Earing() {
             <EventStates />
             <div className="rounded-lg mx-auto overflow-x-auto">
                 {/* Loader */}
-                {loading ? (
+                {isLoading ? (
                     <div className="flex justify-center items-center py-8">
                         <Spin size="large" />
                         <p className="ml-3 text-lg">Loading Orders...</p>
                     </div>
                 ) : (
                     <ConfigProvider theme={tableTheme}>
-                        <Table
-                            bordered={false}
-                            dataSource={data}
-                            pagination={{ pageSize: 6 }}
-                            className="cursor-pointer"
-                        >
+                        <Table bordered={false} dataSource={data?.data} className="cursor-pointer">
                             {/* Define columns here */}
 
                             <Table.Column
                                 title={<div className="ml-6">Serial</div>}
                                 dataIndex="id"
                                 key="id"
-                                render={(id) => <p className="ml-7">{id}</p>}
+                                render={(_, __, index: number) => <p className="ml-7">{index + 1}</p>}
                             />
-                            <Table.Column title="Order Id" dataIndex="orderId" key="orderId" />
+                            <Table.Column
+                                title="Order Id"
+                                dataIndex="transactionId"
+                                key="transactionId"
+                                render={(_, record) => <span className="">{record?.transactionId.slice(0, 6)}</span>}
+                            />
                             <Table.Column
                                 title="Trax Id"
-                                dataIndex="traxId"
-                                key="traxId"
-                                render={(traxId) => traxId || 'N/A'}
+                                dataIndex="trxId"
+                                key="trxId"
+                                // render={(traxId) => traxId || 'N/A'}
                             />
 
                             <Table.Column
                                 title="Email"
                                 dataIndex="email"
                                 key="email"
-                                render={(email) => (email ? <span className="">{email}</span> : 'No')}
+                                render={(_, record) => <span className="">{record?.userId?.email}</span>}
                             />
 
                             <Table.Column
                                 title="Date"
                                 dataIndex="date"
                                 key="date"
-                                render={(date) => (date ? <span className="">{date}</span> : 'No')}
+                                render={(_, record) => <span className="">{record?.createdAt.slice(0, 10)}</span>}
                             />
                             <Table.Column
                                 title="Amount"
@@ -81,12 +78,12 @@ export default function Earing() {
                                 dataIndex="action"
                                 key="action"
                                 align="center"
-                                render={() => (
+                                render={(_, record) => (
                                     <div className="w-full lg:w-[80%]">
                                         <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md   px-2 lg:px-0">
                                             <span
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
-                                                onClick={() => setIsEaringModalDetails(true)}
+                                                onClick={() => setIsEaringModalDetails(record)}
                                             >
                                                 <MdOutlineRemoveRedEye size={24} />
                                             </span>
@@ -101,7 +98,12 @@ export default function Earing() {
 
             {/* earing  modal */}
             {isEaringModalDetails && (
-                <EaringModalDetails isOpen={isEaringModalDetails} onClose={() => setIsEaringModalDetails(false)} />
+                <EaringModalDetails
+                    //@ts-ignore
+                    data={isEaringModalDetails}
+                    isOpen={!!isEaringModalDetails}
+                    onClose={() => setIsEaringModalDetails(null)}
+                />
             )}
         </>
     );
