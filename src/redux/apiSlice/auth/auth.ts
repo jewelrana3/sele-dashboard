@@ -39,7 +39,21 @@ const auth = api.injectEndpoints({
                 };
             },
         }),
+
+        resendOtp: builder.mutation({
+            query: (data) => ({
+                url: '/auth/resend-otp',
+                method: 'POST',
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useLoginMutation, useForgotPasswordMutation, useVerifyEmailMutation, useResetPasswordMutation } = auth;
+export const {
+    useLoginMutation,
+    useForgotPasswordMutation,
+    useVerifyEmailMutation,
+    useResetPasswordMutation,
+    useResendOtpMutation,
+} = auth;

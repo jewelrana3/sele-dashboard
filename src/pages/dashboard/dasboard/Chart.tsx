@@ -2,20 +2,6 @@ import { ConfigProvider, Select } from 'antd';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { useGetChartQuery } from '../../../redux/apiSlice/dashboard/dashboard';
 const { Option } = Select;
-// const data = [
-//     { name: 'Jan', earnings: 200 },
-//     { name: 'Feb', earnings: 200 },
-//     { name: 'Mar', earnings: 100 },
-//     { name: 'Apr', earnings: 100 },
-//     { name: 'May', earnings: 200 },
-//     { name: 'Jun', earnings: 300 },
-//     { name: 'Jul', earnings: 500 },
-//     { name: 'Aug', earnings: 600 },
-//     { name: 'Sep', earnings: 700 },
-//     { name: 'Oct', earnings: 800 },
-//     { name: 'Nov', earnings: 600 },
-//     { name: 'Dec', earnings: 500 },
-// ];
 
 export default function Chart() {
     const { data, isLoading } = useGetChartQuery(undefined);

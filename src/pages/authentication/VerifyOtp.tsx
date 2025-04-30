@@ -1,15 +1,15 @@
 import { Button, ConfigProvider, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import otp from '../../../public/auth/otp.svg';
-import { useVerifyEmailMutation } from '../../redux/apiSlice/auth/auth';
+import { useResendOtpMutation, useVerifyEmailMutation } from '../../redux/apiSlice/auth/auth';
 import toast from 'react-hot-toast';
 
 const VerifyOtp = () => {
     const [verifyEmail] = useVerifyEmailMutation();
+    const [resendOtp] = useResendOtpMutation();
     const navigate = useNavigate();
     const adminEmail = localStorage.getItem('email');
     const email = adminEmail ? JSON.parse(adminEmail) : '';
-    console.log(email);
 
     const onFinish = async (values: { otp: number | null }) => {
         const data = {
@@ -28,6 +28,19 @@ const VerifyOtp = () => {
             }
         } catch (isError) {
             toast.error('An unknown error occurred');
+        }
+    };
+
+    const handleResendEmail = async () => {
+        const value = {
+            email: email,
+        };
+
+        try {
+            await resendOtp(value);
+            toast.success('resend successfully');
+        } catch (error) {
+            toast.error('failed resend code');
         }
     };
 
@@ -87,7 +100,9 @@ const VerifyOtp = () => {
                             </Form.Item>
                             <div className="text-lg flex items-center justify-between gap-2 mb-8">
                                 <p className="">Didn't receive the code?</p>
-                                <p className="text-primary font-semibold underline">Resend</p>
+                                <p className="text-primary font-semibold underline" onClick={handleResendEmail}>
+                                    Resend
+                                </p>
                             </div>
 
                             <Form.Item>

@@ -10,10 +10,9 @@ export default function RecentUser() {
     const { data, isLoading, refetch } = useGetUserQuery(undefined);
     const [deleteUser] = useDeleteUserMutation();
     const userData = data?.data;
-    const [userDetails, setUserDetails] = useState<boolean>(false);
+    const [userDetails, setUserDetails] = useState<Record<string, any> | null>(null);
 
     const handleDelete = (id: string) => {
-        console.log(id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to user this!",
@@ -52,6 +51,7 @@ export default function RecentUser() {
                             dataSource={userData}
                             pagination={{ pageSize: 4 }}
                             className="cursor-pointer font-outfit"
+                            rowKey={(record) => record?._id}
                         >
                             {/* Define columns here */}
 
@@ -68,19 +68,10 @@ export default function RecentUser() {
                             />
 
                             <Table.Column
-                                title="Contact Number"
-                                dataIndex="contactNumber"
-                                key="contactNumber"
-                                render={(contactNumber) =>
-                                    contactNumber ? <span className="">{contactNumber}</span> : 'No'
-                                }
-                            />
-
-                            <Table.Column
                                 title="Joining Date"
                                 dataIndex="date"
                                 key="date"
-                                render={(date) => (date ? <span className="">{date}</span> : 'No')}
+                                render={(_, record) => <span className="">{record?.createdAt.slice(0, 10)}</span>}
                             />
 
                             <Table.Column
@@ -93,7 +84,7 @@ export default function RecentUser() {
                                         <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md   px-2 lg:px-0">
                                             <span
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
-                                                onClick={() => setUserDetails(true)}
+                                                onClick={() => setUserDetails(record)}
                                             >
                                                 <img src={eye} width={20} height={20} alt="eye" />
                                             </span>
@@ -112,8 +103,10 @@ export default function RecentUser() {
                 )}
             </div>
 
-            {/* user modal */}
-            {userDetails && <UserDetailsModal data={data} isOpen={userDetails} onClose={() => setUserDetails(false)} />}
+            {userDetails && (
+                //@ts-ignore
+                <UserDetailsModal data={userDetails} isOpen={!!userDetails} onClose={() => setUserDetails(null)} />
+            )}
         </>
     );
 }

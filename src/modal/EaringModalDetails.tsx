@@ -19,9 +19,9 @@ const EaringModalDetails: React.FC<EaringModalDetailsProps> = ({ isOpen, onClose
     ];
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="bg-white p-6 rounded-lg shadow-lg  w-full mt-6">
+            <div className="bg-white p-6 rounded-lg shadow-lg  w-ful">
                 <h2 className="text-2xl font-semibold text-blue-500">Earning Details</h2>
-                <div className="space-y-6">
+                <div className="space-y-6 mt-6">
                     {transactionDetails.map((detail, index) => (
                         <div key={index} className="grid grid-cols-2 gap-6">
                             <span className="text-[#757575]">{detail.label} :</span>

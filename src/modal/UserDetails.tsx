@@ -11,13 +11,13 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onClose, da
     const agencyDetails = [
         { label: 'User name', value: data?.name },
         { label: 'Email', value: data?.email },
-        { label: 'Joining Date', value: data?.createdAt },
+        { label: 'Joining Date', value: data?.createdAt.slice(0, 10) },
     ];
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="bg-[#E6F2FF] p-5 rounded-lg pt-10">
-                <h2 className="text-lg font-semibold mb-4">User Details</h2>
-                <div className="space-y-2">
+            <div className="bg-[#E6F2FF] p-5 rounded-lg">
+                <h2 className="text-2xl font-semibold mb-4">User Details</h2>
+                <div className="space-y-2 mt-6">
                     {agencyDetails.map((detail, index) => (
                         <div key={index} className="grid grid-cols-2 gap-5">
                             <strong>{detail.label} :</strong>
