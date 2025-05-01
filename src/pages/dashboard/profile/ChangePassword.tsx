@@ -32,7 +32,7 @@ export default function ChangePassword() {
                         }}
                     >
                         <Form form={form} onFinish={onFinish} layout="vertical">
-                            <span className=" text-[20px] font-semibold ">Current password</span>
+                            <span className=" text-[20px] font-semibold pb-2">Current password</span>
                             <Form.Item
                                 name="currentPassword"
                                 className="text-black"
@@ -48,7 +48,7 @@ export default function ChangePassword() {
                                 ]}
                             >
                                 <Input.Password
-                                    className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
+                                    className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none mt-2"
                                     placeholder="enter your password"
                                 />
                             </Form.Item>
@@ -69,13 +69,13 @@ export default function ChangePassword() {
                             >
                                 <Input.Password
                                     placeholder="Enter your password"
-                                    className="h-14 bg-[#EBF4FF]  hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
+                                    className="h-14 bg-[#EBF4FF]  hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none mt-2"
                                 />
                             </Form.Item>
 
                             <span className=" text-[20px] font-semibold ">Re-enter new Password</span>
                             <Form.Item
-                                name="reEnterPassword"
+                                name="confirmPassword"
                                 className="text-black"
                                 rules={[
                                     {
@@ -86,7 +86,7 @@ export default function ChangePassword() {
                             >
                                 <Input.Password
                                     placeholder="Enter your password"
-                                    className="h-14 bg-[#EBF4FF] focus:bg-red-500 rounded-xl border-none"
+                                    className="h-14 bg-[#EBF4FF] focus:bg-red-500 rounded-xl border-none mt-2"
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -104,7 +104,7 @@ export default function ChangePassword() {
                                         },
                                     }}
                                 >
-                                    <Button className="w-[30%] font-semibold text-[20px]" htmlType="submit">
+                                    <Button className="w-[20%] font-semibold text-[18px]" htmlType="submit">
                                         Submit
                                     </Button>
                                 </ConfigProvider>

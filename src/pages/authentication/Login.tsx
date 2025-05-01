@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-    const [Login, { data, isLoading, isSuccess, error }] = useLoginMutation();
+    const [Login, { data, isLoading, isSuccess }] = useLoginMutation();
 
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const Login = () => {
         try {
             await Login(data).unwrap();
         } catch (error) {
-            toast.error(error);
+            toast.error('login failed');
         }
     };
 

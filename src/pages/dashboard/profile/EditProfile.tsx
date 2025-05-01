@@ -7,6 +7,7 @@ import Button from '../../../components/shared/Button';
 import { useGetProfileQuery, useUpdateProfileMutation } from '../../../redux/apiSlice/profile/profile';
 import { imgUrl } from '../../../redux/api/baseApi';
 import toast from 'react-hot-toast';
+import { RiUpload2Line } from 'react-icons/ri';
 
 interface ProfileData {
     name: string;
@@ -94,6 +95,9 @@ export default function EditProfile() {
                             className="flex justify-center items-center rounded-full cursor-pointer"
                             onClick={() => document.getElementById('file')?.click()}
                         >
+                            <span className="ml-28 mt-20 absolute bg-teal-500 p-1 rounded-full">
+                                <RiUpload2Line className="text-white" size={20} />
+                            </span>
                             {previewUrl ? (
                                 <img src={previewUrl} alt="pic" className="w-32 h-32 rounded-full" />
                             ) : (

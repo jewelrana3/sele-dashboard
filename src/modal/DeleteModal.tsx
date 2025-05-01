@@ -20,7 +20,7 @@ export default function DeleteModal({ isOpen, onClose }: DeleteModalPros) {
                             <button>No</button>
                         </div>
                         <div>
-                            <Button onClose={onClose} className="flex justify-center items-center">
+                            <Button onClick={onClose} className="flex justify-center items-center">
                                 Yes
                             </Button>
                         </div>

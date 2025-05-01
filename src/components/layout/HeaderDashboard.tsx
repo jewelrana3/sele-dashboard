@@ -9,6 +9,7 @@ const pathLink = [
     { label: 'Earing', path: '/earing' },
     { label: 'Agency', path: '/agency' },
     { label: 'Brand', path: '/brand' },
+    { label: 'Change Password', path: '/change-password' },
 ];
 
 const HeaderDashboard = () => {
