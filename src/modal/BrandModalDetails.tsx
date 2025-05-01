@@ -21,7 +21,7 @@ export default function BrandModalDetails({ isOpen, onClose, data }: CategoryMod
                 <div>
                     <span className="text-[#757575] font-semibold">Image : </span>
                     <img
-                        className="w-96 h-40 mt-3"
+                        className="w-96  mt-3 object-cover"
                         src={data?.logo?.startsWith('http') ? data.logo : `${imgUrl}${data?.logo}`}
                     />
                 </div>

@@ -11,10 +11,15 @@ export default function ChangePassword() {
     const [form] = Form.useForm();
 
     const onFinish = async (values: string) => {
+        console.log(values);
         try {
-            await changePassword(values);
-            toast.success('Password changed successfully!');
-            navigate('/profile');
+            const res = await changePassword(values);
+            console.log(res);
+            if (res?.data?.success) {
+                toast.success('Password changed successfully!');
+                navigate('/profile');
+            }
+            toast.error('Failed to change password!');
         } catch (error) {
             toast.error('Failed to change password!');
         }

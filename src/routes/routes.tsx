@@ -25,12 +25,17 @@ import SignUp from '../pages/authentication/SignUp';
 import Category from '../pages/dashboard/brand/Brand';
 import AboutUs from '../pages/dashboard/AboutUs';
 import TermsCondition from '../pages/dashboard/TermsCondition';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 // import Setting from '../pages/dashboard/setting/Setting';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: (
+            <PrivateRoute>
+                <App />
+            </PrivateRoute>
+        ),
         errorElement: <ErrorPage />,
         children: [
             { path: '/', element: <Dashboard /> },

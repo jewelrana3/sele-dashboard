@@ -46,7 +46,7 @@ const EventStates = () => {
                             <div className=" flex flex-col gap-1 ">
                                 <p className="text-2xl font-medium text-customGray">{item.name}</p>
 
-                                <p className="text-2xl font-semibold ">{item.count}</p>
+                                <p className="text-2xl font-semibold ">{item.count || 0}</p>
                             </div>
                         </div>
                     </div>

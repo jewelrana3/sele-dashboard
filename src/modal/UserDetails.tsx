@@ -11,7 +11,7 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onClose, da
     const agencyDetails = [
         { label: 'User name', value: data?.name },
         { label: 'Email', value: data?.email },
-        { label: 'Joining Date', value: data?.createdAt.slice(0, 10) },
+        { label: 'Joining Date', value: data?.createdAt?.slice(0, 10) },
     ];
     return (
         <Modal isOpen={isOpen} onClose={onClose}>

@@ -91,7 +91,7 @@ const Category = () => {
                                 key="logo"
                                 render={(_, record) => (
                                     <img
-                                        className="w-20 h-12"
+                                        className="w-28 h-16 object-cover"
                                         src={record.logo?.startsWith('http') ? record.logo : `${imgUrl}${record.logo}`}
                                     />
                                 )}

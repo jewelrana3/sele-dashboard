@@ -5,7 +5,7 @@ const agency = api.injectEndpoints({
         getAgency: builder.query({
             query: () => ({
                 url: '/total-agency',
-                method: 'GEt',
+                method: 'GET',
             }),
         }),
 

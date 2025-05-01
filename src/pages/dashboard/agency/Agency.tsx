@@ -2,16 +2,17 @@ import { ConfigProvider, Spin, Table } from 'antd';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useState } from 'react';
 import eye from '../../../../public/share-icon/eye.svg';
-import UserDetailsModalProps from '../../../modal/UserDetails';
 import { useDeleteAgencyMutation, useGetAgencyQuery } from '../../../redux/apiSlice/agency';
 import Swal from 'sweetalert2';
+import UserDetailsModal from '../../../modal/UserDetails';
 
 export default function Agency() {
     const { data, isLoading, refetch } = useGetAgencyQuery(undefined);
     const [deleteAgency] = useDeleteAgencyMutation();
     const agencyData = data?.data?.data;
+    console.log(agencyData);
 
-    const [userDetails, setUserDetails] = useState<boolean>(false);
+    const [userDetails, setUserDetails] = useState<Record<string, any> | null>(null);
 
     const tableTheme = {
         components: {
@@ -79,19 +80,10 @@ export default function Agency() {
                             />
 
                             <Table.Column
-                                title="Contact Number"
-                                dataIndex="contactNumber"
-                                key="contactNumber"
-                                render={(contactNumber) =>
-                                    contactNumber ? <span className="">{contactNumber}</span> : 'No'
-                                }
-                            />
-
-                            <Table.Column
                                 title="Joining Date"
                                 dataIndex="date"
                                 key="date"
-                                render={(date) => (date ? <span className="">{date}</span> : 'No')}
+                                render={(_, record) => <span className="">{record?.createdAt?.slice(0, 10)}</span>}
                             />
 
                             <Table.Column
@@ -104,7 +96,7 @@ export default function Agency() {
                                         <div className="flex lg:flex-row flex-col items-center justify-center gap-2 lg:gap-5 py-2 rounded-md   px-2 lg:px-0">
                                             <span
                                                 className={`text-nowrap font-semibold  py-1 px-2 rounded-md `}
-                                                onClick={() => setUserDetails(true)}
+                                                onClick={() => setUserDetails(record)}
                                             >
                                                 <img src={eye} width={20} height={20} alt="eye" />
                                             </span>
@@ -125,7 +117,8 @@ export default function Agency() {
 
             {/* user modal */}
             {userDetails && (
-                <UserDetailsModalProps data={data} isOpen={userDetails} onClose={() => setUserDetails(false)} />
+                // @ts-ignore
+                <UserDetailsModal data={userDetails} isOpen={!!userDetails} onClose={() => setUserDetails(null)} />
             )}
         </>
     );
