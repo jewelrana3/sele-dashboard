@@ -18,8 +18,9 @@ export default function ChangePassword() {
             if (res?.data?.success) {
                 toast.success('Password changed successfully!');
                 navigate('/profile');
+            } else {
+                toast.error('Failed to change password!');
             }
-            toast.error('Failed to change password!');
         } catch (error) {
             toast.error('Failed to change password!');
         }
@@ -78,7 +79,7 @@ export default function ChangePassword() {
                                 />
                             </Form.Item>
 
-                            <span className=" text-[20px] font-semibold ">Re-enter new Password</span>
+                            <span className=" text-[20px] font-semibold ">Confirm Password</span>
                             <Form.Item
                                 name="confirmPassword"
                                 className="text-black"

@@ -91,7 +91,7 @@ const VerifyOtp = () => {
                             >
                                 <Input.OTP
                                     style={{
-                                        width: 250,
+                                        width: 300,
                                     }}
                                     className=""
                                     // variant="filled"
@@ -100,7 +100,10 @@ const VerifyOtp = () => {
                             </Form.Item>
                             <div className="text-lg flex items-center justify-between gap-2 mb-8">
                                 <p className="">Didn't receive the code?</p>
-                                <p className="text-primary font-semibold underline" onClick={handleResendEmail}>
+                                <p
+                                    className="text-primary font-semibold underline cursor-pointer"
+                                    onClick={handleResendEmail}
+                                >
                                     Resend
                                 </p>
                             </div>

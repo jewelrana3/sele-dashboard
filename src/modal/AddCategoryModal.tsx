@@ -74,18 +74,18 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="bg-[#E6F2FF] p-6 rounded-lg shadow-lg w-[500px]">
+            <div className="bg-[#E6F2FF] p-6 rounded-lg shadow-lg w-[500px] h-[550px]">
                 <h2 className="text-2xl  mb-4">{data?._id ? 'Edit' : 'Add New Brand'}</h2>
                 <Form form={form} layout="vertical" onFinish={onFinish}>
                     {/* Fuel */}
                     <div className="grid grid-cols-1 gap-4">
                         <div>
-                            <span className="text-[20px] font-semibold mb-2 ">Full Name</span>
+                            <span className="text-[20px] font-semibold ">Full Name</span>
                             <Form.Item name="name" rules={[{ required: true }]}>
                                 <Input
                                     type="text"
                                     placeholder="Enter your fuel category"
-                                    className="w-full h-12 bg-[#fcfdfd] rounded-lg px-4 focus:outline-none border-black"
+                                    className="w-full h-12 bg-[#fcfdfd] rounded-lg px-4 focus:outline-none border-black mt-3"
                                 />
                             </Form.Item>
                         </div>
@@ -94,7 +94,7 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
                             <label htmlFor="carType" className="block text-xl font-medium mb-2">
                                 Brand Logo
                             </label>
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 mt-6">
                                 <input
                                     type="file"
                                     name="file"
@@ -108,7 +108,11 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
                                     onClick={() => document.getElementById('file')?.click()}
                                 >
                                     {previewUrl ? (
-                                        <img src={previewUrl} alt="pic" className="w-full h-48" />
+                                        <img
+                                            src={previewUrl}
+                                            alt="pic"
+                                            className="w-full h-56 object-cover object-center"
+                                        />
                                     ) : (
                                         <div className="">
                                             <span className="">
@@ -123,7 +127,7 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
                     </div>
 
                     {/* Submit Button */}
-                    <button type="submit" className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg mt-4">
+                    <button type="submit" className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg mt-12">
                         Submit
                     </button>
                 </Form>
