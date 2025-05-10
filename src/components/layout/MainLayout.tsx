@@ -1,17 +1,14 @@
 import React from 'react';
-
 import { Outlet } from 'react-router-dom';
-// import HeaderDashboard from './HeaderDashboard';
-
 import HeaderDashboard from './HeaderDashboard';
-import SiderbarDublicate from './SiderbarDublicate';
+import Sideber from './Sideber';
 
 const MainLayout: React.FC = () => {
     return (
         <div className="grid grid-cols-12 ">
             {/* side bar */}
             <div className="col-span-2 bg-[#EBF4FF] h-screen">
-                <SiderbarDublicate />
+                <Sideber />
             </div>
 
             {/* main container with header */}
