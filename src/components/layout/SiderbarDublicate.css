@@ -3,9 +3,6 @@
 @media (min-width: 1200px) {
     .sidebar {
         width: 320px;
-
-        /* padding-top: 20px; */
-        /* position: fixed; */
         transition: width 0.3s ease-in-out; /* Smooth transition when resizing */
     }
 

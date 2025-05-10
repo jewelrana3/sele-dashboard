@@ -10,7 +10,7 @@ const EventStates = () => {
     const statics = [
         {
             name: 'Total Earning',
-            count: `${staticsData?.totalEarning}k`,
+            count: `${staticsData?.totalEarning ? staticsData?.totalEarning : 0}k`,
 
             textColor: '#FBB040',
             image: earing,
@@ -18,7 +18,7 @@ const EventStates = () => {
         },
         {
             name: 'Total User',
-            count: staticsData?.totalUser,
+            count: staticsData?.totalUser || 0,
 
             bgColor: '#FDF6EC',
             image: user,
@@ -26,7 +26,7 @@ const EventStates = () => {
         },
         {
             name: 'Total Agency',
-            count: staticsData?.totalAgency,
+            count: staticsData?.totalAgency || 0,
 
             textColor: '#FBB040',
             image: agency,
