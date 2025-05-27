@@ -7,7 +7,7 @@ import Button from '../../components/shared/Button';
 import { useCreateConditionMutation, useGetConditionQuery } from '../../redux/apiSlice/setting/settingText';
 
 export default function TermsCondition() {
-    const { data, isError, isLoading } = useGetConditionQuery(undefined);
+    const { data, isLoading, refetch } = useGetConditionQuery(undefined);
     const [createCondition] = useCreateConditionMutation();
     const editor = useRef(null);
     const navigate = useNavigate();
@@ -19,17 +19,18 @@ export default function TermsCondition() {
         }
     }, [data]);
 
-    const handleOnSave = async (value: string) => {
-        await createCondition({ description: value });
+    const handleOnSave = async () => {
+        await createCondition({ description: content });
+        refetch();
     };
 
     if (isLoading) {
         return <span>Loading...</span>;
     }
 
-    if (isError) {
-        return <span>Error loading content.</span>;
-    }
+    // if (isError) {
+    //     return <span>Error loading content.</span>;
+    // }
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>
@@ -49,7 +50,7 @@ export default function TermsCondition() {
                     />
                 </div>
 
-                <Button className="mt-5" onClick={() => handleOnSave(content)}>
+                <Button className="mt-5" onClick={handleOnSave}>
                     Save
                 </Button>
             </div>

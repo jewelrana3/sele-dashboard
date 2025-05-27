@@ -6,11 +6,13 @@ import Button from '../../components/shared/Button';
 import { useCreateAboutMutation, useGetAboutQuery } from '../../redux/apiSlice/setting/settingText';
 
 export default function AboutUs() {
-    const { data, isLoading, isError } = useGetAboutQuery(undefined);
+    const { data, isLoading, refetch } = useGetAboutQuery(undefined);
     const [createAbout] = useCreateAboutMutation();
     const editor = useRef(null);
     const navigate = useNavigate();
     const [content, setContent] = useState('');
+
+    console.log(data);
 
     useEffect(() => {
         if (data?.data?.description) {
@@ -18,9 +20,10 @@ export default function AboutUs() {
         }
     }, [data]);
 
-    const handleSubmit = async (value: string) => {
+    const handleSubmit = async () => {
         try {
-            await createAbout({ description: value });
+            await createAbout({ description: content });
+            refetch();
         } catch (error) {
             console.error('Error submitting About Us content:', error);
         }
@@ -30,9 +33,9 @@ export default function AboutUs() {
         return <span>Loading...</span>;
     }
 
-    if (isError) {
-        return <span>Error loading content.</span>;
-    }
+    // if (isError) {
+    //     return <span>Error loading content.</span>;
+    // }
 
     return (
         <div>
@@ -52,7 +55,7 @@ export default function AboutUs() {
                 />
             </div>
 
-            <Button className="mt-5" onClick={() => handleSubmit(content)}>
+            <Button className="mt-5" onClick={handleSubmit}>
                 Save
             </Button>
         </div>

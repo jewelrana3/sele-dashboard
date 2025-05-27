@@ -7,7 +7,7 @@ import Button from '../../components/shared/Button';
 import { useCreatePrivacyMutation, useGetPrivacyQuery } from '../../redux/apiSlice/setting/settingText';
 
 export default function PrivacyPolicy() {
-    const { data, isLoading, isError } = useGetPrivacyQuery(undefined);
+    const { data, isLoading, refetch } = useGetPrivacyQuery(undefined);
     const [createPrivacy] = useCreatePrivacyMutation();
     const editor = useRef(null);
     const navigate = useNavigate();
@@ -20,17 +20,18 @@ export default function PrivacyPolicy() {
         }
     }, [data]);
 
-    const handleOnSave = async (value: string) => {
-        await createPrivacy({ description: value });
+    const handleOnSave = async () => {
+        await createPrivacy({ description: content });
+        refetch();
     };
 
     if (isLoading) {
         return <span>Loading...</span>;
     }
 
-    if (isError) {
-        return <span>Error loading content.</span>;
-    }
+    // if (isError) {
+    //     return <span>Error loading content.</span>;
+    // }
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>
@@ -49,7 +50,7 @@ export default function PrivacyPolicy() {
                         onBlur={(newContent) => setContent(newContent)}
                     />
                 </div>
-                <Button className="mt-5" onClick={() => handleOnSave(content)}>
+                <Button className="mt-5" onClick={handleOnSave}>
                     Save
                 </Button>
             </div>

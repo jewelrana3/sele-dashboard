@@ -19,7 +19,6 @@ interface category {
 }
 
 const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalProps) => {
-    console.log(data);
     const [updateCategory] = useUpdateCategoryMutation();
     const [createBrand] = useCreateBrandMutation();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -50,6 +49,7 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
     };
 
     const onFinish = async (values: category) => {
+        console.log(values);
         const formData = new FormData();
         formData.append('brandName', values.name);
 

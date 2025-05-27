@@ -10,6 +10,7 @@ export default function Users() {
     const { data, isLoading, refetch } = useGetUserQuery(undefined);
     const [deleteUser] = useDeleteUserMutation();
     const userData = data?.data;
+    console.log(userData);
     const [userDetails, setUserDetails] = useState<Record<string, any> | null>(null);
 
     const handleDelete = (id: string) => {
@@ -43,7 +44,7 @@ export default function Users() {
                 {isLoading ? (
                     <div className="flex justify-center items-center py-8">
                         <Spin size="large" />
-                        <p className="ml-3 text-lg">Loading Orders...</p>
+                        <p className="ml-3 text-lg">Loading Users...</p>
                     </div>
                 ) : (
                     <ConfigProvider>

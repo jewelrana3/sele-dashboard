@@ -70,7 +70,7 @@ const Category = () => {
                 {isLoading ? (
                     <div className="flex justify-center items-center py-8">
                         <Spin size="large" />
-                        <p className="ml-3 text-lg">Loading Orders...</p>
+                        <p className="ml-3 text-lg">Loading Brand...</p>
                     </div>
                 ) : (
                     <ConfigProvider>
