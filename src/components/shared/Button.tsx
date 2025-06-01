@@ -11,7 +11,7 @@ export default function Button({ children, className, onClick, htmlType = 'butto
         <button
             type={htmlType}
             onClick={onClick}
-            className={`${className} font-semibold text-center my-auto  cursor-pointer bg-primaryBg text-white w-[200px] h-[50px] rounded-lg`}
+            className={`${className} font-semibold text-center my-auto  cursor-pointer bg-primaryBg text-white w-[200px] h-[40px] rounded-lg`}
         >
             {children}
         </button>
