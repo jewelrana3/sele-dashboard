@@ -28,7 +28,7 @@ const HeaderDashboard = () => {
                     <div className="flex items-center">
                         <div>
                             {/*notification icons */}
-                            <Link to={'/notification'}>
+                            {/* <Link to={'/notification'}>
                                 <div className="size-10 rounded-full flex items-center justify-center ">
                                     <button className="py-4 px-1 relative border-2 border-transparent rounded-full focus:outline-none transition duration-150 ease-in-out">
                                         <span className="absolute inset-0 -top-4  -mr-6 ">
@@ -40,7 +40,7 @@ const HeaderDashboard = () => {
                                         <IoMdNotificationsOutline size={24} />
                                     </button>
                                 </div>
-                            </Link>
+                            </Link> */}
                         </div>
                         <div>
                             <Link
