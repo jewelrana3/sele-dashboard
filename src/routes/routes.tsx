@@ -1,17 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-
 import Login from '../pages/authentication/Login';
 import ErrorPage from '../pages/error/ErrorPage';
-
-import Notification from '../pages/dashboard/Notification';
 import ForgetPassword from '../pages/authentication/ForgetPassword';
 import VerifyOtp from '../pages/authentication/VerifyOtp';
 import NewPassword from '../pages/authentication/NewPassword';
-
 import Earing from '../pages/dashboard/earing/Earing';
 import Dashboard from '../pages/dashboard/dasboard/Dashboard';
-
 import PrivacyPolicy from '../pages/dashboard/PrivacyPolicy';
 import EditProfile from '../pages/dashboard/profile/EditProfile';
 import ChangePassword from '../pages/dashboard/profile/ChangePassword';
@@ -52,7 +47,6 @@ const router = createBrowserRouter([
             { path: '/terms-condition', element: <TermsCondition /> },
             { path: '/policy', element: <PrivacyPolicy /> },
 
-            { path: '/notification', element: <Notification /> },
             { path: '/profile', element: <Profile /> },
             { path: '/edit-profile', element: <EditProfile /> },
             { path: '/change-password', element: <ChangePassword /> },
