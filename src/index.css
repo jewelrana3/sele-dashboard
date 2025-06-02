@@ -65,3 +65,9 @@ body {
 .ant-select .ant-select-outlined {
     border: none !important;
 }
+
+.ant-pagination-item,
+.ant-pagination-item-link .anticon {
+    min-width: 36px;
+    font-size: 28px;
+}

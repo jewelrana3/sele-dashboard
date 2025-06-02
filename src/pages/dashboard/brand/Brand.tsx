@@ -16,6 +16,8 @@ const Brand = () => {
     const [createModal, setCreateModal] = useState(false);
     const [brandDetails, setBrandDetails] = useState<Record<string, any> | null>(null);
     const [brandEdit, setBrandEdit] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 8;
 
     const handleDelete = (id: string) => {
         Swal.fire({
@@ -77,12 +79,18 @@ const Brand = () => {
                         <Table
                             bordered={false}
                             dataSource={data?.data}
-                            pagination={{ pageSize: 10 }}
+                            pagination={{
+                                pageSize,
+                                onChange: (page) => setCurrentPage(page),
+                                position: ['bottomCenter'],
+                            }}
                             className="cursor-pointer font-outfit"
                         >
                             <Table.Column
                                 title={<div className="ml-6">Serial ID</div>}
-                                render={(_, __, index) => <p className="ml-7">{index + 1}</p>}
+                                render={(_, __, index) => (
+                                    <p className="ml-7">{(currentPage - 1) * pageSize + index + 1}</p>
+                                )}
                             />
                             <Table.Column title="Brand Name" dataIndex="brandName" key="brandName" />
                             <Table.Column
