@@ -1,16 +1,16 @@
 import { ConfigProvider, Spin, Table } from 'antd';
-import AddCategoryModal from '../../../modal/AddCategoryModal';
 import BrandModalDetails from '../../../modal/BrandModalDetails';
 import Button from '../../../components/shared/Button';
 import Swal from 'sweetalert2';
-import { useDeletebrandMutation, useGetBrandQuery } from '../../../redux/apiSlice/category/category';
+import { useDeletebrandMutation, useGetBrandQuery } from '../../../redux/apiSlice/brand/brand';
 import { useState } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { imgUrl } from '../../../redux/api/baseApi';
+import AddEditBrandModal from '../../../modal/BrandModal';
 
-const Category = () => {
+const Brand = () => {
     const { data, isLoading, refetch } = useGetBrandQuery(undefined);
     const [deletebrand] = useDeletebrandMutation();
     const [createModal, setCreateModal] = useState(false);
@@ -20,7 +20,7 @@ const Category = () => {
     const handleDelete = (id: string) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to undo this!",
+            text: 'You want be able to this brand!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -33,7 +33,7 @@ const Category = () => {
                         refetch();
                         Swal.fire({
                             title: 'Deleted!',
-                            text: 'User item deleted.',
+                            text: 'Brand item deleted.',
                             icon: 'success',
                         });
                     })
@@ -137,7 +137,7 @@ const Category = () => {
 
             {/* Add/Edit modal */}
             {createModal && (
-                <AddCategoryModal
+                <AddEditBrandModal
                     data={brandEdit}
                     isOpen={createModal}
                     refetch={refetch}
@@ -148,4 +148,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default Brand;

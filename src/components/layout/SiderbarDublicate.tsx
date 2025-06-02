@@ -14,6 +14,7 @@ import terms from '../../../public/sidebar-icon/terms.svg';
 import { CiLock, CiLogout, CiUser } from 'react-icons/ci';
 import './SiderbarDublicate.css';
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
+import { TbAlpha } from 'react-icons/tb';
 
 const menuItems = [
     { label: 'Dashboard', path: '/', icon: <LuLayoutDashboard size={24} /> },
@@ -21,7 +22,7 @@ const menuItems = [
     { label: 'Earing', path: '/earing', icon: <img src={earings} alt="earing" width={24} height={24} /> },
     { label: 'Agency', path: '/agency', icon: <img src={agency} alt="agency" width={24} height={24} /> },
     { label: 'Brand', path: '/brand', icon: <img src={category} alt="brand" width={24} height={24} /> },
-    // { label: 'Category', path: '/category', icon: <img src={category} alt="category" width={24} height={24} /> },
+    { label: 'Category', path: '/category', icon: <TbAlpha size={24} /> },
 ];
 
 const settings = [

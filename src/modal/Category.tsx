@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Modal from './Modal';
-import { useCreateBrandMutation, useUpdateCategoryMutation } from '../redux/apiSlice/category/category';
+import { useCreateCategoryMutation, useUpdateCategoryMutation } from '../redux/apiSlice/category/category';
 import { Form, Input } from 'antd';
-import { BiUpload } from 'react-icons/bi';
 import toast from 'react-hot-toast';
-import { imgUrl } from '../redux/api/baseApi';
 
-interface AddCategoryModalProps {
+interface AddEditCategoryProps {
     isOpen: boolean;
     onClose: () => void;
     refetch: () => void;
@@ -14,55 +12,35 @@ interface AddCategoryModalProps {
 }
 
 interface category {
-    name: string;
-    image: string;
+    category: string;
 }
 
-const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalProps) => {
+const CategoryModal = ({ isOpen, onClose, refetch, data }: AddEditCategoryProps) => {
+    console.log(data);
     const [updateCategory] = useUpdateCategoryMutation();
-    const [createBrand] = useCreateBrandMutation();
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    console.log(previewUrl);
-    const [profileImage, setProfileImage] = useState<File | null>(null);
+    const [createCategory] = useCreateCategoryMutation();
     const [form] = Form.useForm();
 
     useEffect(() => {
         if (data && data._id) {
             form.setFieldsValue({
-                name: data.brandName,
+                name: data.category,
             });
-            setPreviewUrl(data?.logo?.startsWith('http') ? data?.logo : `${imgUrl}${data?.logo}`);
         } else {
             form.setFieldsValue({
                 name: '',
-                image: '',
             });
         }
     }, [form, data]);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setProfileImage(file);
-            setPreviewUrl(URL.createObjectURL(file));
-        }
-    };
-
     const onFinish = async (values: category) => {
         console.log(values);
-        const formData = new FormData();
-        formData.append('brandName', values.name);
-
-        if (profileImage) {
-            formData.append('logo', profileImage);
-        }
-
         try {
             if (data?._id) {
-                await updateCategory({ id: data._id, data: formData });
+                await updateCategory({ id: data._id, data: values });
                 toast.success('update successfully');
             } else {
-                await createBrand(formData);
+                await createCategory(values);
                 toast.success('create successfully');
             }
             refetch();
@@ -74,23 +52,23 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="bg-[#E6F2FF] p-6 rounded-lg shadow-lg w-[500px] h-[550px]">
-                <h2 className="text-2xl  mb-4">{data?._id ? 'Edit' : 'Add New Brand'}</h2>
+            <div className="bg-[#E6F2FF] p-6 rounded-lg shadow-lg w-[500px] h-[280px]">
+                <h2 className="text-2xl  mb-4">{data?._id ? 'Edit Category' : 'Add New Category'}</h2>
                 <Form form={form} layout="vertical" onFinish={onFinish}>
                     {/* Fuel */}
                     <div className="grid grid-cols-1 gap-4">
                         <div>
                             <span className="text-[20px] font-semibold ">Full Name</span>
-                            <Form.Item name="name" rules={[{ required: true }]}>
+                            <Form.Item name="category" rules={[{ required: true }]}>
                                 <Input
                                     type="text"
-                                    placeholder="Enter your fuel category"
+                                    placeholder="Enter your category name"
                                     className="w-full h-12 bg-[#fcfdfd] rounded-lg px-4 focus:outline-none border-black mt-3"
                                 />
                             </Form.Item>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <label htmlFor="carType" className="block text-xl font-medium mb-2">
                                 Brand Logo
                             </label>
@@ -123,11 +101,11 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
                                     )}
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Submit Button */}
-                    <button type="submit" className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg mt-12">
+                    <button type="submit" className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg mt-1">
                         Submit
                     </button>
                 </Form>
@@ -136,4 +114,4 @@ const AddCategoryModal = ({ isOpen, onClose, refetch, data }: AddCategoryModalPr
     );
 };
 
-export default AddCategoryModal;
+export default CategoryModal;

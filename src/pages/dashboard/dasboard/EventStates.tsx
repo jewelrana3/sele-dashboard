@@ -6,6 +6,7 @@ import { useGetStaticsQuery } from '../../../redux/apiSlice/dashboard/dashboard'
 const EventStates = () => {
     const { data } = useGetStaticsQuery(undefined);
     const staticsData = data?.data;
+    console.log(staticsData);
 
     const statics = [
         {

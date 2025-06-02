@@ -1,37 +1,36 @@
 import { api } from '../../api/baseApi';
 
-const category = api.injectEndpoints({
+const brand = api.injectEndpoints({
     endpoints: (builder) => ({
-        getCategory: builder.query({
+        getBrand: builder.query({
             query: () => ({
-                url: '/category',
+                url: '/brands',
                 method: 'GET',
             }),
         }),
 
-        createCategory: builder.mutation({
+        createBrand: builder.mutation({
             query: (data) => ({
-                url: '/category',
+                url: '/brands',
                 method: 'POST',
                 body: data,
             }),
         }),
 
-        deleteCategory: builder.mutation({
+        deletebrand: builder.mutation({
             query: (id) => ({
-                url: `/category/${id}`,
+                url: `/brands/${id}`,
                 method: 'DELETE',
             }),
         }),
 
-        updateCategory: builder.mutation({
+        updateBrand: builder.mutation({
             query: ({ id, data }) => ({
-                url: `/category/${id}`,
+                url: `/brands/${id}`,
                 method: 'PATCH',
                 body: data,
             }),
         }),
     }),
 });
-export const { useGetCategoryQuery, useCreateCategoryMutation, useDeleteCategoryMutation, useUpdateCategoryMutation } =
-    category;
+export const { useGetBrandQuery, useCreateBrandMutation, useDeletebrandMutation, useUpdateBrandMutation } = brand;
