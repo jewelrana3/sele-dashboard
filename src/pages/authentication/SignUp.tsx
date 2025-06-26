@@ -5,7 +5,7 @@ import Button from '../../components/shared/Button';
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const onFinish: FormProps<FieldNamesType>['onFinish'] = (values) => {
+    const onFinish: FormProps<FieldNamesType>['onFinish'] = () => {
         navigate('/');
     };
 
@@ -52,7 +52,7 @@ const SignUp = () => {
                                     Full Name
                                 </label>
                             }
-                            name="email"
+                            name="name"
                             rules={[{ required: true, message: 'Please input your name!' }]}
                         >
                             <Input placeholder="Enter your name" type="name" className=" h-12  px-6 bg-white" />
@@ -93,12 +93,7 @@ const SignUp = () => {
                         </div>
 
                         <Form.Item>
-                            <Button
-                                className="w-full"
-                                htmlType="submit"
-
-                                // onClick={() => navigate('/')}
-                            >
+                            <Button className="w-full" htmlType="submit">
                                 Sign Up
                             </Button>
                         </Form.Item>

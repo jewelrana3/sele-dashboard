@@ -1,5 +1,4 @@
 import { Layout } from 'antd';
-import { IoMdNotificationsOutline } from 'react-icons/io';
 import { Link, useLocation } from 'react-router-dom';
 const { Header } = Layout;
 

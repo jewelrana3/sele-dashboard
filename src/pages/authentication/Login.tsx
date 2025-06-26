@@ -16,7 +16,7 @@ const Login = () => {
         } else {
             toast.dismiss('login-toast');
 
-            if (isSuccess && data) {
+            if (isSuccess && data.data) {
                 toast.success('Login Successful', { id: 'login-toast' });
                 localStorage.setItem('accessToken', data?.data?.accessToken);
                 navigate('/');
