@@ -10,7 +10,6 @@ export default function Agency() {
     const { data, isLoading, refetch } = useGetAgencyQuery(undefined);
     const [deleteAgency] = useDeleteAgencyMutation();
     const agencyData = data?.data?.data;
-    console.log(agencyData);
 
     const [userDetails, setUserDetails] = useState<Record<string, any> | null>(null);
 
@@ -25,7 +24,6 @@ export default function Agency() {
     };
 
     const handleDelete = (id: string) => {
-        console.log(id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to user this!",

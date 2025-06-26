@@ -37,7 +37,7 @@ const settings = [
 
             {
                 label: 'Privacy Policy',
-                path: '/policy',
+                path: '/terms-policy',
                 icon: <img src={privacy} width={24} height={24} alt="policy" />,
             },
             {
@@ -108,7 +108,6 @@ export default function SiderbarDublicate() {
                             <ul className="submenu ml-5 mb-4">
                                 {settings?.[0].children.map(
                                     (item: { label: string; path: string; icon: JSX.Element }) => {
-                                        console.log(item);
                                         return (
                                             <li
                                                 key={item.path}

@@ -8,7 +8,6 @@ interface CategoryModalProps {
 }
 
 export default function BrandModalDetails({ isOpen, onClose, data }: CategoryModalProps) {
-    console.log(data);
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className="flex justify-between items-center mb-4 p-4">

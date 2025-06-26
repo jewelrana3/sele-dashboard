@@ -6,7 +6,6 @@ const { Option } = Select;
 export default function Chart() {
     const { data } = useGetChartQuery(undefined);
     const chart = data?.data;
-    console.log(chart);
 
     const chatData = chart?.map((item: any) => ({
         name: item.monthName,

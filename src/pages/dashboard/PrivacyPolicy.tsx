@@ -29,9 +29,6 @@ export default function PrivacyPolicy() {
         return <span>Loading...</span>;
     }
 
-    // if (isError) {
-    //     return <span>Error loading content.</span>;
-    // }
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>

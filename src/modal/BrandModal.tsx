@@ -22,7 +22,7 @@ const AddEditBrandModal = ({ isOpen, onClose, refetch, data }: AddEditBrandModal
     const [updateCategory] = useUpdateBrandMutation();
     const [createBrand] = useCreateBrandMutation();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    console.log(previewUrl);
+
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const [form] = Form.useForm();
 
@@ -49,7 +49,6 @@ const AddEditBrandModal = ({ isOpen, onClose, refetch, data }: AddEditBrandModal
     };
 
     const onFinish = async (values: category) => {
-        console.log(values);
         const formData = new FormData();
         formData.append('brandName', values.name);
 

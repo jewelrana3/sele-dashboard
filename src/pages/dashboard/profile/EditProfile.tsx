@@ -20,7 +20,7 @@ export default function EditProfile() {
     const [updateProfile] = useUpdateProfileMutation();
     const navigate = useNavigate();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    console.log(previewUrl);
+
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const [form] = Form.useForm();
 

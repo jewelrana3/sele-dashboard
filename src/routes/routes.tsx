@@ -22,6 +22,8 @@ import TermsCondition from '../pages/dashboard/TermsCondition';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Brand from '../pages/dashboard/brand/Brand';
 import Category from '../pages/dashboard/category/Category';
+import Policy from '../components/policy/Policy';
+import Condition from '../components/policy/TermsCondition';
 // import Setting from '../pages/dashboard/setting/Setting';
 
 const router = createBrowserRouter([
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
             { path: '/top-communities', element: <TopCommunities /> },
             { path: '/about-us', element: <AboutUs /> },
             { path: '/terms-condition', element: <TermsCondition /> },
-            { path: '/policy', element: <PrivacyPolicy /> },
+            { path: '/terms-policy', element: <PrivacyPolicy /> },
 
             { path: '/profile', element: <Profile /> },
             { path: '/edit-profile', element: <EditProfile /> },
@@ -58,6 +60,9 @@ const router = createBrowserRouter([
     { path: '/forget-password', element: <ForgetPassword /> },
     { path: '/verify-otp', element: <VerifyOtp /> },
     { path: '/new-password', element: <NewPassword /> },
+
+    { path: '/policy', element: <Policy /> },
+    { path: '/condition', element: <Condition /> },
 ]);
 
 export default router;

@@ -16,7 +16,6 @@ interface category {
 }
 
 const CategoryModal = ({ isOpen, onClose, refetch, data }: AddEditCategoryProps) => {
-    console.log(data);
     const [updateCategory] = useUpdateCategoryMutation();
     const [createCategory] = useCreateCategoryMutation();
     const [form] = Form.useForm();
@@ -34,7 +33,6 @@ const CategoryModal = ({ isOpen, onClose, refetch, data }: AddEditCategoryProps)
     }, [form, data]);
 
     const onFinish = async (values: category) => {
-        console.log(values);
         try {
             if (data?._id) {
                 await updateCategory({ id: data._id, data: values });

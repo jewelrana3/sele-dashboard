@@ -12,8 +12,6 @@ export default function AboutUs() {
     const navigate = useNavigate();
     const [content, setContent] = useState('');
 
-    console.log(data);
-
     useEffect(() => {
         if (data?.data?.description) {
             setContent(data?.data?.description);

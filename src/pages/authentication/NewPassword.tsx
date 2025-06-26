@@ -25,7 +25,6 @@ const NewPassword = () => {
     }, [isError, isSuccess, data, isLoading, navigate]);
 
     const onFinish = async (values: { newPassword: string; confirmPassword: string }) => {
-        console.log(values);
         await resetPassword(values);
     };
 

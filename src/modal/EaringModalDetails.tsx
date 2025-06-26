@@ -3,14 +3,9 @@ interface EaringModalDetailsProps {
     isOpen: boolean;
     onClose: () => void;
     data: { transactionId: string; createdAt: string; amount: string; userId: { email: string } };
-    // transactionId: string;
-    // date: string;
-    // email: string;
-    // amount: string;
 }
 
 const EaringModalDetails: React.FC<EaringModalDetailsProps> = ({ isOpen, onClose, data }) => {
-    console.log(data);
     const transactionDetails = [
         { label: 'Transaction ID', value: data?.transactionId.slice(0, 7) },
         { label: 'Date', value: data?.createdAt.slice(0, 7) },

@@ -20,9 +20,11 @@ const ForgetPassword = () => {
                 }
 
                 navigate('/verify-otp');
+            } else {
+                toast.error(res.data.message || 'OTP failed try again.');
             }
         } catch (isError) {
-            console.log(isError);
+            toast.error(String(isError));
         }
     };
 

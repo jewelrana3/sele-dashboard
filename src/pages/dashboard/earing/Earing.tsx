@@ -8,7 +8,7 @@ import { useGetEarningQuery } from '../../../redux/apiSlice/earning';
 export default function Earing() {
     const { data, isLoading } = useGetEarningQuery(undefined);
     const [isEaringModalDetails, setIsEaringModalDetails] = useState<Record<string, any> | null>(null);
-    console.log(isEaringModalDetails);
+
     const tableTheme = {
         components: {
             Table: {

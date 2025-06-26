@@ -14,7 +14,6 @@ export default function Profile() {
     const [form] = Form.useForm();
 
     useEffect(() => {
-        console.log(profile);
         form.setFieldsValue({
             name: profile?.name,
             email: profile?.email,

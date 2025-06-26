@@ -10,11 +10,10 @@ export default function Users() {
     const { data, isLoading, refetch } = useGetUserQuery(undefined);
     const [deleteUser] = useDeleteUserMutation();
     const userData = data?.data;
-    console.log(userData);
+
     const [userDetails, setUserDetails] = useState<Record<string, any> | null>(null);
 
     const handleDelete = (id: string) => {
-        console.log(id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to user this!",
