@@ -8,7 +8,7 @@ export default defineConfig({
         host: '69.62.67.125',
     },
     preview: {
-        allowedHosts: ['admin.selerental.com'],
         host: '69.62.67.125',
+        // allowedHosts: ['admin.selerental.com'],
     },
 });
