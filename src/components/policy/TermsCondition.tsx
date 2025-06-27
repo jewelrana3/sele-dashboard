@@ -1,10 +1,11 @@
 import { useGetConditionQuery } from '../../redux/apiSlice/setting/settingText';
+import Loading from '../shared/Loading';
 
 export default function Condition() {
     const { data, isLoading } = useGetConditionQuery(undefined);
 
     if (isLoading) {
-        return <span>Loading...</span>;
+        return <Loading />;
     }
 
     return (

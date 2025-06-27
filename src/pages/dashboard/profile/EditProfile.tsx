@@ -8,6 +8,7 @@ import { useGetProfileQuery, useUpdateProfileMutation } from '../../../redux/api
 import { imgUrl } from '../../../redux/api/baseApi';
 import toast from 'react-hot-toast';
 import { RiUpload2Line } from 'react-icons/ri';
+import Loading from '../../../components/shared/Loading';
 
 interface ProfileData {
     name: string;
@@ -64,7 +65,7 @@ export default function EditProfile() {
     };
 
     if (isLoading) {
-        return <span>Loading...</span>;
+        return <Loading />;
     }
 
     if (isError) {

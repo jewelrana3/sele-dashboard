@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import { useGetProfileQuery } from '../../redux/apiSlice/profile/profile';
 import { imgUrl } from '../../redux/api/baseApi';
+import Loading from '../shared/Loading';
 const { Header } = Layout;
 
 const pathLink = [
@@ -21,7 +22,7 @@ const HeaderDashboard = () => {
     const findPath = pathLink.find((active) => active.path === path);
 
     if (isLoading) {
-        return <span>Loading...</span>;
+        return <Loading />;
     }
     return (
         <Header className="w-full">

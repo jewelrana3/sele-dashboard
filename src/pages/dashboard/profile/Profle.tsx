@@ -6,6 +6,7 @@ import CustomButton from '../../../components/shared/Button';
 import { useGetProfileQuery } from '../../../redux/apiSlice/profile/profile';
 import { imgUrl } from '../../../redux/api/baseApi';
 import { useEffect } from 'react';
+import Loading from '../../../components/shared/Loading';
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function Profile() {
     }, [form, data]);
 
     if (isLoading) {
-        return <span>Loading...</span>;
+        return <Loading />;
     }
 
     if (isError) {

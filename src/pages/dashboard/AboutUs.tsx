@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
 import { useCreateAboutMutation, useGetAboutQuery } from '../../redux/apiSlice/setting/settingText';
 import toast from 'react-hot-toast';
+import Loading from '../../components/shared/Loading';
 
 export default function AboutUs() {
     const { data, isLoading, refetch } = useGetAboutQuery(undefined);
@@ -36,7 +37,7 @@ export default function AboutUs() {
     };
 
     if (isLoading) {
-        return <span>Loading...</span>;
+        return <Loading />;
     }
 
     return (

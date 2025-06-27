@@ -1,10 +1,11 @@
 import { useGetPrivacyQuery } from '../../redux/apiSlice/setting/settingText';
+import Loading from '../shared/Loading';
 
 export default function Policy() {
     const { data, isLoading } = useGetPrivacyQuery(undefined);
 
     if (isLoading) {
-        return <span>Loading...</span>;
+        return <Loading />;
     }
 
     return (
