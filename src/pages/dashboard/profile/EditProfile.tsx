@@ -16,7 +16,7 @@ interface ProfileData {
 }
 
 export default function EditProfile() {
-    const { data, isError, isLoading, refetch } = useGetProfileQuery(undefined);
+    const { data, isError, isLoading } = useGetProfileQuery(undefined);
     const [updateProfile] = useUpdateProfileMutation();
     const navigate = useNavigate();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -57,7 +57,6 @@ export default function EditProfile() {
                 toast.success('Profile updated successfully!');
                 form.resetFields();
                 navigate('/profile');
-                refetch();
             }
         } catch {
             toast.error('Profile updated Failed!');
@@ -99,7 +98,7 @@ export default function EditProfile() {
                                 <RiUpload2Line className="text-white" size={20} />
                             </span>
                             {previewUrl ? (
-                                <img src={previewUrl} alt="pic" className="w-32 h-32 rounded-full" />
+                                <img src={previewUrl} alt="pic" className="w-32 h-32 rounded-full object-cover" />
                             ) : (
                                 <div className="">
                                     <span className="">
@@ -136,30 +135,6 @@ export default function EditProfile() {
                                 </Form.Item>
                             </div>
                         </div>
-
-                        {/* <div>
-                            <span className=" text-[20px] font-semibold ">Password</span>
-                            <div className="mt-3">
-                                <Form.Item name="password" rules={[{ required: true }]}>
-                                    <Input.Password
-                                        className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
-                                        placeholder="enter your password"
-                                    />
-                                </Form.Item>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span className=" text-[20px] font-semibold ">Confirm Password</span>
-                            <div className="mt-3">
-                                <Form.Item name="password" rules={[{ required: true }]}>
-                                    <Input.Password
-                                        className="h-14 bg-[#EBF4FF] hover:bg-[#EBF4FF] focus:bg-[#EBF4FF] rounded-xl border-none"
-                                        placeholder="your confirm password"
-                                    />
-                                </Form.Item>
-                            </div>
-                        </div> */}
 
                         <div className="mt-6">
                             <ConfigProvider

@@ -11,7 +11,7 @@ import { imgUrl } from '../../../redux/api/baseApi';
 import AddEditBrandModal from '../../../modal/BrandModal';
 
 const Brand = () => {
-    const { data, isLoading, refetch } = useGetBrandQuery(undefined);
+    const { data, isLoading } = useGetBrandQuery(undefined);
     const [deletebrand] = useDeletebrandMutation();
     const [createModal, setCreateModal] = useState(false);
     const [brandDetails, setBrandDetails] = useState<Record<string, any> | null>(null);
@@ -32,7 +32,6 @@ const Brand = () => {
             if (result.isConfirmed) {
                 deletebrand(id)
                     .then(() => {
-                        refetch();
                         Swal.fire({
                             title: 'Deleted!',
                             text: 'Brand item deleted.',
@@ -85,6 +84,7 @@ const Brand = () => {
                                 position: ['bottomCenter'],
                             }}
                             className="cursor-pointer font-outfit"
+                            rowKey={(record) => record?._id || record?.id || Math.random().toString()}
                         >
                             <Table.Column
                                 title={<div className="ml-6">Serial ID</div>}
@@ -145,12 +145,7 @@ const Brand = () => {
 
             {/* Add/Edit modal */}
             {createModal && (
-                <AddEditBrandModal
-                    data={brandEdit}
-                    isOpen={createModal}
-                    refetch={refetch}
-                    onClose={() => setCreateModal(false)}
-                />
+                <AddEditBrandModal data={brandEdit} isOpen={createModal} onClose={() => setCreateModal(false)} />
             )}
         </>
     );

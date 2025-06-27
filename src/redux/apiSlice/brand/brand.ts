@@ -7,6 +7,7 @@ const brand = api.injectEndpoints({
                 url: '/brands',
                 method: 'GET',
             }),
+            providesTags: ['brand'],
         }),
 
         createBrand: builder.mutation({
@@ -15,6 +16,7 @@ const brand = api.injectEndpoints({
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags: ['brand'],
         }),
 
         deletebrand: builder.mutation({
@@ -22,6 +24,7 @@ const brand = api.injectEndpoints({
                 url: `/brands/${id}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: ['brand'],
         }),
 
         updateBrand: builder.mutation({
@@ -30,6 +33,7 @@ const brand = api.injectEndpoints({
                 method: 'PATCH',
                 body: data,
             }),
+            invalidatesTags: ['brand'],
         }),
     }),
 });

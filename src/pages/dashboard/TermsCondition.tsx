@@ -5,6 +5,7 @@ import JoditEditor from 'jodit-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
 import { useCreateConditionMutation, useGetConditionQuery } from '../../redux/apiSlice/setting/settingText';
+import toast from 'react-hot-toast';
 
 export default function TermsCondition() {
     const { data, isLoading, refetch } = useGetConditionQuery(undefined);
@@ -20,17 +21,25 @@ export default function TermsCondition() {
     }, [data]);
 
     const handleOnSave = async () => {
-        await createCondition({ description: content });
-        refetch();
+        try {
+            const res = await createCondition({ description: content }).unwrap();
+
+            if (res?.success) {
+                toast.success(res.message || 'Terms & Conditions saved successfully');
+                refetch();
+            } else {
+                throw new Error(res?.message || 'Failed to save Terms & Conditions');
+            }
+        } catch (error: any) {
+            console.error('Error saving Terms & Conditions:', error);
+            toast.error(error.message || 'Something went wrong while saving');
+        }
     };
 
     if (isLoading) {
         return <span>Loading...</span>;
     }
 
-    // if (isError) {
-    //     return <span>Error loading content.</span>;
-    // }
     return (
         <div>
             <div className="flex items-center gap-4 font-semibold text-[20px]" onClick={() => navigate(-1)}>

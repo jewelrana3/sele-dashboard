@@ -5,6 +5,7 @@ import JoditEditor from 'jodit-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
 import { useCreatePrivacyMutation, useGetPrivacyQuery } from '../../redux/apiSlice/setting/settingText';
+import toast from 'react-hot-toast';
 
 export default function PrivacyPolicy() {
     const { data, isLoading, refetch } = useGetPrivacyQuery(undefined);
@@ -21,8 +22,19 @@ export default function PrivacyPolicy() {
     }, [data]);
 
     const handleOnSave = async () => {
-        await createPrivacy({ description: content });
-        refetch();
+        try {
+            const res = await createPrivacy({ description: content }).unwrap();
+
+            if (res?.success) {
+                toast.success(res.message || 'Privacy policy saved successfully');
+                refetch();
+            } else {
+                throw new Error(res?.message || 'Failed to save privacy policy');
+            }
+        } catch (error: any) {
+            console.error('Error saving privacy policy:', error);
+            toast.error(error.message || 'Something went wrong while saving');
+        }
     };
 
     if (isLoading) {

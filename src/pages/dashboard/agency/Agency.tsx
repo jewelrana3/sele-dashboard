@@ -62,11 +62,13 @@ export default function Agency() {
                             dataSource={agencyData}
                             pagination={{ pageSize: 9 }}
                             className="cursor-pointer"
+                            rowKey={(record) => record?._id || record?.id || Math.random().toString()} // Ensure each row has a unique key
                         >
                             {/* Define columns here */}
 
                             <Table.Column
                                 title={<div className="ml-6">Serial ID</div>}
+                                key="serial"
                                 render={(_: any, __: any, index: number) => <p className="ml-7">{index + 1}</p>}
                             />
                             <Table.Column title="User Name" dataIndex="name" key="name" />

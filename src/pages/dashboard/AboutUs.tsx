@@ -4,6 +4,7 @@ import JoditEditor from 'jodit-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/shared/Button';
 import { useCreateAboutMutation, useGetAboutQuery } from '../../redux/apiSlice/setting/settingText';
+import toast from 'react-hot-toast';
 
 export default function AboutUs() {
     const { data, isLoading, refetch } = useGetAboutQuery(undefined);
@@ -20,20 +21,23 @@ export default function AboutUs() {
 
     const handleSubmit = async () => {
         try {
-            await createAbout({ description: content });
-            refetch();
-        } catch (error) {
-            console.error('Error submitting About Us content:', error);
+            const res = await createAbout({ description: content }).unwrap();
+
+            if (res?.success) {
+                toast.success(res.message || 'About Us content created successfully');
+                refetch();
+            } else {
+                throw new Error(res?.message || 'Failed to create About Us content');
+            }
+        } catch (error: any) {
+            toast.error('Error submitting About Us content:', error);
+            toast.error(error.message || 'Something went wrong');
         }
     };
 
     if (isLoading) {
         return <span>Loading...</span>;
     }
-
-    // if (isError) {
-    //     return <span>Error loading content.</span>;
-    // }
 
     return (
         <div>

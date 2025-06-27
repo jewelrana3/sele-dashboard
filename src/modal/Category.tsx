@@ -23,7 +23,7 @@ const CategoryModal = ({ isOpen, onClose, refetch, data }: AddEditCategoryProps)
     useEffect(() => {
         if (data && data._id) {
             form.setFieldsValue({
-                name: data.category,
+                category: data.category,
             });
         } else {
             form.setFieldsValue({
@@ -65,41 +65,6 @@ const CategoryModal = ({ isOpen, onClose, refetch, data }: AddEditCategoryProps)
                                 />
                             </Form.Item>
                         </div>
-
-                        {/* <div>
-                            <label htmlFor="carType" className="block text-xl font-medium mb-2">
-                                Brand Logo
-                            </label>
-                            <div className="flex gap-4 mt-6">
-                                <input
-                                    type="file"
-                                    name="file"
-                                    id="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
-                                    style={{ display: 'none' }}
-                                />
-                                <div
-                                    className="flex justify-center items-center  cursor-pointer bg-white w-full h-48"
-                                    onClick={() => document.getElementById('file')?.click()}
-                                >
-                                    {previewUrl ? (
-                                        <img
-                                            src={previewUrl}
-                                            alt="pic"
-                                            className="w-full h-56 object-cover object-center"
-                                        />
-                                    ) : (
-                                        <div className="">
-                                            <span className="">
-                                                <BiUpload size={24} className="ml-8" />
-                                            </span>
-                                            <span className="text-[#636363]">Upload Image</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
 
                     {/* Submit Button */}

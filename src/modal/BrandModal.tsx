@@ -9,7 +9,6 @@ import { imgUrl } from '../redux/api/baseApi';
 interface AddEditBrandModalProps {
     isOpen: boolean;
     onClose: () => void;
-    refetch: () => void;
     data: any;
 }
 
@@ -18,7 +17,7 @@ interface category {
     image: string;
 }
 
-const AddEditBrandModal = ({ isOpen, onClose, refetch, data }: AddEditBrandModalProps) => {
+const AddEditBrandModal = ({ isOpen, onClose, data }: AddEditBrandModalProps) => {
     const [updateCategory] = useUpdateBrandMutation();
     const [createBrand] = useCreateBrandMutation();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -58,16 +57,27 @@ const AddEditBrandModal = ({ isOpen, onClose, refetch, data }: AddEditBrandModal
 
         try {
             if (data?._id) {
-                await updateCategory({ id: data._id, data: formData });
-                toast.success('update successfully');
+                const res = await updateCategory({ id: data._id, data: formData }).unwrap();
+
+                if (res?.success) {
+                    toast.success(res.message || 'Update successful');
+                } else {
+                    throw new Error(res?.message || 'Update failed');
+                }
             } else {
-                await createBrand(formData);
-                toast.success('create successfully');
+                const res = await createBrand(formData).unwrap();
+
+                if (res?.success) {
+                    toast.success(res.message || 'Create successful');
+                } else {
+                    throw new Error(res?.message || 'Create failed');
+                }
             }
-            refetch();
+
             onClose();
-        } catch (error) {
-            toast.error('Post faild');
+        } catch (error: any) {
+            toast.error('Error:', error);
+            toast.error(error.message || 'Operation failed');
         }
     };
 
@@ -98,7 +108,7 @@ const AddEditBrandModal = ({ isOpen, onClose, refetch, data }: AddEditBrandModal
                                     type="file"
                                     name="file"
                                     id="file"
-                                    accept="image/*"
+                                    accept="image/jpeg,image/png"
                                     onChange={handleImageChange}
                                     style={{ display: 'none' }}
                                 />

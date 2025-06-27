@@ -46,12 +46,7 @@ export default function Earing() {
                                 key="transactionId"
                                 render={(_, record) => <span className="">{record?.transactionId.slice(0, 6)}</span>}
                             />
-                            <Table.Column
-                                title="Trax Id"
-                                dataIndex="trxId"
-                                key="trxId"
-                                // render={(traxId) => traxId || 'N/A'}
-                            />
+                            <Table.Column title="Trax Id" dataIndex="trxId" key="trxId" />
 
                             <Table.Column
                                 title="Email"

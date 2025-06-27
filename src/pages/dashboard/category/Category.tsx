@@ -81,6 +81,7 @@ const Category = () => {
                                 position: ['bottomCenter'],
                             }}
                             className="cursor-pointer font-outfit"
+                            rowKey={(record) => record?._id || record?.id || Math.random().toString()}
                         >
                             <Table.Column
                                 title={<div className="ml-6">Serial ID</div>}

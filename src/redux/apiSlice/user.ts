@@ -7,6 +7,7 @@ const user = api.injectEndpoints({
                 url: '/recent-user',
                 method: 'GET',
             }),
+            providesTags: ['user'],
         }),
 
         deleteUser: builder.mutation({
@@ -14,6 +15,7 @@ const user = api.injectEndpoints({
                 url: `/delete-user/${id}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: ['user'],
         }),
     }),
 });

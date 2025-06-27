@@ -16,6 +16,7 @@ export const api = createApi({
     }),
 
     endpoints: () => ({}),
+    tagTypes: ['user', 'brand', 'profile'],
 });
 
 // export const imgUrl = 'http://178.16.138.188:5003';

@@ -7,7 +7,7 @@ import { useDeleteUserMutation, useGetUserQuery } from '../../../redux/apiSlice/
 import Swal from 'sweetalert2';
 
 export default function Users() {
-    const { data, isLoading, refetch } = useGetUserQuery(undefined);
+    const { data, isLoading } = useGetUserQuery(undefined);
     const [deleteUser] = useDeleteUserMutation();
     const userData = data?.data;
 
@@ -25,7 +25,6 @@ export default function Users() {
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteUser(id);
-                refetch();
                 Swal.fire({
                     title: 'Deleted!',
                     text: `User item delete`,
@@ -52,6 +51,7 @@ export default function Users() {
                             dataSource={userData}
                             pagination={{ pageSize: 10 }}
                             className="cursor-pointer font-outfit"
+                            rowKey={(record) => record?._id || record?.id || Math.random().toString()}
                         >
                             {/* Define columns here */}
 
@@ -71,7 +71,7 @@ export default function Users() {
                                 title="Joining Date"
                                 dataIndex="date"
                                 key="date"
-                                render={(_, record) => <span className="">{record?.createdAt.slice(0, 10)}</span>}
+                                render={(_, record) => <span className="">{record?.createdAt?.slice(0, 10)}</span>}
                             />
 
                             <Table.Column

@@ -7,6 +7,7 @@ const profile = api.injectEndpoints({
                 url: '/auth/user-details',
                 method: 'GET',
             }),
+            providesTags: ['profile'],
         }),
 
         updateProfile: builder.mutation({
@@ -15,6 +16,7 @@ const profile = api.injectEndpoints({
                 method: 'PATCH',
                 body: data,
             }),
+            invalidatesTags: ['profile'],
         }),
 
         changePassword: builder.mutation({
@@ -23,6 +25,7 @@ const profile = api.injectEndpoints({
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags: ['profile'],
         }),
     }),
 });
