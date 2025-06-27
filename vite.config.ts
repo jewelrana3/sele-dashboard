@@ -7,4 +7,7 @@ export default defineConfig({
     server: {
         host: '69.62.67.125',
     },
+    preview: {
+        host: '69.62.67.125',
+    },
 });
