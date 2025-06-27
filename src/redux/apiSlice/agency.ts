@@ -7,6 +7,7 @@ const agency = api.injectEndpoints({
                 url: '/total-agency',
                 method: 'GET',
             }),
+            providesTags: ['agency'],
         }),
 
         deleteAgency: builder.mutation({
@@ -14,6 +15,7 @@ const agency = api.injectEndpoints({
                 url: `/delete-agency/${id}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: ['agency'],
         }),
     }),
 });

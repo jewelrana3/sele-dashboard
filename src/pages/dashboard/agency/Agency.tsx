@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import UserDetailsModal from '../../../modal/UserDetails';
 
 export default function Agency() {
-    const { data, isLoading, refetch } = useGetAgencyQuery(undefined);
+    const { data, isLoading } = useGetAgencyQuery(undefined);
     const [deleteAgency] = useDeleteAgencyMutation();
     const agencyData = data?.data?.data;
 
@@ -35,7 +35,7 @@ export default function Agency() {
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteAgency(id);
-                refetch();
+
                 Swal.fire({
                     title: 'Deleted!',
                     text: `User item delete`,

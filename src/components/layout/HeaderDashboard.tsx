@@ -1,5 +1,7 @@
 import { Layout } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
+import { useGetProfileQuery } from '../../redux/apiSlice/profile/profile';
+import { imgUrl } from '../../redux/api/baseApi';
 const { Header } = Layout;
 
 const pathLink = [
@@ -12,11 +14,15 @@ const pathLink = [
 ];
 
 const HeaderDashboard = () => {
+    const { data, isLoading } = useGetProfileQuery(undefined);
     const location = useLocation();
     const path = location.pathname;
 
     const findPath = pathLink.find((active) => active.path === path);
 
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
     return (
         <Header className="w-full">
             <div className="-ml-5">
@@ -39,7 +45,11 @@ const HeaderDashboard = () => {
                                 }}
                             >
                                 <img
-                                    src={'/user.svg'}
+                                    src={
+                                        data?.image?.startsWith('https')
+                                            ? data?.data.image
+                                            : `${imgUrl}${data?.data?.image}`
+                                    }
                                     style={{
                                         width: '44px',
                                         height: '44px',
