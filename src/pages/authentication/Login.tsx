@@ -19,7 +19,7 @@ const Login = () => {
             if (isSuccess && data.data) {
                 toast.success('Login Successful', { id: 'login-toast' });
                 localStorage.setItem('accessToken', data?.data?.accessToken);
-                navigate('/');
+                window.location.href = '/';
             }
         }
     }, [data, navigate, isLoading, isSuccess]);
@@ -51,7 +51,6 @@ const Login = () => {
                         colorBorder: '#757575',
                         colorPrimaryBorder: 'transparent',
                         hoverBorderColor: 'transparent',
-                        // controlOutline: 'none',
                         activeBorderColor: '#757575',
                     },
                     Button: {

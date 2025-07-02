@@ -24,9 +24,7 @@ import Brand from '../pages/dashboard/brand/Brand';
 import Category from '../pages/dashboard/category/Category';
 import Policy from '../components/policy/Policy';
 import Condition from '../components/policy/TermsCondition';
-import UserDelete from '../components/account-delete/AccountDelete';
 import AccountDelete from '../components/account-delete/AccountDelete';
-// import Setting from '../pages/dashboard/setting/Setting';
 
 const router = createBrowserRouter([
     {
