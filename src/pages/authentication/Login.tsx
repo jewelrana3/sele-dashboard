@@ -122,12 +122,6 @@ const Login = () => {
                             </Button>
                         </Form.Item>
                     </Form>
-                    {/* <div className="flex justify-end ">
-                        <Link to="/sign-up">
-                            {' '}
-                            <p className="text-[#8DB501] font-bold underline cursor-pointer">Sign Up</p>
-                        </Link>
-                    </div> */}
                 </div>
             </div>
         </ConfigProvider>
