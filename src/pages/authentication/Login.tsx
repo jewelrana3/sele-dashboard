@@ -1,37 +1,32 @@
 import { Checkbox, ConfigProvider, Form, Input } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '../../components/shared/Button';
 import { useLoginMutation } from '../../redux/apiSlice/auth/auth';
-import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-    const [Login, { data, isLoading, isSuccess }] = useLoginMutation();
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (isLoading) {
-            toast.loading('Loading ...', { id: 'login-toast' });
-        } else {
-            toast.dismiss('login-toast');
-
-            if (isSuccess && data.data) {
-                toast.success('Login Successful', { id: 'login-toast' });
-                localStorage.setItem('accessToken', data?.data?.accessToken);
-                window.location.href = '/';
-            }
-        }
-    }, [data, navigate, isLoading, isSuccess]);
+    const [Login, { isLoading }] = useLoginMutation();
 
     const onFinish = async (values: { email: string; password: string }) => {
+        if (isLoading) {
+            toast.loading('Loading ...', { id: 'login-toast' });
+        }
         const data = {
             email: values?.email,
             password: values?.password,
         };
 
         try {
-            await Login(data).unwrap();
+            const res = await Login(data).unwrap();
+            if (res.success) {
+                toast.success('Login Successful', { id: 'login-toast' });
+                localStorage.setItem('accessToken', res?.data?.accessToken);
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 500);
+            } else {
+                toast.error(res.message || 'login failed try again.');
+            }
         } catch (error) {
             toast.error('login failed');
         }
