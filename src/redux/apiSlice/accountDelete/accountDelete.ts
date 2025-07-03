@@ -4,7 +4,7 @@ const accountDelete = api.injectEndpoints({
     endpoints: (builder) => ({
         accountDelete: builder.mutation({
             query: (data) => ({
-                url: '/auth/delete-user',
+                url: '/auth/public/delete-user',
                 method: 'DELETE',
                 body: data,
             }),

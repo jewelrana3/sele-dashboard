@@ -14,13 +14,12 @@ export default function AccountDelete() {
 
         try {
             const res = await accountDelete(data).unwrap();
-            if (res.success) {
-                toast.success(res.message || 'Account delete successfully');
-            } else {
-                toast.success(res.message || 'Account failed try again.');
+
+            if (res?.success) {
+                toast.success(res?.message || 'Account delete successfully');
             }
-        } catch {
-            toast.error('Account failed try again.');
+        } catch (error: any) {
+            toast.error(error?.data?.message || 'Account failed try again.');
         }
     };
     return (
