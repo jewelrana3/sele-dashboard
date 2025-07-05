@@ -26,6 +26,7 @@ import Policy from '../components/policy/Policy';
 import Condition from '../components/policy/TermsCondition';
 import AccountDelete from '../components/account-delete/AccountDelete';
 import PaymentSuccess from '../payment/PaymentSuucess';
+import AccountCreate from '../payment/AccountCreateSuccessfull';
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,7 @@ const router = createBrowserRouter([
     { path: '/condition', element: <Condition /> },
     { path: '/account-delete', element: <AccountDelete /> },
     { path: '/payment-success', element: <PaymentSuccess /> },
+    { path: '/bank-account-create', element: <AccountCreate /> },
 ]);
 
 export default router;
