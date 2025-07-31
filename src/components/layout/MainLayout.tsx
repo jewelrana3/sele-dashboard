@@ -21,7 +21,7 @@ const MainLayout: React.FC = () => {
                 </div>
 
                 {/* Outlet - scrollable */}
-                <div className="flex-1 overflow-y-auto px-10 mt-3">
+                <div className="flex-1 overflow-hidden px-10 mt-3">
                     <div className="min-h-full rounded-md">
                         <Outlet />
                     </div>

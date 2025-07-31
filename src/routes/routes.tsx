@@ -19,7 +19,7 @@ import Profile from '../pages/dashboard/profile/Profle';
 import SignUp from '../pages/authentication/SignUp';
 import AboutUs from '../pages/dashboard/AboutUs';
 import TermsCondition from '../pages/dashboard/TermsCondition';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
+// import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Brand from '../pages/dashboard/brand/Brand';
 import Category from '../pages/dashboard/category/Category';
 import Policy from '../components/policy/Policy';
@@ -27,14 +27,15 @@ import Condition from '../components/policy/TermsCondition';
 import AccountDelete from '../components/account-delete/AccountDelete';
 import PaymentSuccess from '../payment/PaymentSuucess';
 import AccountCreate from '../payment/AccountCreateSuccessfull';
+import RequestApproval from '../pages/dashboard/request-approval/RequestApproval';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: (
-            <PrivateRoute>
-                <App />
-            </PrivateRoute>
+            // <PrivateRoute>
+            <App />
+            // </PrivateRoute>
         ),
         errorElement: <ErrorPage />,
         children: [
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
             { path: '/earing', element: <Earing /> },
             { path: '/agency', element: <Agency /> },
             { path: '/category', element: <Category /> },
+            { path: '/request-approval', element: <RequestApproval /> },
             { path: '/brand', element: <Brand /> },
 
             { path: '/top-communities', element: <TopCommunities /> },
