@@ -2,7 +2,6 @@ import { Layout } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import { useGetProfileQuery } from '../../redux/apiSlice/profile/profile';
 import { imgUrl } from '../../redux/api/baseApi';
-import Loading from '../shared/Loading';
 const { Header } = Layout;
 
 const pathLink = [
@@ -15,15 +14,12 @@ const pathLink = [
 ];
 
 const HeaderDashboard = () => {
-    const { data, isLoading } = useGetProfileQuery(undefined);
+    const { data } = useGetProfileQuery(undefined);
     const location = useLocation();
     const path = location.pathname;
 
     const findPath = pathLink.find((active) => active.path === path);
 
-    if (isLoading) {
-        return <Loading />;
-    }
     return (
         <Header className="w-full">
             <div className="-ml-5">

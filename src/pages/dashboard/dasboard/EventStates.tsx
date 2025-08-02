@@ -10,7 +10,7 @@ const EventStates = () => {
     const statics = [
         {
             name: 'Total Earning',
-            count: `${staticsData?.totalEarning}k`,
+            count: `${staticsData?.totalEarning || 0}k`,
 
             textColor: '#FBB040',
             image: earing,

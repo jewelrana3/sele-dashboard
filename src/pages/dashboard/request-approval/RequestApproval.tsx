@@ -1,7 +1,7 @@
 import { ConfigProvider, Spin, Table } from 'antd';
 import { useState } from 'react';
-import { RiDeleteBin5Line } from 'react-icons/ri';
 import { RequestApprovalDetails } from '../../../modal/RequestApprovalDetails';
+import { Eye } from 'lucide-react';
 
 interface Data {
     id: number;
@@ -179,7 +179,7 @@ export default function RequestApproval() {
                                             className="text-nowrap font-semibold py-1 px-2 rounded-md"
                                             onClick={() => handleShowDetails(record?.id)}
                                         >
-                                            <RiDeleteBin5Line size={24} className="text-[#FE3838]" />
+                                            <Eye size={24} className="text-[#41799e]" />
                                         </span>
                                     </div>
                                 )}

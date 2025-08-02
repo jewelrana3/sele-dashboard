@@ -8,7 +8,6 @@ import { useGetProfileQuery, useUpdateProfileMutation } from '../../../redux/api
 import { imgUrl } from '../../../redux/api/baseApi';
 import toast from 'react-hot-toast';
 import { RiUpload2Line } from 'react-icons/ri';
-import Loading from '../../../components/shared/Loading';
 
 interface ProfileData {
     name: string;
@@ -17,7 +16,7 @@ interface ProfileData {
 }
 
 export default function EditProfile() {
-    const { data, isError, isLoading } = useGetProfileQuery(undefined);
+    const { data, isError } = useGetProfileQuery(undefined);
     const [updateProfile] = useUpdateProfileMutation();
     const navigate = useNavigate();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -63,10 +62,6 @@ export default function EditProfile() {
             toast.error('Profile updated Failed!');
         }
     };
-
-    if (isLoading) {
-        return <Loading />;
-    }
 
     if (isError) {
         return <span>Error loading content.</span>;

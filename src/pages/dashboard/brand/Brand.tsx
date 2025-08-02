@@ -79,6 +79,7 @@ const Brand = () => {
                             bordered={false}
                             dataSource={data?.data}
                             pagination={{
+                                showSizeChanger: false,
                                 pageSize,
                                 onChange: (page) => setCurrentPage(page),
                                 position: ['bottomCenter'],

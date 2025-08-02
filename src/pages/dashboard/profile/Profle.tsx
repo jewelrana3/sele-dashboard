@@ -6,11 +6,10 @@ import CustomButton from '../../../components/shared/Button';
 import { useGetProfileQuery } from '../../../redux/apiSlice/profile/profile';
 import { imgUrl } from '../../../redux/api/baseApi';
 import { useEffect } from 'react';
-import Loading from '../../../components/shared/Loading';
 
 export default function Profile() {
     const navigate = useNavigate();
-    const { data, isError, isLoading } = useGetProfileQuery(undefined);
+    const { data, isError } = useGetProfileQuery(undefined);
     const profile = data?.data;
     const [form] = Form.useForm();
 
@@ -20,10 +19,6 @@ export default function Profile() {
             email: profile?.email,
         });
     }, [form, data]);
-
-    if (isLoading) {
-        return <Loading />;
-    }
 
     if (isError) {
         return <span>Error loading content.</span>;
