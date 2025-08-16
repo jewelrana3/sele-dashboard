@@ -28,14 +28,16 @@ import AccountDelete from '../components/account-delete/AccountDelete';
 import PaymentSuccess from '../payment/PaymentSuucess';
 import AccountCreate from '../payment/AccountCreateSuccessfull';
 import RequestApproval from '../pages/dashboard/request-approval/RequestApproval';
+import PaymentFailed from '../payment/PaymentFailed';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: (
-            // <PrivateRoute>
-            <App />
-            // </PrivateRoute>
+            <PrivateRoute>
+                <App />
+            </PrivateRoute>
         ),
         errorElement: <ErrorPage />,
         children: [
@@ -69,6 +71,7 @@ const router = createBrowserRouter([
     { path: '/condition', element: <Condition /> },
     { path: '/account-delete', element: <AccountDelete /> },
     { path: '/payment-success', element: <PaymentSuccess /> },
+    { path: '/payment-failed', element: <PaymentFailed /> },
     { path: '/bank-account-create', element: <AccountCreate /> },
 ]);
 
