@@ -30,6 +30,7 @@ import AccountCreate from '../payment/AccountCreateSuccessfull';
 import RequestApproval from '../pages/dashboard/request-approval/RequestApproval';
 import PaymentFailed from '../payment/PaymentFailed';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import AccountCreateFailed from '../payment/AccountCreateFailed';
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,7 @@ const router = createBrowserRouter([
     { path: '/payment-success', element: <PaymentSuccess /> },
     { path: '/payment-failed', element: <PaymentFailed /> },
     { path: '/bank-account-create', element: <AccountCreate /> },
+    { path: '/bank-account-create-failed', element: <AccountCreateFailed /> },
 ]);
 
 export default router;

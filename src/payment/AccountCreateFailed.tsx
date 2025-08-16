@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const AccountCreate = () => {
+const AccountCreateFailed = () => {
     const [countdown, setCountdown] = useState(3);
-    const deepLinkURL = 'seleappbankaccountcreatesuccessfull://payment/success'; // Your custom URL scheme
+    const deepLinkURL = 'seleappbankaccountcreatefailed://payment/failed'; // Your custom URL scheme
     const fallbackURL = 'https://admin.selerental.com/'; // Fallback if app not installed
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -40,7 +40,7 @@ const AccountCreate = () => {
     return (
         <div style={styles.container}>
             <div style={styles.card}>
-                <div style={styles.success}>✅ Bank Account Create Successful!</div>
+                <div style={styles.success}>❌ Bank Account Create Failed!</div>
 
                 {/* Manual button fallback with user gesture */}
                 <button onClick={openAppWithFallback} style={styles.button}>
@@ -103,4 +103,4 @@ const styles: { [key: string]: React.CSSProperties } = {
     },
 };
 
-export default AccountCreate;
+export default AccountCreateFailed;
