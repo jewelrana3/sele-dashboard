@@ -1,8 +1,8 @@
 import { ConfigProvider, Spin, Table } from 'antd';
 import { useState } from 'react';
 import { Check } from 'lucide-react';
-import { useGetApprovalQuery, useUpdateApprovalMutation } from '../../../redux/apiSlice/approvalRequest/approval';
-import toast from 'react-hot-toast';
+import { useGetApprovalQuery } from '../../../redux/apiSlice/approvalRequest/approval';
+// import toast from 'react-hot-toast';
 
 // interface Data {
 //     id: number;
