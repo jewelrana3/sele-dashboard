@@ -17,6 +17,7 @@ const HeaderDashboard = () => {
     const { data } = useGetProfileQuery(undefined);
     const location = useLocation();
     const path = location.pathname;
+    console.log(data.data.image);
 
     const findPath = pathLink.find((active) => active.path === path);
 
@@ -43,7 +44,7 @@ const HeaderDashboard = () => {
                             >
                                 <img
                                     src={
-                                        data?.image?.startsWith('https')
+                                        data?.data?.image?.startsWith('https')
                                             ? data?.data.image
                                             : `${imgUrl}${data?.data?.image}`
                                     }

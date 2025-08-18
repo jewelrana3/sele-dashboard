@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        // baseUrl: 'http://10.0.70.188:5003/api/v1',
-        baseUrl: 'https://api.selerental.com/api/v1',
+        baseUrl: 'http://10.10.7.46:5003/api/v1',
+        // baseUrl: 'https://api.selerental.com/api/v1',
 
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('accessToken');
@@ -16,8 +16,8 @@ export const api = createApi({
     }),
 
     endpoints: () => ({}),
-    tagTypes: ['user', 'brand', 'profile', 'agency'],
+    tagTypes: ['user', 'brand', 'profile', 'agency', 'approval'],
 });
 
-// export const imgUrl = 'http://10.0.70.188:5003';
-export const imgUrl = 'https://api.selerental.com';
+export const imgUrl = 'http://10.10.7.46:5003';
+// export const imgUrl = 'https://api.selerental.com';

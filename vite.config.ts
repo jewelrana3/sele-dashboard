@@ -9,6 +9,6 @@ export default defineConfig({
     },
     preview: {
         host: '69.62.67.125',
-        // allowedHosts: ['admin.selerental.com'],
+        allowedHosts: ['admin.selerental.com'],
     },
 });
