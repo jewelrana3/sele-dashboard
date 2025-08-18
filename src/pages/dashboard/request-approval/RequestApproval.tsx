@@ -1,139 +1,32 @@
 import { ConfigProvider, Spin, Table } from 'antd';
 import { useState } from 'react';
 import { Check } from 'lucide-react';
-import { useGetApprovalQuery } from '../../../redux/apiSlice/approvalRequest/approval';
-// import toast from 'react-hot-toast';
-
-// interface Data {
-//     id: number;
-//     userName: string;
-//     contactNumber: string;
-//     drivingLicense: string;
-//     agencyName: string;
-//     status: string;
-//     image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png';
-// }
-
-// const data = [
-//     {
-//         id: 1,
-//         userName: 'Rahim Uddin',
-//         contactNumber: '01712345678',
-//         drivingLicense: 'DL-2023-0001',
-//         agencyName: 'Swift Travel BD',
-//         status: 'Success',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 2,
-//         userName: 'Karim Khan',
-//         contactNumber: '01898765432',
-//         drivingLicense: 'DL-2022-1034',
-//         agencyName: 'GreenLine Agency',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 3,
-//         userName: 'Sabina Akter',
-//         contactNumber: '01987654321',
-//         drivingLicense: 'DL-2021-5555',
-//         agencyName: 'Skyway Tours',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 4,
-//         userName: 'Mehedi Hasan',
-//         contactNumber: '01612349876',
-//         drivingLicense: 'DL-2024-1122',
-//         agencyName: 'Star Transport Ltd',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 5,
-//         userName: 'Nasrin Jahan',
-//         contactNumber: '01567891234',
-//         drivingLicense: 'DL-2020-0099',
-//         agencyName: 'Dreamline Travels',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 1,
-//         userName: 'Rahim Uddin',
-//         contactNumber: '01712345678',
-//         drivingLicense: 'DL-2023-0001',
-//         agencyName: 'Swift Travel BD',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 2,
-//         userName: 'Karim Khan',
-//         contactNumber: '01898765432',
-//         drivingLicense: 'DL-2022-1034',
-//         agencyName: 'GreenLine Agency',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 3,
-//         userName: 'Sabina Akter',
-//         contactNumber: '01987654321',
-//         drivingLicense: 'DL-2021-5555',
-//         agencyName: 'Skyway Tours',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 4,
-//         userName: 'Mehedi Hasan',
-//         contactNumber: '01612349876',
-//         drivingLicense: 'DL-2024-1122',
-//         agencyName: 'Star Transport Ltd',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-//     {
-//         id: 5,
-//         userName: 'Nasrin Jahan',
-//         contactNumber: '01567891234',
-//         drivingLicense: 'DL-2020-0099',
-//         agencyName: 'Dreamline Travels',
-//         status: 'Pending',
-//         image: 'https://i.ibb.co.com/93Cb6KpS/Rectangle-5.png',
-//     },
-// ];
+import { useGetApprovalQuery, useUpdateApprovalMutation } from '../../../redux/apiSlice/approvalRequest/approval';
+import toast from 'react-hot-toast';
 
 export default function RequestApproval() {
     const { data } = useGetApprovalQuery(undefined);
-    // const [updateApproval] = useUpdateApprovalMutation();
+    const [updateApproval] = useUpdateApprovalMutation();
     const isLoading = false;
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 8;
 
-    // const handleApprove = async (id: string) => {
-    //     const data = {
-    //         adminApproval: true,
-    //     };
-    //     try {
-    //         const res = await updateApproval(id, data).unwrap();
-    //         if (res?.message) {
-    //             toast.success(res.message);
-    //         } else {
-    //             toast.error(res.message || 'user not approved');
-    //         }
-    //     } catch (err: any) {
-    //         toast.error(err?.message || 'An error occurred while approving the user.');
-    //     }
-    // };
+    const handleApprove = async (id: string) => {
+        const data = {
+            adminApproval: true,
+        };
+        try {
+            const res = await updateApproval({ id, data }).unwrap();
+            if (res?.message) {
+                toast.success(res.message);
+            } else {
+                toast.error(res.message || 'user not approved');
+            }
+        } catch (err: any) {
+            toast.error(err?.message || 'An error occurred while approving the user.');
+        }
+    };
 
-    // const handleShowDetails = (data: Data) => {
-    //     setShowDetails(data);
-    //     setIsOpen(true);
-    // };
     return (
         <>
             <div className="rounded-lg mt-2 ">
@@ -209,7 +102,7 @@ export default function RequestApproval() {
                                     <div className="flex py-2 items-center justify-center">
                                         <span
                                             className="text-nowrap font-semibold py-1 px-2 rounded-md"
-                                            // onClick={() => handleApprove(record._id)}
+                                            onClick={() => handleApprove(record._id)}
                                         >
                                             {record.adminApproval == false && (
                                                 <span>
