@@ -78,7 +78,7 @@ export default function SiderbarDublicate() {
     return (
         <div className="sidebar">
             <Link to="/">
-                <div className="text-[#757575] md:text-[70px] font-bold text-center">
+                <div className="text-[#757575] text-[70px] font-bold text-center">
                     <h1>SELE</h1>
                 </div>
             </Link>
@@ -92,7 +92,7 @@ export default function SiderbarDublicate() {
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center">
                                         <span className="icon ">{item.icon}</span>
-                                        <span className=" text-[#333333] hidden md:block">{item.label}</span>
+                                        <span className=" text-[#333333]  ">{item.label}</span>
                                     </div>
                                 </div>
                             </Link>

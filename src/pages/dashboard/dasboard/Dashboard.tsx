@@ -4,11 +4,11 @@ import RecentUser from './RcentUser';
 
 export default function Dashboard() {
     return (
-        <div className="">
-            <div className="col-span-4">
+        <div>
+            <div>
                 <EventStates />
             </div>
-            <div className="col-span-8">
+            <div>
                 <Chart />
             </div>
             <div className="mt-5">

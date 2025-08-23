@@ -48,8 +48,8 @@ export default function RecentUser() {
                     <ConfigProvider>
                         <Table
                             bordered={false}
-                            dataSource={userData}
-                            pagination={{ pageSize: 4 }}
+                            dataSource={userData.slice(0, 4)}
+                            pagination={false}
                             className="cursor-pointer font-outfit"
                             rowKey={(record) => record?._id}
                         >
