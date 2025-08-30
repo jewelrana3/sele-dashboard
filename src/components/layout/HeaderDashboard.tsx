@@ -19,10 +19,10 @@ const pathLink = [
 ];
 
 const HeaderDashboard = () => {
-    const socket = useMemo(() => io('http://10.10.7.46:5003'), []);
+    const socket = useMemo(() => io('admin.selerental.com'), []);
     const { data } = useGetProfileQuery(undefined);
     const { data: notificatonsData, refetch } = useGetNotificationsQuery(undefined);
-    console.log(notificatonsData?.data, 'notifications');
+
     const location = useLocation();
     const path = location.pathname;
 
@@ -67,7 +67,7 @@ const HeaderDashboard = () => {
                             <div onClick={openModal}>
                                 <p className="relative">
                                     <MdOutlineNotificationsNone size={26} />
-                                    <span className="absolute -top-2 -right-2 bg-green-300 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                    <span className="absolute -top-2 -right-2 bg-yellow-700 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center cursor-pointer">
                                         {notificatonsData?.data.length}
                                     </span>
                                 </p>
@@ -114,7 +114,12 @@ const HeaderDashboard = () => {
                     </div>
                 </div>
             </Header>
-            <NotificationModal message={notificatonsData?.data} isOpen={isModalOpen} onClose={closeModal} />
+            <NotificationModal
+                refetch={refetch}
+                message={notificatonsData?.data}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            />
         </>
     );
 };
