@@ -4,7 +4,7 @@ import { useState } from 'react';
 import eye from '../../../../public/share-icon/eye.svg';
 import { useDeleteAgencyMutation, useGetAgencyQuery } from '../../../redux/apiSlice/agency';
 import Swal from 'sweetalert2';
-import UserDetailsModal from '../../../modal/UserDetails';
+import AgencyModal from './AgencyModal';
 
 export default function Agency() {
     const { data, isLoading } = useGetAgencyQuery(undefined);
@@ -26,7 +26,7 @@ export default function Agency() {
     const handleDelete = (id: string) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to user this!",
+            text: 'You want to be delete this!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -118,7 +118,7 @@ export default function Agency() {
             {/* user modal */}
             {userDetails && (
                 // @ts-ignore
-                <UserDetailsModal data={userDetails} isOpen={!!userDetails} onClose={() => setUserDetails(null)} />
+                <AgencyModal data={userDetails} isOpen={!!userDetails} onClose={() => setUserDetails(null)} />
             )}
         </>
     );

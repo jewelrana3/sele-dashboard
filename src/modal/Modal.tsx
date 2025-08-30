@@ -68,7 +68,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         <div style={styles.overlay}>
             <div style={styles.modal} ref={modalRef}>
                 {onClose && (
-                    <button onClick={onClose} style={styles.closeButton} className=" pr-5 mt-3">
+                    <button onClick={onClose} style={styles.closeButton} className=" pr-5 mt-2">
                         <RiCloseLargeFill />
                     </button>
                 )}

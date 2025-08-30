@@ -1,31 +1,17 @@
 import { ConfigProvider, Spin, Table } from 'antd';
 import { useState } from 'react';
-import { Check } from 'lucide-react';
-import { useGetApprovalQuery, useUpdateApprovalMutation } from '../../../redux/apiSlice/approvalRequest/approval';
-import toast from 'react-hot-toast';
+import { useGetApprovalQuery } from '../../../redux/apiSlice/approvalRequest/approval';
+
+import { GrCircleInformation } from 'react-icons/gr';
+import ApprovalDetails from './ApprovalDetails';
+import { imgUrl } from '../../../redux/api/baseApi';
 
 export default function RequestApproval() {
     const { data } = useGetApprovalQuery(undefined);
-    const [updateApproval] = useUpdateApprovalMutation();
     const isLoading = false;
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 8;
-
-    const handleApprove = async (id: string) => {
-        const data = {
-            adminApproval: true,
-        };
-        try {
-            const res = await updateApproval({ id, data }).unwrap();
-            if (res?.message) {
-                toast.success(res.message);
-            } else {
-                toast.error(res.message || 'user not approved');
-            }
-        } catch (err: any) {
-            toast.error(err?.message || 'An error occurred while approving the user.');
-        }
-    };
+    const [details, setDetails] = useState<any | null>(null);
 
     return (
         <>
@@ -74,7 +60,15 @@ export default function RequestApproval() {
                                 className="text-center"
                                 render={(_, record) => (
                                     <div className="flex items-center justify-center font-semibold ">
-                                        <img src={record.image} alt={record.name} className="w-16 h-14 object-cover" />
+                                        <img
+                                            src={
+                                                record.drivingLicense[0].startsWith('http')
+                                                    ? `${record.drivingLicense[0]}`
+                                                    : `${imgUrl}${record.drivingLicense[0]}`
+                                            }
+                                            alt={record.name}
+                                            className="w-16 h-14 object-cover"
+                                        />
                                     </div>
                                 )}
                             />
@@ -100,16 +94,7 @@ export default function RequestApproval() {
                                 align="center"
                                 render={(_, record) => (
                                     <div className="flex py-2 items-center justify-center">
-                                        <span
-                                            className="text-nowrap font-semibold py-1 px-2 rounded-md"
-                                            onClick={() => handleApprove(record._id)}
-                                        >
-                                            {record.adminApproval == false && (
-                                                <span>
-                                                    <Check />
-                                                </span>
-                                            )}
-                                        </span>
+                                        <GrCircleInformation size={22} onClick={() => setDetails(record)} />
                                     </div>
                                 )}
                             />
@@ -117,6 +102,14 @@ export default function RequestApproval() {
                     </ConfigProvider>
                 )}
             </div>
+
+            {/*  */}
+
+            {/* user modal */}
+            {details && (
+                // @ts-ignore
+                <ApprovalDetails data={details} isOpen={!!details} onClose={() => setDetails(null)} />
+            )}
         </>
     );
 }

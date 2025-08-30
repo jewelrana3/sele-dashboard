@@ -16,7 +16,7 @@ export default function Users() {
     const handleDelete = (id: string) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to user this!",
+            text: 'You want to be delete this!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

@@ -18,7 +18,14 @@ const approval = api.injectEndpoints({
             }),
             invalidatesTags: ['approval'],
         }),
+
+        unApprovalUpdate: builder.mutation({
+            query: (id) => ({
+                url: `/user/un-approve/${id}`,
+                method: 'PATCH',
+            }),
+        }),
     }),
 });
 
-export const { useGetApprovalQuery, useUpdateApprovalMutation } = approval;
+export const { useGetApprovalQuery, useUpdateApprovalMutation, useUnApprovalUpdateMutation } = approval;
