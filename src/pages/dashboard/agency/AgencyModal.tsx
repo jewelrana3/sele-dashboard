@@ -17,6 +17,7 @@ interface AgencyModalProps {
 }
 
 const AgencyModal: React.FC<AgencyModalProps> = ({ isOpen, onClose, data }) => {
+    console.log(data);
     const agencyDetails = [
         { label: 'User name', value: data?.name },
         { label: 'Email', value: data?.email },
@@ -29,7 +30,17 @@ const AgencyModal: React.FC<AgencyModalProps> = ({ isOpen, onClose, data }) => {
                 <section className="flex gap-6 mt-5">
                     <div className="border rounded">
                         {/* <span>User Image :</span> */}
-                        <img src={data?.image} alt={data?.name} className="w-40 object-cover h-40 rounded-full mt-4" />
+                        {data?.image && data.image.length > 0 ? (
+                            <img
+                                src={data.image.startsWith('http') ? data.image : `${imgUrl}${data.image}`}
+                                alt={data?.name}
+                                className="w-40 object-cover h-40 rounded-full mt-4"
+                            />
+                        ) : (
+                            <div className="w-40 h-40 flex items-center justify-center mt-4">
+                                <p className="text-center">No Image</p>
+                            </div>
+                        )}
                     </div>
 
                     <div className="space-y-2 mt-2">
