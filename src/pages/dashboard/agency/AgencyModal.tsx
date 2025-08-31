@@ -17,7 +17,6 @@ interface AgencyModalProps {
 }
 
 const AgencyModal: React.FC<AgencyModalProps> = ({ isOpen, onClose, data }) => {
-    console.log(data);
     const agencyDetails = [
         { label: 'User name', value: data?.name },
         { label: 'Email', value: data?.email },

@@ -36,13 +36,12 @@ const HeaderDashboard = () => {
 
     useEffect(() => {
         socket.on('connect', () => {
-            console.log('Connected to socket');
+            // console.log('Connected to socket');
         });
 
         // myMessage(1);
         refetch();
         // get-notification::687889255f960b372f74f844
-        console.log('Super Admin Id', data?.data?._id);
         const eventName = 'get-notification::' + data?.data?._id;
         socket.on(eventName, () => {
             refetch();
