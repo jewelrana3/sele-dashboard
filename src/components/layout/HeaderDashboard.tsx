@@ -63,7 +63,7 @@ const HeaderDashboard = () => {
                         <div className="ml-8">
                             <h1 className="text-xl font-semibold">{findPath?.label}</h1>
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex items-center gap-3">
                             <div onClick={openModal}>
                                 <p className="relative">
                                     <MdOutlineNotificationsNone size={26} />
