@@ -37,7 +37,7 @@ const NotificationModal: React.FC<{
                                             key={item._id}
                                             onClick={() => handleSendId(item._id)}
                                             className={`${
-                                                item.isRead === false ? 'bg-slate-200' : 'bg-green-100'
+                                                item.isRead === false ? 'bg-blue-200' : ''
                                             } my-5 p-2 cursor-pointer rounded`}
                                         >
                                             {item.message}
