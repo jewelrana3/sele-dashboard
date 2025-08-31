@@ -47,14 +47,18 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onClose, da
                     <span className="">Driving License:</span>
                     <div className="grid grid-cols-2 gap-3 mt-3">
                         {Array.isArray(data?.drivingLicense) && data?.drivingLicense.length > 0
-                            ? data?.drivingLicense?.map((item: any, index: number) => (
-                                  <img
-                                      key={index}
-                                      src={item.startsWith('https') ? item : `${imgUrl}${item}`}
-                                      alt={`Driving License ${index + 1}`}
-                                      className="border rounded-lg w-full h-40 object-cover"
-                                  />
-                              ))
+                            ? data?.drivingLicense?.map((item: any, index: number) => {
+                                  const imageUrl = item.startsWith('https') ? item : `${imgUrl}${item}`;
+                                  return (
+                                      <a key={index} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                                          <img
+                                              src={imageUrl}
+                                              alt={`Driving License ${index + 1}`}
+                                              className="border rounded-lg w-full h-40 object-cover"
+                                          />
+                                      </a>
+                                  );
+                              })
                             : 'No License'}
                     </div>
                 </section>
@@ -62,15 +66,19 @@ const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onClose, da
                 <section className="mt-4 ">
                     <span className="my-2">ID Card:</span>
                     <div className="grid grid-cols-2 gap-3 mt-3">
-                        {Array.isArray(data?.yourID) && data?.yourID.length > 0
-                            ? data.yourID?.map((item: any, index: number) => (
-                                  <img
-                                      key={index}
-                                      src={item.startsWith('https') ? item : `${imgUrl}${item}`}
-                                      alt={`Driving License ${index + 1}`}
-                                      className="border rounded-lg w-full h-40 object-cover mt-1"
-                                  />
-                              ))
+                        {Array.isArray(data?.yourID) && data.yourID.length > 0
+                            ? data.yourID.map((item: any, index: number) => {
+                                  const imageUrl = item.startsWith('https') ? item : `${imgUrl}${item}`;
+                                  return (
+                                      <a key={index} href={imageUrl} target="_blank" rel="noopener noreferrer">
+                                          <img
+                                              src={imageUrl}
+                                              alt={`Driving License ${index + 1}`}
+                                              className="border rounded-lg w-full h-40 object-cover mt-1"
+                                          />
+                                      </a>
+                                  );
+                              })
                             : 'No License'}
                     </div>
                 </section>
