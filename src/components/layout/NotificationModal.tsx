@@ -30,21 +30,17 @@ const NotificationModal: React.FC<{
                 <div className="h-auto scroll-smooth overflow-y-scroll">
                     <div className="text-sm px-4 my-3">
                         {message.length > 0 &&
-                            message.map((item) => {
-                                if (item.isRead === false) {
-                                    return (
-                                        <p
-                                            key={item._id}
-                                            onClick={() => handleSendId(item._id)}
-                                            className={`${
-                                                item.isRead === false ? 'bg-blue-200' : ''
-                                            } my-5 p-2 cursor-pointer rounded`}
-                                        >
-                                            {item.message}
-                                        </p>
-                                    );
-                                }
-                            })}
+                            message.map((item) => (
+                                <p
+                                    key={item._id}
+                                    onClick={() => handleSendId(item._id)}
+                                    className={`${
+                                        item.isRead === false ? 'bg-blue-300' : 'bg-slate-300'
+                                    } my-5 p-2 cursor-pointer rounded`}
+                                >
+                                    {item.message}
+                                </p>
+                            ))}
                     </div>
                 </div>
             </div>
