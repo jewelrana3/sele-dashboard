@@ -27,7 +27,7 @@ const NotificationModal: React.FC<{
         <Modal isOpen={isOpen} onClose={onClose}>
             <div>
                 <div className="font-bold mt-6 px-3">Notifications</div>
-                <div className="h-auto scroll-smooth overflow-y-scroll">
+                <div className="h-72 scroll-smooth overflow-y-scroll">
                     <div className="text-sm px-4 my-3">
                         {message.length > 0 &&
                             message.map((item) => (
