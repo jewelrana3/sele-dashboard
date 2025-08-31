@@ -1,46 +1,3 @@
-// import Modal from '../../modal/Modal';
-// import { useUpdateNotificationMutation } from '../../redux/apiSlice/notification';
-
-// const NotificationModal: React.FC<{ refetch: () => void; message: string; isOpen: boolean; onClose: () => void }> = ({
-//     refetch,
-//     message,
-//     isOpen,
-//     onClose,
-// }) => {
-//     if (!isOpen) return null; // If the modal isn't open, return nothing
-//     const [updateNotification] = useUpdateNotificationMutation();
-
-//     const handleSendId = (id: string) => {
-//         updateNotification(id);
-//         refetch();
-//     };
-
-//     return (
-//         <Modal isOpen={isOpen} onClose={onClose}>
-//             <div>
-//                 <div className="font-bold mt-6 px-3">Notifications</div>
-//                 <div className="mt- h-72 scroll-smooth overflow-y-scroll">
-//                     <div className="text-sm p-4 my-3">
-//                         {message.length > 0 &&
-//                             message?.map((item: any) => (
-//                                 <p
-//                                     key={item._id}
-//                                     onClick={() => handleSendId(item?._id)}
-//                                     className={`${
-//                                         item.isRead === false ? 'bg-slate-200' : 'bg-green-100'
-//                                     } my-5 p-2 cursor-pointer rounded`}
-//                                 >
-//                                     {item?.message}
-//                                 </p>
-//                             ))}
-//                     </div>
-//                 </div>
-//             </div>
-//         </Modal>
-//     );
-// };
-
-// export default NotificationModal;
 import Modal from '../../modal/Modal';
 import { useUpdateNotificationMutation } from '../../redux/apiSlice/notification';
 
@@ -70,20 +27,24 @@ const NotificationModal: React.FC<{
         <Modal isOpen={isOpen} onClose={onClose}>
             <div>
                 <div className="font-bold mt-6 px-3">Notifications</div>
-                <div className="mt- h-72 scroll-smooth overflow-y-scroll">
+                <div className="h-auto scroll-smooth overflow-y-scroll">
                     <div className="text-sm px-4 my-3">
                         {message.length > 0 &&
-                            message.map((item) => (
-                                <p
-                                    key={item._id}
-                                    onClick={() => handleSendId(item._id)}
-                                    className={`${
-                                        item.isRead === false ? 'bg-slate-200' : 'bg-green-100'
-                                    } my-5 p-2 cursor-pointer rounded`}
-                                >
-                                    {item.message}
-                                </p>
-                            ))}
+                            message.map((item) => {
+                                if (item.isRead === false) {
+                                    return (
+                                        <p
+                                            key={item._id}
+                                            onClick={() => handleSendId(item._id)}
+                                            className={`${
+                                                item.isRead === false ? 'bg-slate-200' : 'bg-green-100'
+                                            } my-5 p-2 cursor-pointer rounded`}
+                                        >
+                                            {item.message}
+                                        </p>
+                                    );
+                                }
+                            })}
                     </div>
                 </div>
             </div>

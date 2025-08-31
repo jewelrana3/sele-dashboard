@@ -9,6 +9,11 @@ import { io } from 'socket.io-client';
 import NotificationModal from './NotificationModal';
 import { useGetNotificationsQuery } from '../../redux/apiSlice/notification';
 
+interface Item {
+    id: number;
+    isRead: boolean;
+}
+
 const pathLink = [
     { label: 'Dashboard', path: '/' },
     { label: 'Users', path: '/users' },
@@ -53,6 +58,8 @@ const HeaderDashboard = () => {
         };
     }, [socket]);
 
+    const unreadItems = notificatonsData?.data?.filter((item: Item) => item.isRead === false);
+
     return (
         <>
             {' '}
@@ -64,10 +71,10 @@ const HeaderDashboard = () => {
                         </div>
                         <div className="flex items-center gap-3">
                             <div onClick={openModal}>
-                                <p className="relative">
+                                <p className="relative cursor-pointer">
                                     <MdOutlineNotificationsNone size={26} />
-                                    <span className="absolute -top-2 -right-2 bg-yellow-700 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center cursor-pointer">
-                                        {notificatonsData?.data.length}
+                                    <span className="absolute -top-2 -right-2 bg-yellow-700 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center ">
+                                        {unreadItems?.length}
                                     </span>
                                 </p>
                             </div>
