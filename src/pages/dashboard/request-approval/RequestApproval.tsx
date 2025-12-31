@@ -51,19 +51,27 @@ export default function RequestApproval() {
                             dataIndex="drivingLicense"
                             key="license"
                             className="text-center"
-                            render={(_, record) => (
-                                <div className="flex items-center justify-center font-semibold ">
-                                    <img
-                                        src={
-                                            record.drivingLicense[0].startsWith('http')
-                                                ? `${record.drivingLicense[0]}`
-                                                : `${imgUrl}${record.drivingLicense[0]}`
-                                        }
-                                        alt={record.name}
-                                        className="w-16 h-14 object-cover"
-                                    />
-                                </div>
-                            )}
+                            render={(_, record) => {
+                                console.log('record', record);
+
+                                return (
+                                    <div className="flex items-center justify-center font-semibold ">
+                                        {record?.drivingLicense[0] ? (
+                                            <img
+                                                src={
+                                                    record?.drivingLicense[0]?.startsWith('http')
+                                                        ? `${record?.drivingLicense[0]}`
+                                                        : `${imgUrl}${record?.drivingLicense[0]}`
+                                                }
+                                                alt={record.name}
+                                                className="w-16 h-14 object-cover"
+                                            />
+                                        ) : (
+                                            <p>No Image</p>
+                                        )}
+                                    </div>
+                                );
+                            }}
                         />
 
                         <Table.Column
